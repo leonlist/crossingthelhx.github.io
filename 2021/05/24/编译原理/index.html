@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>编译原理 - Leonlist&#039;s Temporary Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Leonlist&#039;s Temporary Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Leonlist&#039;s Temporary Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="文法和语言终结符和非终结符 终结符可以简单地理解为「推导到这里就终结了」，也就是说不能再继续通过生成式向下推倒的元素就是终结符。 比如 T-&amp;gt;abc。T 推导为串 abc 后已经得到了实质上的字符，不用在向下推导了，那么 T 为非终结符，abc 无法继续推导，则为终结符。（在一系列生成式中，式子左边的一定是非终结符，从未出现在式子左边的一定是终结符） 句子与句型 如果符号串x是由起始符号推导"><meta property="og:type" content="blog"><meta property="og:title" content="编译原理"><meta property="og:url" content="http://example.com/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><meta property="og:site_name" content="Leonlist&#039;s Temporary Blog"><meta property="og:description" content="文法和语言终结符和非终结符 终结符可以简单地理解为「推导到这里就终结了」，也就是说不能再继续通过生成式向下推倒的元素就是终结符。 比如 T-&amp;gt;abc。T 推导为串 abc 后已经得到了实质上的字符，不用在向下推导了，那么 T 为非终结符，abc 无法继续推导，则为终结符。（在一系列生成式中，式子左边的一定是非终结符，从未出现在式子左边的一定是终结符） 句子与句型 如果符号串x是由起始符号推导"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516181303298.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516193619828.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/9868789-a3c39a974c428700.jpg"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195427323.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195506594.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200427859.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200159612.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210626195108962.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624141514215.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624144904054.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624172230823.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192105652.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192717151.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192839151.png"><meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624091408951.png"><meta property="article:published_time" content="2021-05-24T06:38:57.000Z"><meta property="article:modified_time" content="2022-10-18T03:14:59.244Z"><meta property="article:author" content="Leonlist"><meta property="article:tag" content="编译原理"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516181303298.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"},"headline":"编译原理","image":["http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516181303298.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516193619828.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/9868789-a3c39a974c428700.jpg","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195427323.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195506594.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200427859.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200159612.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210626195108962.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624141514215.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624144904054.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624172230823.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192105652.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192717151.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192839151.png","http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624091408951.png"],"datePublished":"2021-05-24T06:38:57.000Z","dateModified":"2022-10-18T03:14:59.244Z","author":{"@type":"Person","name":"Leonlist"},"publisher":{"@type":"Organization","name":"Leonlist's Temporary Blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"文法和语言终结符和非终结符 终结符可以简单地理解为「推导到这里就终结了」，也就是说不能再继续通过生成式向下推倒的元素就是终结符。 比如 T-&gt;abc。T 推导为串 abc 后已经得到了实质上的字符，不用在向下推导了，那么 T 为非终结符，abc 无法继续推导，则为终结符。（在一系列生成式中，式子左边的一定是非终结符，从未出现在式子左边的一定是终结符） 句子与句型 如果符号串x是由起始符号推导"}</script><link rel="canonical" href="http://example.com/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Leonlist&#039;s Temporary Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-24T06:38:57.000Z" title="2021/5/24 14:38:57">2021-05-24</time>发表</span><span class="level-item"><time dateTime="2022-10-18T03:14:59.244Z" title="2022/10/18 11:14:59">2022-10-18</time>更新</span><span class="level-item">1 小时读完 (大约9879个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">编译原理</h1><div class="content"><h1 id="文法和语言"><a href="#文法和语言" class="headerlink" title="文法和语言"></a>文法和语言</h1><p><strong>终结符和非终结符</strong></p>
+<p>终结符可以简单地理解为「推导到这里就终结了」，也就是说不能再继续通过生成式向下推倒的元素就是终结符。</p>
+<p>比如 T-&gt;abc。T 推导为串 abc 后已经得到了实质上的字符，不用在向下推导了，那么 T 为非终结符，abc 无法继续推导，则为终结符。（在一系列生成式中，式子左边的一定是非终结符，从未出现在式子左边的一定是终结符）</p>
+<p><strong>句子与句型</strong></p>
+<p>如果符号串x是由起始符号推导出的，则称x是文法G[S]的句型。</p>
+<p>如果x中只包含终结符，则称x是文法G[S]的句子。</p>
+<p>文法描述的语言是该文法一切句子的集合。</p>
+<p><strong>四种文法</strong></p>
+<p>0型文法：α→β，其中α至少包含一个非终结符。</p>
+<p>1型文法（上下文有关文法）：α→β，其中|β|≥|α|，S→ε除外。</p>
+<p>2型文法（上下文无关文法）：a→β，其中a是一个非终结符。</p>
+<p>3型文法（规范文法）：A→a或A→aB.</p>
+<p>4种文法是逐渐增加限制的，所以规范文法一定是0型文法、1型文法、2型文法，上下文无关文法也一定是0型文法、1型文法…</p>
+<p><strong>上下文有关文法与上下文无关文法</strong></p>
+<p>在应用一个产生式进行推导时，前后已经推导出的部分结果就是上下文。上下文无关指，只要文法的定义里有某个产生式，不管一个非终结符前后的串是什么，就可以应用相应的产生式进行推导。</p>
+<p>上下文无关文法例子：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Code</span><br><span class="line">产生式：</span><br><span class="line">Sent -&gt; S V O</span><br><span class="line">S -&gt; 人 | <span class="type">天</span></span><br><span class="line"><span class="type">V</span> -&gt; 吃 | <span class="type">下</span></span><br><span class="line"><span class="type">O</span> -&gt; 雨 | <span class="type">雪 | 饭 | 肉</span></span><br></pre></td></tr></table></figure>
+
+<p>这个文法可以生成如下句子（共 16 种组合）：</p>
+<p>｛人吃饭，天下雨，人吃肉，天下雪，人下雪，天下饭，天吃肉，……｝</p>
+<p>可以看到，其中有一些搭配在语义上是不恰当的，例如”天吃肉“。其（最左）推导过程为：</p>
+<p>Sent -&gt; SVO -&gt; 天VO -&gt; 天吃O -&gt; 天吃肉</p>
+<p>而上下文有关文法例子如下：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Code</span><br><span class="line">Sent -&gt; S V O</span><br><span class="line">S -&gt; 人 | <span class="type">天</span></span><br><span class="line"><span class="type">人V</span> -&gt; 人吃</span><br><span class="line">天V -&gt; 天下</span><br><span class="line">下O -&gt; 下雨 | <span class="type">下雪</span></span><br><span class="line"><span class="type">吃O</span> -&gt; 吃饭 | <span class="type">吃肉</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这里对 V 的推导过程施加了约束：虽然 V 还是能推出”吃“和”下“两个词，但是仅仅当 V 左边是”人“时，才允许它推导出”吃“；而当 V 左边是”天“时，允许它推导出”下“。这样通过上下文的约束，就保证了主谓搭配的一致性。类似地，包含 O 的产生式也约束了动宾搭配的一致性。（就是语法的强约束条件，导致上下文有关了）</p>
+<p>这样一来，这个语言包含的句子就只有｛人吃饭，天下雨，人吃肉，天下雪｝这四条，都是语义上合理的。</p>
+<p>以”人吃饭“为例，推导过程为：</p>
+<p>Sent -&gt; SVO -&gt; 人VO -&gt; 人吃O -&gt; 人吃饭</p>
+<p>（这与语法的歧义性还是不同的，要有所区分）</p>
+<p><strong>1型文法比2型文法识别的语言集合更大？</strong></p>
+<p>上例看到，感觉上下文有关文法所解释的句子集合更少。</p>
+<p>这里的“1型文法比2型文法<strong>识别的语言集合</strong>更大” 这里的集合不是产生的结果集（字符串集合），而是语言规则集。 2型文法规则一定是1型文法规则，而有些语言能用1型文法规则描述，但用2型文法规则描述不出来。</p>
+<h2 id="语法树"><a href="#语法树" class="headerlink" title="语法树"></a>语法树</h2><h3 id="最左推导-最右推导-规范句型"><a href="#最左推导-最右推导-规范句型" class="headerlink" title="最左推导/最右推导/规范句型"></a>最左推导/最右推导/规范句型</h3><p>例如 E+E   (i+i)：</p>
+<ul>
+<li>E+E =&gt; E+i =&gt; i+i  ——最右推导</li>
+<li>E+E =&gt; i+E =&gt; i+i   ——最左推导</li>
+</ul>
+<p><strong>最左推导</strong>是指：任何一步α=&gt; β都是对α中的最左非终结符进行替换。</p>
+<p>同样，可定义<strong>最右推导</strong>（又称规范推导）：任何一步α=&gt;β都是对α中的最右非终结符进行替换。</p>
+<p>由规范推导所得到的句型称为<strong>规范句型</strong>。</p>
+<p>（要证明某句型为左（右）句型，即最左（最右）推导能推导出该句型）</p>
+<h3 id="二义性"><a href="#二义性" class="headerlink" title="二义性"></a>二义性</h3><p>一个文法的某个句子对应两棵不同的语法树，则这个文法是二义的。</p>
+<p>或一个文法的某个句子有两个不同的最左（右）推导，则这个文法是二义的。</p>
+<p>人们已证明，二义性问题是不可判定的，即不存在一个算法，它能在有限步骤内，确切地判断一个文法是否是二义的。（做题时就画两颗不同的语法树来证明其二义性）</p>
+<h3 id="自上而下的分析法"><a href="#自上而下的分析法" class="headerlink" title="自上而下的分析法"></a>自上而下的分析法</h3><p>基本思想：从文法的开始符号出发，反复使用各种产生式，寻找“匹配”输入符号串的推导。即对任何输入符号串，从文法的开始符号（根结）出发，自上而下地为输入串建立一棵语法树，直到语法树结果正好是输入的符号串为止。</p>
+<h3 id="自下而上的分析法"><a href="#自下而上的分析法" class="headerlink" title="自下而上的分析法"></a>自下而上的分析法</h3><p>基本思想：从输入串开始，逐步进行“归约”，直至归约到文法的开始符号。即从语法树的末端开始，步步向上“归约”，直到根结。</p>
+<h3 id="短语、直接短语、句柄"><a href="#短语、直接短语、句柄" class="headerlink" title="短语、直接短语、句柄"></a>短语、直接短语、句柄</h3><ol>
+<li><p><strong>短语</strong></p>
+<p>令文法G，开始符号为S，αβδ是G的句型（即S=&gt;αβδ），如果S=&gt;αAδ且A=&gt;β，则称β是句型αβδ相对于非终结符A的短语。</p>
+<p>（非终结符不断推导，只剩不能推导的符号）</p>
+</li>
+<li><p><strong>直接短语</strong></p>
+<p>如短语中有A=&gt;β，则称β是句型相对于规则A→β的直接短语。</p>
+<p>（非终结符一次推导，只剩不能推导的符号，才能称为直接短语）</p>
+</li>
+<li><p><strong>句柄</strong></p>
+<p>一个句型的最左直接短语称为该句型的句柄。</p>
+</li>
+</ol>
+<p>⒈ 先证明前提</p>
+<p>⒉ 给出语法树（注意文法是否是二义性的）</p>
+<p>　如题文法G[E]:   E→ E+E|E*E|(E) | i</p>
+<p>  证明i+i*i是G的一个句型，并指出这个句型的所有短语、直接短语、句柄。</p>
+<p>⒊ 根据每棵语法树得出短语、直接短语、句柄</p>
+<p>　（注意编号）</p>
+<h1 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h1><h2 id="NFA→-DFA的转换（NFA的确定化）"><a href="#NFA→-DFA的转换（NFA的确定化）" class="headerlink" title="NFA→ DFA的转换（NFA的确定化）"></a>NFA→ DFA的转换（NFA的确定化）</h2><h3 id="确定化的有关运算"><a href="#确定化的有关运算" class="headerlink" title="确定化的有关运算"></a>确定化的有关运算</h3><p><strong>（1）ε_closure(I) ——状态集合I的ε闭包(等价状态集)</strong></p>
+<p> 设I是状态集的一个子集，ε_closure(I)定义为：</p>
+<p>​    a.若S∈I，则S∈ε_closure(I)；</p>
+<p>​    b. 若S∈I，那么从S出发经过任意ε弧而能到达的任意状态S’都属于ε_closure(I)；</p>
+<p><strong>（2）Move(I, a)——状态集合I的a弧转换</strong></p>
+<p> 假定I是状态集的一个子集，a是Σ中的一个字符，定义</p>
+<p>​            Ia <strong>＝</strong> ε_closure(J)</p>
+<p>其中J是所有那些可从I中的某一状态出发经过一条a弧而到达的状态结的全体。</p>
+<p>　<strong>(3)Ia＝ ε_closure(Move(I, a))</strong></p>
+<h3 id="子集化的具体过程"><a href="#子集化的具体过程" class="headerlink" title="子集化的具体过程"></a>子集化的具体过程</h3><p>为了方便起见，令Σ中只有a,b两个字母，即Σ＝{a, b}</p>
+<p>（1）构造一张表，此表的每一行有三列，第一列为I，第二列为Ia，第二列为Ib。即</p>
+<table>
+<thead>
+<tr>
+<th align="center">I</th>
+<th align="center">Ia</th>
+<th align="center">Ib</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ε_closure(K0)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>首先置该表的第一列为ε_closure(K0)</p>
+<p>（2）一般而言，若某一行的第一列的状态子集已确定，例如记为I，则可以求出Ia和Ib</p>
+<p>（3）检查Ia和Ib是否已在表的第一列中出现，把未曾出现者填入到后面空行的第一列位置上。</p>
+<p>（4）对未重复Ia 、Ib的新行重复上述过程(2)、(3)，直到所有第二列和第三列的子集全部在第一列中出现</p>
+<p><strong>DFA 的初态位该表第一行第一列的状态</strong></p>
+<p><strong>DFA 的终态为含有原 NFA 的终态的状态子集</strong></p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516181303298.png" alt="image-20210516181303298" style="zoom:67%;" />
+
+<table>
+<thead>
+<tr>
+<th>I</th>
+<th>Ia</th>
+<th>Ib</th>
+<th>S</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{0,1,2,4,7}</td>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,4,5,6,7}</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,4,5,6,7,9}</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>{1,2,4,5,6,7}</td>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,4,5,6,7}</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>{1,2,4,5,6,7,9}</td>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,4,5,6,7,10}</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>{1,2,4,5,6,7,<strong>10</strong>}</td>
+<td>{1,2,3,4,6,7,8}</td>
+<td>{1,2,4,5,6,7}</td>
+<td><strong>4</strong></td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h2 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h2><ol>
+<li>将得到的状态进行划分 ∏ ，划分为两部分，一部分为终态，一部分为为非终组。</li>
+<li>继续进行划分，通过其可以匹配的字符进行判断，若该组内所有成员匹配字符都落在同一组内，即不可再分，否则重新划分组</li>
+<li>若 ∏new = ∏ ，则进入步骤4，否则返回2</li>
+<li>在分组 ∏new 每个组中选取一个状态作为代表，代表DFA的最简状态。</li>
+</ol>
+<h2 id="正规式→NFA"><a href="#正规式→NFA" class="headerlink" title="正规式→NFA"></a>正规式→NFA</h2><img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210516193619828.png" alt="image-20210516193619828" style="zoom:67%;" />
+
+<h1 id="自顶向下语法分析方法"><a href="#自顶向下语法分析方法" class="headerlink" title="自顶向下语法分析方法"></a>自顶向下语法分析方法</h1><p>对于任一输入符号串，从文法的识别符号出发，根据当前的输入符号，<strong>唯一的确定一个产生式</strong>，用产生式的右部的符号串替代相应的非终结符往下推导，或构造一棵语法树。若能推导出输入串或构造语法树成功则输入串是句子，否则不是。</p>
+<h2 id="开始符号FIRST集合"><a href="#开始符号FIRST集合" class="headerlink" title="开始符号FIRST集合"></a>开始符号FIRST集合</h2><p><strong>理解</strong></p>
+<p>FIRST(A)是以A开始符的集合，A的所有可能推导的开头终结符或者是ε</p>
+<p><strong>例子</strong></p>
+<ol>
+<li><p>后面跟的不是非终结符</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">A-&gt;aB|ε</span><br><span class="line">A-&gt;c</span><br><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">First(A)=&#123;a,ε,c&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>后面跟非终结符（一）</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">A-&gt;Ba</span><br><span class="line">A-&gt;b</span><br><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">First(A)=&#123;b&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>后面跟的非终结符（二）</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">A-&gt;Bc</span><br><span class="line">B-&gt;b|ε</span><br><span class="line"><span class="meta prompt_">...</span></span><br><span class="line">First(A)=&#123;b,c&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>后面跟的非终结符（三）</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">A-&gt;BC</span><br><span class="line">B-&gt;b|<span class="type">ε</span></span><br><span class="line"><span class="type">C</span>-&gt;c|<span class="type">ε</span></span><br><span class="line"><span class="type">...</span></span><br><span class="line"><span class="type">First</span>(A)=&#123;b,c,ε&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>构造文法G的每一文法符号X，X ∈ (VT∪VN)</p>
+<ul>
+<li><p>如果 X 是终结符号，那么FIRST(X)={X}</p>
+</li>
+<li><p>如果 X 是非终结符号，且 X -&gt; Y1Y2Y3…Yk 是产生式</p>
+<ul>
+<li>如果a在FIRST(Yi)中，且 ε 在FIRST(Y1)，FIRST(Y2)，…，FIRST(Yi-1)中，那么a也在FIRST(X)中；</li>
+<li>如果ε 在FIRST(Y1)，FIRST(Y2)，…，FIRST(Yk)中，那么ε在FIRST(X)中；</li>
+</ul>
+</li>
+<li><p>如果X是非终结符号，且有X-&gt;ε，那么ε在FIRST(X)中</p>
+</li>
+</ul>
+<h2 id="后跟符号FOLLOW集合"><a href="#后跟符号FOLLOW集合" class="headerlink" title="后跟符号FOLLOW集合"></a>后跟符号FOLLOW集合</h2><p><strong>理解</strong></p>
+<p>Follow(A)为非终结符A后跟符号的集合，Follow(A)是所有句型中出现在紧接A之后的终结符或’#‘</p>
+<p><strong>求解规则</strong></p>
+<p>将标记 # 放到 FOLLOW(S) 中</p>
+<p>按照下面两个规则<strong>不断迭代</strong>，直到所有的 FOLLOW 集合都不再增长为止</p>
+<ul>
+<li>如果存在产生式 A -&gt; αBβ ，那么 FIRST(β) 中所有非 ε 的符号都在 FOLLOW(B) 中；</li>
+<li>如果存在产生式 A -&gt; αB，或者 A -&gt; αBβ 且 FIRST(β) 包含 ε，那么 FOLLOW(A) 中的所有符号都加入到 FOLLOW(B) 中</li>
+</ul>
+<p><strong>理解求解规则</strong></p>
+<ol>
+<li><p>将标记 # 放到 FOLLOW(S) 中</p>
+</li>
+<li><p>形如A -&gt; αBβ</p>
+<p>（α可以是终结符或者非终结符或者直接为空，β可以是终结符或者非终结符，注意β不能为空，B后面要有东西）</p>
+<p>比如</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;B</span><br><span class="line">A-&gt;cB</span><br><span class="line"></span><br><span class="line">A-&gt;dBC</span><br><span class="line">C-&gt;ε</span><br></pre></td></tr></table></figure>
+
+<p>那么 FOLLOW(A) 中的所有符号都加入到 FOLLOW(B) 中</p>
+<p><strong>例子一</strong></p>
+<p>注意：[if] 是一个终结符，同理[b] [other] [else] [then]</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">G(S)：S-&gt;IETSP|<span class="type">O</span></span><br><span class="line">I-&gt;<span class="keyword">if</span></span><br><span class="line">E-&gt;b</span><br><span class="line">O-&gt;other</span><br><span class="line">L-&gt;<span class="keyword">else</span></span><br><span class="line">T-&gt;<span class="keyword">then</span></span><br><span class="line">P-&gt;LS|<span class="type">ε</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>First</strong></th>
+<th><strong>Follow</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First(S)={if,other}</td>
+<td>Follow(S)={井号 ,else}</td>
+</tr>
+<tr>
+<td>First(I)={if}</td>
+<td>Follow(I)={b}</td>
+</tr>
+<tr>
+<td>First(E)={b}</td>
+<td>Follow(E)={then}</td>
+</tr>
+<tr>
+<td>First(O)={other}</td>
+<td>Follow(O)={else,井号}</td>
+</tr>
+<tr>
+<td>First(L)={else}</td>
+<td>Follow(L)={if,other}</td>
+</tr>
+<tr>
+<td>First(P)={else,ε}</td>
+<td>Follow(P)={else,井号}</td>
+</tr>
+<tr>
+<td>First(T)={then}</td>
+<td>Follow(T)={if,other}</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="Select集合"><a href="#Select集合" class="headerlink" title="Select集合"></a>Select集合</h2><p><strong>理解</strong></p>
+<ol>
+<li>如果a不能=&gt;ε，则 Select(A-&gt;a)=First(a)</li>
+<li>如果a=&gt;ε，则 Select(A-&gt;a)=(First(a)-{ε})UFollow(A)</li>
+</ol>
+<h2 id="LL-1-文法的判别"><a href="#LL-1-文法的判别" class="headerlink" title="LL(1) 文法的判别"></a>LL(1) 文法的判别</h2><h3 id="满足定义"><a href="#满足定义" class="headerlink" title="满足定义"></a>满足定义</h3><ol>
+<li>求出能推出ε的非终结符</li>
+<li>求FIRST集合；</li>
+<li>求FOLLOW集合；</li>
+<li>计算SELECT集合。</li>
+<li>对同一非终结符的不同产生式求Select交集</li>
+</ol>
+<h2 id="某些非LL-1-文法到LL-1-文法的等价转换"><a href="#某些非LL-1-文法到LL-1-文法的等价转换" class="headerlink" title="某些非LL(1)文法到LL(1)文法的等价转换"></a>某些非LL(1)文法到LL(1)文法的等价转换</h2><h3 id="存在左公因子"><a href="#存在左公因子" class="headerlink" title="存在左公因子"></a>存在左公因子</h3><p>解决方法：提取左公因子</p>
+<p>若文法中存在形如：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;ay|<span class="type">ab</span>   </span><br><span class="line">两个产生式左部第一个符号相同，则不符合LL（<span class="number">1</span>）文法，指代不明，则表示存在左公因子</span><br><span class="line"></span><br><span class="line">解决方法：</span><br><span class="line">转换成 A-&gt;aM1,aM2，aM3....的形式：</span><br><span class="line">得：</span><br><span class="line">A-&gt;aM</span><br><span class="line">M-&gt;y|<span class="type">b</span></span><br><span class="line">则成功提取左公因子；</span><br></pre></td></tr></table></figure>
+
+<h3 id="存在左递归"><a href="#存在左递归" class="headerlink" title="存在左递归"></a>存在左递归</h3><p><strong>（1）直接左递归</strong> </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span>-&gt;AB, <span class="selector-tag">A</span>∈Vn，<span class="selector-tag">B</span>属于V*</span><br></pre></td></tr></table></figure>
+
+<p>方法：左递归变右递归</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P-&gt;β1P&#x27;|<span class="string">β2P&#x27;</span>|<span class="string">…</span>|<span class="string">βnP&#x27;</span></span><br><span class="line"><span class="string">P&#x27;-&gt;α1P&#x27;</span>|<span class="string">α2P&#x27;</span>|<span class="string">…</span>|<span class="string">αmP&#x27;</span>|<span class="string">ε</span></span><br></pre></td></tr></table></figure>
+
+<p>例：给定文法G(S):</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">E<span class="operator">-&gt;</span>E<span class="operator">+</span><span class="built_in">T</span><span class="operator">|</span><span class="built_in">T</span></span><br><span class="line"><span class="built_in">T</span><span class="operator">-&gt;</span><span class="built_in">T</span><span class="operator">*</span><span class="built_in">F</span><span class="operator">|</span><span class="built_in">F</span></span><br><span class="line"><span class="built_in">F</span><span class="operator">-&gt;</span><span class="punctuation">(</span>E<span class="punctuation">)</span><span class="operator">|</span>i</span><br></pre></td></tr></table></figure>
+
+<p>消除其直接左递归G(E):</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E-&gt;T<span class="string">E&#x27;</span></span><br><span class="line"><span class="string">E&#x27;</span>-&gt;+T<span class="string">E&#x27;|ε</span></span><br><span class="line"><span class="string">T-&gt;FT&#x27;</span></span><br><span class="line">T<span class="string">&#x27;-&gt;*FT&#x27;</span>|ε</span><br><span class="line">F-&gt;(E)|i</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）间接左递归</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span>-&gt;Bb</span><br><span class="line"><span class="selector-tag">B</span>-&gt;Aa</span><br><span class="line"><span class="selector-tag">A</span>,<span class="selector-tag">B</span>∈Vn，<span class="selector-tag">a</span>，<span class="selector-tag">b</span>属于V*</span><br></pre></td></tr></table></figure>
+
+<p>（这里第二种情况注意，因为是左递归，所以看得就是第一个字符，一定要跟这个类型一样的A-&gt;B…. 以及B-&gt;A…. 这种才是左递归，如果A-&gt;B…. ,B-&gt;aA…,  这种就不是左递归了，因为样式不同，请注意）</p>
+<p>同样消除左递归的方法：</p>
+<p>如果是间接左递归，则先转换成直接左递归：</p>
+<p>例子：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;Bb | <span class="type">c</span></span><br><span class="line">B-&gt;Aa</span><br></pre></td></tr></table></figure>
+
+<p>将B-&gt;Aa代入到另一个式子：</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;Aab | <span class="type">c</span></span><br></pre></td></tr></table></figure>
+
+<p>转换</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A-&gt;cM</span><br><span class="line">M-&gt;abM</span><br><span class="line">M-&gt;ε</span><br></pre></td></tr></table></figure>
+
+<h2 id="递归下降子程序"><a href="#递归下降子程序" class="headerlink" title="递归下降子程序"></a>递归下降子程序</h2><p>已知文法G[S]：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">S→aH</span><br><span class="line">H→aMd <span class="string">| d  </span></span><br><span class="line">M→Ab <span class="string">|ε  </span></span><br><span class="line">A→aM <span class="string">| e</span></span><br></pre></td></tr></table></figure>
+
+<p>构造其递归下降分析程序</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">PROCEDURE</span> <span class="title">S</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">	<span class="title">IF</span> <span class="title">SYM</span>=‘<span class="title">a</span>’ <span class="title">THEN</span> </span></span><br><span class="line"><span class="function">	<span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">		<span class="title">ADVANCE</span>;</span></span><br><span class="line">		H ;</span><br><span class="line">	<span class="keyword">END</span></span><br><span class="line">	<span class="keyword">ELSE</span>    </span><br><span class="line">		ERROR</span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">PROCEDURE</span>  <span class="title">H</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span>    </span></span><br><span class="line"><span class="function">    <span class="title">IF</span> <span class="title">SYM</span>=‘<span class="title">d</span>’ <span class="title">THEN</span>		</span></span><br><span class="line"><span class="function">    	<span class="title">ADVANCE</span>;</span></span><br><span class="line">   	<span class="keyword">ELSE</span></span><br><span class="line">   		<span class="keyword">IF</span> SYM=‘a’ <span class="keyword">THEN</span></span><br><span class="line">   		<span class="keyword">BEGIN</span></span><br><span class="line">   			ADVANCE;</span><br><span class="line">   			M;</span><br><span class="line">   			<span class="keyword">IF</span> SYM=‘d’ <span class="keyword">THEN</span></span><br><span class="line">                ADVANCE;</span><br><span class="line">   			<span class="keyword">ELSE</span>      </span><br><span class="line">   				ERROR</span><br><span class="line">   		<span class="keyword">END</span></span><br><span class="line">   	<span class="keyword">ELSE</span></span><br><span class="line">   		REEOR</span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">PROCEDURE</span>  <span class="title">M</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span>    </span></span><br><span class="line"><span class="function">    <span class="title">IF</span> <span class="title">SYM</span>=‘<span class="title">a</span>’ || <span class="title">SYM</span>=‘<span class="title">e</span>’ <span class="title">THEN</span></span></span><br><span class="line"><span class="function">    <span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">    	<span class="title">A</span>;</span></span><br><span class="line">        <span class="keyword">IF</span> SYM=‘b’ <span class="keyword">THEN</span></span><br><span class="line">        	ADVANCE;       </span><br><span class="line">        <span class="keyword">ELSE</span>  </span><br><span class="line">            ERROR;</span><br><span class="line">    <span class="keyword">END</span></span><br><span class="line"><span class="keyword">END</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">PROCEDURE</span>  <span class="title">A</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span>    </span></span><br><span class="line"><span class="function">     <span class="title">IF</span> <span class="title">SYM</span>=‘<span class="title">e</span>’ <span class="title">THEN</span></span></span><br><span class="line"><span class="function">     	<span class="title">ADVANCE</span>;</span></span><br><span class="line">     <span class="keyword">ELSE</span></span><br><span class="line">     	<span class="keyword">IF</span> SYM=‘a’ <span class="keyword">THEN</span></span><br><span class="line">     	<span class="keyword">BEGIN</span></span><br><span class="line">     		ADVANCE;</span><br><span class="line">     		M;</span><br><span class="line">     	<span class="keyword">END</span></span><br><span class="line">     <span class="keyword">ELSE</span></span><br><span class="line">     	ERROR</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="构造预测分析表"><a href="#构造预测分析表" class="headerlink" title="构造预测分析表"></a>构造预测分析表</h2><p>构造预测分析表的步骤</p>
+<ol>
+<li>对每个终结符 a∈FIRST(a)，将 A-&gt;a 加到 M[A, a] 中</li>
+<li>如果 ε∈FIRST(a)，则对于任何 b∈FOLLOW(A)，将 A-&gt;a 加到 M[A, b] 中</li>
+</ol>
+<h1 id="期中考"><a href="#期中考" class="headerlink" title="期中考"></a>期中考</h1><h2 id="文法与语言"><a href="#文法与语言" class="headerlink" title="文法与语言"></a>文法与语言</h2><ul>
+<li>说明文法的语言</li>
+<li>产生式的所有元素</li>
+<li>写出最左/最右推导，或证明其为左/右句型</li>
+<li>画出语法树（证明二义性）</li>
+<li>写出所有短语、简单短语、句柄</li>
+</ul>
+<h2 id="词法分析-1"><a href="#词法分析-1" class="headerlink" title="词法分析"></a>词法分析</h2><ul>
+<li>正规式-&gt;NFA</li>
+<li>NFA-&gt;DFA</li>
+<li>DFA的化简</li>
+</ul>
+<h2 id="自顶向下语法分析方法-1"><a href="#自顶向下语法分析方法-1" class="headerlink" title="自顶向下语法分析方法"></a>自顶向下语法分析方法</h2><ul>
+<li>LL1文法判别<ul>
+<li>first</li>
+<li>follow</li>
+<li>Select</li>
+</ul>
+</li>
+<li>文法的等价转换（消除左递归、左公因子）</li>
+<li>不带回溯的递归子程序</li>
+<li>预测分析表</li>
+<li>分析过程</li>
+</ul>
+<h1 id="自底向上优先分析"><a href="#自底向上优先分析" class="headerlink" title="自底向上优先分析"></a>自底向上优先分析</h1><h2 id="算符优先文法"><a href="#算符优先文法" class="headerlink" title="算符优先文法"></a>算符优先文法</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>算符优先分析法(Operator Precedence Parse)是仿效四则运算的计算过程而构造的一种语法分析方法。算符优先分析法的关键是比较两个相继出现的终结符的优先级而决定应采取的动作。</p>
+<p>优点：简单，有效，适合表达式的分析。</p>
+<p>缺点：只适合于算符优先文法，是一个不大的文法类。</p>
+<h3 id="算符优先关系的定义"><a href="#算符优先关系的定义" class="headerlink" title="算符优先关系的定义"></a>算符优先关系的定义</h3><p>（算符优先三种关系的符号，中间都有圆点）</p>
+<ul>
+<li>a &lt; b 文法中有形如 A→…aB… 的产生式而 B=&gt;b… 或 B=&gt;Cb…</li>
+<li>a &lt; b 文法中有形如 A→…ab… 或 A=&gt;…aBb… 的产生式</li>
+<li>a &gt; b 文法中有形如 A→…Bb… 的产生式而 B=&gt;…a 或 B=&gt;…aC</li>
+</ul>
+<h3 id="FIRSTVT和LASTVT的构造规则"><a href="#FIRSTVT和LASTVT的构造规则" class="headerlink" title="FIRSTVT和LASTVT的构造规则"></a>FIRSTVT和LASTVT的构造规则</h3><p><strong>FIRSTVT</strong><br>找FIRSTVT的三条规则：如果要找A的FIRSTVT，A的候选式中出现：</p>
+<ul>
+<li>A-&gt;a…，即以终结符开头，该终结符入FIRSTVT</li>
+<li>A-&gt;B…，即以非终结符开头，该非终结符的FIRSTVT入A的FIRSTVT</li>
+<li>A-&gt;Ba…，即先以非终结符开头，紧跟终结符，则终结符入FIRSTVT</li>
+</ul>
+<p><strong>LASTVT</strong><br>找LASTVT的三条规则：如果要找A的LASTVT，A的候选式中出现：</p>
+<ul>
+<li>A-&gt;…a，即以终结符结尾，该终结符入LASTVT</li>
+<li>A-&gt;…B，即以非终结符结尾，该非终结符的LASTVT入A的LASTVT</li>
+<li>A-&gt;…aB，即先以非终结符结尾，前面是终结符，则终结符入FIRSTVT</li>
+</ul>
+<h3 id="构造算法优先关系表"><a href="#构造算法优先关系表" class="headerlink" title="构造算法优先关系表"></a>构造算法优先关系表</h3><ul>
+<li><p>a=b 关系</p>
+<p>可直接查看产生式的右部，对如下形式的产生式</p>
+<p>A-&gt;…ab…</p>
+<p>A-&gt;…aBb…</p>
+<p>则有 a=b 成立</p>
+</li>
+<li><p>a&lt;b 关系</p>
+<p>对于所给表达式文法中终结符 a 在前，非终结符 B 在后的所有相邻符号对，有 b 属于FIRSTVT(B)，则 a&lt;b 成立</p>
+<p>a&lt;FIRSTVT()</p>
+</li>
+<li><p>a&gt;b 关系</p>
+<p>对于所给表达式文法中非终结 B 在前，终结符 a 在后的所有相邻符号对，有 a 属于LASTVT(B)，则 b&gt;a 成立</p>
+<p>LASTVT()&gt;a</p>
+</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">已知文法：</span><br><span class="line">S -&gt; a|<span class="type">^|(T</span>)</span><br><span class="line">T -&gt; T,S|<span class="type">S</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>FIRSTVT和LASTVT的构造</strong></p>
+<p>FIRSTVT(S)={a, ^, (}</p>
+<p>FIRSTVT(T)={a, ^, (, 逗号}</p>
+<p>LASTVT(S)={a, ^, )}</p>
+<p>LASTVT(T)={a, ^, ), 逗号}</p>
+<p><strong>构造算法优先关系表</strong></p>
+<ol>
+<li><p>引进产生式 S’ -&gt; #S#</p>
+</li>
+<li><p>找 a=b 关系</p>
+<p>S -&gt; (T) 有  (=)</p>
+<p>S’ -&gt; #E# 有 #=#</p>
+</li>
+<li><p>找 a&lt;b 关系</p>
+<p>S -&gt; (T) 有  ( &lt; FIRSTVT(T)={a, ^, (, 逗号}</p>
+<p>T -&gt; T,S 有 逗号 &lt; FIRSTVT(S)={a, ^, (}</p>
+<p>S’ -&gt; #S# 有 # &lt; FIRSTVT(S)={a, ^, (}</p>
+</li>
+<li><p>找 a&gt;b 关系</p>
+<p>S -&gt; (T) 有 LASTVT(T)={a, ^, ), 逗号} &gt; )</p>
+<p>T -&gt; T,S 有 LASTVT(T)={a, ^, ), 逗号} &gt; 逗号</p>
+<p>S’ -&gt; #S# 有 LASTVT(S)={a, ^, )} &gt; #</p>
+</li>
+</ol>
+<p>结果如下表</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">^</th>
+<th align="center">(</th>
+<th align="center">)</th>
+<th align="center">,</th>
+<th align="center">#</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+</tr>
+<tr>
+<td align="center">(</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center">=</td>
+<td align="center">&lt;</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center">&gt;</td>
+<td align="center">&gt;</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center">&lt;</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">=</td>
+</tr>
+</tbody></table>
+<p><strong>规约过程</strong></p>
+<ul>
+<li>因为非终结符不能影响语法分析，所以不需要区分它们，于是在这里用 S 来代替它们</li>
+<li>优先关系比较，是比较栈顶的终结符和下一个输入符之间的优先关系</li>
+<li>如果栈顶的终结符和下一个输入符之间的优先关系是 &lt; 或 = ，则移进，如果是 &gt; 关系，就调用归约</li>
+</ul>
+<p>(a, a)#</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>符号栈</th>
+<th>优先关系</th>
+<th>剩余输入串</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(1)</td>
+<td>#</td>
+<td>&lt;</td>
+<td>(a,a)#</td>
+<td>移进</td>
+</tr>
+<tr>
+<td>(2)</td>
+<td>#(</td>
+<td>&lt;</td>
+<td>a,a)#</td>
+<td>移进</td>
+</tr>
+<tr>
+<td>(3)</td>
+<td>#(a</td>
+<td>&gt;</td>
+<td>,a)#</td>
+<td>规约(S -&gt; a)</td>
+</tr>
+<tr>
+<td>(4)</td>
+<td>#(S</td>
+<td>&lt;</td>
+<td>,a)#</td>
+<td>移进(忽略S进行比较)</td>
+</tr>
+<tr>
+<td>(5)</td>
+<td>#(S,</td>
+<td>&lt;</td>
+<td>a)#</td>
+<td>移进</td>
+</tr>
+<tr>
+<td>(6)</td>
+<td>#(S,a</td>
+<td>&gt;</td>
+<td>)#</td>
+<td>规约(S -&gt; a)</td>
+</tr>
+<tr>
+<td>(7)</td>
+<td>#(S,S</td>
+<td>&gt;</td>
+<td>)#</td>
+<td>规约(T -&gt; T,S)</td>
+</tr>
+<tr>
+<td>(8)</td>
+<td>#(S</td>
+<td>=</td>
+<td>)#</td>
+<td>移进(未分析完成，继续)</td>
+</tr>
+<tr>
+<td>(9)</td>
+<td>#(S)</td>
+<td>&gt;</td>
+<td>#</td>
+<td>规约(S -&gt; (T))</td>
+</tr>
+<tr>
+<td>(10)</td>
+<td>#S</td>
+<td>=</td>
+<td>#</td>
+<td>分析成功</td>
+</tr>
+</tbody></table>
+<h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
+<li><p><strong>短语</strong></p>
+<p>令文法G，开始符号为S，αβδ是G的句型（即S=&gt;αβδ），如果S=&gt;αAδ且A=&gt;β，则称β是句型αβδ相对于非终结符A的短语。</p>
+<p>（非终结符不断推导，只剩不能推导的符号）</p>
+</li>
+<li><p><strong>直接短语</strong></p>
+<p>如短语中有A=&gt;β，则称β是句型相对于规则A→β的直接短语。</p>
+<p>（非终结符一次推导，只剩不能推导的符号，才能称为直接短语）</p>
+</li>
+<li><p><strong>句柄</strong></p>
+<p>一个句型的最左直接短语称为该句型的句柄。</p>
+</li>
+<li><p><strong>素短语</strong></p>
+<p>文法G某句型的一个短语是素短语，当且仅当它至少含有一个终结符，且除它自身之外不再含更小的素短语。</p>
+</li>
+<li><p><strong>最左素短语</strong></p>
+<p>在具有多个素短语的句型中处于最左边的那个素短语</p>
+</li>
+</ul>
+<p>做法：画语法树</p>
+<h1 id="LR-分析"><a href="#LR-分析" class="headerlink" title="LR 分析"></a>LR 分析</h1><p>注：由于 # 的转义问题，有些地方用 井 代替</p>
+<h2 id="LR-0-分析"><a href="#LR-0-分析" class="headerlink" title="LR(0)分析"></a>LR(0)分析</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/9868789-a3c39a974c428700.jpg" alt="img" style="zoom: 50%;" />
+
+<p>LR分析表的结构如上，其分为两个部分Action、Goto</p>
+<p><strong>Action</strong></p>
+<p>两个参数状态i，终结符号a（s(i)代表第i个状态，r(i)代表第i条表达式）</p>
+<ul>
+<li>移入j：j是一个状态，把j压入栈（同时移入a）</li>
+<li>归约A-&gt;B：把栈顶的B归约到A（并根据Goto表项压入新状态）</li>
+<li>接受：接受输入，完成分析</li>
+<li>报错：在输入中发现语法错误</li>
+</ul>
+<p><strong>Goto</strong></p>
+<p>Goto[i,A]=j</p>
+<h3 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h3><ul>
+<li><p>移进项目。原点为终结符的项目，比如 E-&gt;a·bB</p>
+</li>
+<li><p>规约项目。圆点在产生式右部最后的项目，比如 A-&gt;d· </p>
+</li>
+<li><p>待约项目。圆点后为非终结符的项目，比如 E-&gt;b·B </p>
+</li>
+<li><p>接受项目。规约项目为 S’-&gt;S·，表示已分析成功</p>
+</li>
+</ul>
+<p><strong>项目集非法情况：</strong></p>
+<ul>
+<li>移进和规约项目同时存在</li>
+<li>规约和规约项目同时存在</li>
+</ul>
+<p>若不存在上述情况，称文法为 LR(0) 文法</p>
+<h3 id="LR-0-分析表构造"><a href="#LR-0-分析表构造" class="headerlink" title="LR(0)分析表构造"></a>LR(0)分析表构造</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">若有定义二进制数的方法如下：</span><br><span class="line">E-&gt;aA | <span class="type">bB</span></span><br><span class="line">A-&gt;cA | <span class="type">d</span></span><br><span class="line">B-&gt;cB | <span class="type">d</span></span><br><span class="line">试为该文法构造 LR 分析表</span><br></pre></td></tr></table></figure>
+
+<p>因为本题入口有两个—— E -&gt; aA 和 E -&gt; bB，所以需要构造额外的产生式 S’-&gt;E</p>
+<ol>
+<li><p><strong>扩充</strong></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0</span>) S&#x27;<span class="punctuation">-&gt;</span><span class="title function_ invoke__">E</span></span><br><span class="line">(<span class="number">1</span>) E<span class="punctuation">-&gt;</span><span class="title function_ invoke__">aA</span></span><br><span class="line">(<span class="number">2</span>) E<span class="punctuation">-&gt;</span><span class="title function_ invoke__">bB</span></span><br><span class="line">(<span class="number">3</span>) A<span class="punctuation">-&gt;</span><span class="title function_ invoke__">cA</span> </span><br><span class="line">(<span class="number">4</span>) A<span class="punctuation">-&gt;</span><span class="title function_ invoke__">d</span></span><br><span class="line">(<span class="number">5</span>) B<span class="punctuation">-&gt;</span><span class="title function_ invoke__">cB</span> </span><br><span class="line">(<span class="number">6</span>) B<span class="punctuation">-&gt;</span>d</span><br><span class="line"><span class="comment">//考试时要标好序号</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>项目</strong></p>
+<p>接下来求文法的项目，就是给每个规则加一个点以后然后挪位置，挪一个位置就得到一个项目，如下</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.S<span class="string">&#x27;-&gt;·E    2.S&#x27;</span>-&gt;E·    <span class="number">3</span>.E-&gt;·<span class="function"><span class="title">aA</span>    4.E-&gt;</span><span class="function"><span class="title">a</span>·A    5.E-&gt;</span><span class="function"><span class="title">aA</span>·    6.A-&gt;</span>·cA   </span><br><span class="line"><span class="number">7</span>.A-&gt;<span class="function"><span class="title">c</span>·A    8.A-&gt;</span><span class="function"><span class="title">cA</span>·    9.A-&gt;</span>·<span class="function"><span class="title">d</span>     10.A-&gt;</span><span class="function"><span class="title">d</span>·    11.E-&gt;</span>·<span class="function"><span class="title">bB</span>   12.E-&gt;</span>b·B   </span><br><span class="line"><span class="number">13</span>.E-&gt;<span class="function"><span class="title">bB</span>·   14.B-&gt;</span>·<span class="function"><span class="title">cB</span>   15.B-&gt;</span><span class="function"><span class="title">c</span>·B   16.B-&gt;</span><span class="function"><span class="title">cB</span>·   17.B-&gt;</span>·<span class="function"><span class="title">d</span>    18.B-&gt;</span>d·</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>项目集规范族</strong></p>
+<p>把有 S’ 的项目而且点在最左边的项目作为状态 I0 的核，放在开头。然后看这个点后面的非终结符，是个 E，接下来就去项目中找左部是 E 的而且点在最左边开头位置的项目，列在核的下面，这就是状态 I0</p>
+<ul>
+<li>S’-&gt;·E</li>
+<li>E-&gt;·aA</li>
+<li>E-&gt;·bB</li>
+</ul>
+<p>接下来还是先看核里面点后的这个非终结符E，输入E（你可以理解为在箭弧上标了个E），把点向后移一位，得到 S’-&gt;E·，这其实是得到了一个新的状态的核。当然另外两个也一样，输入点后面的符号，比如输入a得到 E-&gt;a·A 为核的新状态，输入b得到 E-&gt;b·B 为核的新状态。得到新状态的核了，就是看核的点后面的非终结符，找以这个非终结符为左部的点在最左边的项目。如果点后面没有东西就不用找了。</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195427323.png" alt="image-20210623195427323" style="zoom: 67%;" />
+
+<p>接下来就是重复上面的工作，从每一个新状态出发，逐个输入每个项目点后面的符号，就是后移一位，又分别作为新的状态的核然后根据核找下面的同状态里的项目。找到找不动为止。</p>
+<p>（项目集标号（I0，I1…）最好按照广度优先搜索的方式标号）</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623195506594.png" alt="image-20210623195506594" style="zoom:67%;" />
+
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200427859.png" alt="image-20210623200427859" style="zoom:67%;" /></li>
+<li><p><strong>分析表</strong></p>
+<p>先写好 ACTION 和 GOTO 两个列标题，然后在 ACTION 下面写一排文法的所有的终结符，别忘了还有 #，GOTO下面写文法中除了 S’ 以外的所有的非终结符。</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210623200159612.png" alt="image-20210623200159612" style="zoom:67%;" />
+
+<ol>
+<li><p>找项目集规范族有 S’-&gt;A· 这种形状的那个状态 Ik，就是第 k 个状态，则把分析表第 k 行的 # 列标上 acc</p>
+<p>（例子中，状态 I1 里面有 S’-&gt;E·，所以 acc 在第1行）</p>
+</li>
+<li><p>按顺序（一般是按状态序号顺序）分析状态的项目和GOTO函数，<strong>主要就是看每个项目的 · 后面的符号</strong></p>
+<ol>
+<li>如果是终结符，看输入这个终结符后去的哪个状态，比如当前是状态 I0，对于第二个项目 E-&gt;·aA，输入 a 以后去了状态 I2，那就在分析表中第 0 行的 a 列写上 S2，意思就是状态 Ik 输入 Vt 后去了 Ij 状态。</li>
+<li>如果为非终结符，这个更好理解，比如从状态 Ik 输入这个非终结符以后去了状态 Ij ，那就在GOTO表的第 k 行第 Vn 列写 j。</li>
+</ol>
+</li>
+<li><p>有的项目的点是在最后。先看这个项目所在的状态，再看点前面的规则是文法里面的第几个规则，比如说状态 I10 的 A-&gt;d· 里面的 A-&gt;d 就是文法的第 4 条规则，那就在分析表的第 10 行所有的终结符列包括 # 列写上 r4，就是 ACTION 列的一行写满。即状态 Ik 的项目来自于文法的第 j 条规则，则分析表的第 k 行都是 rj。</p>
+</li>
+</ol>
+<p>结果如下：</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210626195108962.png" alt="image-20210626195108962" style="zoom:67%;" /></li>
+<li><p><strong>分析过程</strong></p>
+<p>分析bccd</p>
+<p>符号栈中是#，输入符号串就是给定的要分析的串，状态栈因为从0开始，所以状态栈直接填0</p>
+<p>当前输入串bccd#，即将输入b，看状态栈顶是0，看分析表第0行第b列是S3。把角标3压状态栈，b压符号栈，输入串少一个。</p>
+<p>当前为ccd#，即将压c，状态栈顶为3，看分析表第3行第c列是S5，5和c分别压栈。</p>
+<p>当前为cd#，即将压c，状态栈顶为5，看分析表第5行第c列是S5，5和c分别压栈。</p>
+<p>当前为d#，即将压d，状态栈顶为5，看分析表第5行第d列是S11，11和d分别压栈。</p>
+<p>当前为#，即将压#，状态栈顶为11，看分析表第11行第#列是r6。看文法的第6条规则，把符号栈顶归约为B，状态栈顶11弹出。然后再看状态栈顶5和符号栈顶B，GOTO表第5行第B列是9，记得在分析过程这一步的GOTO写9，然后把9压状态栈。这里要分清栈操作的先后顺序。</p>
+<p>当前为#，即将压#，状态栈顶为9，看分析表第9行第#列是r5，看文法的第5条规则，cB 归约成 B ，状态栈顶5和9弹出，然后找GOTO表把新状态9压栈。</p>
+<p>重复上面的操作。</p>
+<p>最后一步，状态栈顶为1，即将压#，分析表第1行第#列为acc，至此分析结束，bccd是该文法的产生式。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>状态栈</th>
+<th>符号栈</th>
+<th>输入串</th>
+<th>ACTION</th>
+<th>GOTO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>#</td>
+<td>bccd#</td>
+<td>S3</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>03</td>
+<td>#b</td>
+<td>ccd#</td>
+<td>S5</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>035</td>
+<td>#bc</td>
+<td>cd#</td>
+<td>S5</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>0355</td>
+<td>#bcc</td>
+<td>d#</td>
+<td>S11</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0355(11)</td>
+<td>#bccd</td>
+<td>#</td>
+<td>r6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>6</td>
+<td>03559</td>
+<td>#bccB</td>
+<td>#</td>
+<td>r5</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0359</td>
+<td>#bcB</td>
+<td>#</td>
+<td>r5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>8</td>
+<td>037</td>
+<td>#bB</td>
+<td>#</td>
+<td>r2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>01</td>
+<td>#E</td>
+<td>#</td>
+<td>acc</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="SLR-1-分析"><a href="#SLR-1-分析" class="headerlink" title="SLR(1) 分析"></a>SLR(1) 分析</h2><p>SLR分析表的构造步骤</p>
+<ol>
+<li> 拓广文法并对产生式编序号</li>
+<li>构造相应的SLR的识别活前缀的DFA</li>
+<li>求出相关非终结符的Follow集合</li>
+<li>判断是否为SLR文法</li>
+<li>如是，则构造分析表</li>
+</ol>
+<h3 id="分析表构造"><a href="#分析表构造" class="headerlink" title="分析表构造"></a>分析表构造</h3><p>考察算术表达式文法的拓广文法：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">)</span> S’ <span class="operator">-&gt;</span> E    <span class="punctuation">(</span><span class="number">1</span><span class="punctuation">)</span> E <span class="operator">-&gt;</span> E<span class="operator">+</span><span class="built_in">T</span>    <span class="punctuation">(</span><span class="number">2</span><span class="punctuation">)</span> E <span class="operator">-&gt;</span> <span class="built_in">T</span>   <span class="punctuation">(</span><span class="number">3</span><span class="punctuation">)</span> <span class="built_in">T</span> <span class="operator">-&gt;</span> <span class="built_in">T</span><span class="operator">*</span><span class="built_in">F</span></span><br><span class="line"><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">)</span> <span class="built_in">T</span> <span class="operator">-&gt;</span> <span class="built_in">F</span>     <span class="punctuation">(</span><span class="number">5</span><span class="punctuation">)</span> <span class="built_in">F</span> <span class="operator">-&gt;</span> <span class="punctuation">(</span>E<span class="punctuation">)</span>    <span class="punctuation">(</span><span class="number">6</span><span class="punctuation">)</span> <span class="built_in">F</span> <span class="operator">-&gt;</span> i</span><br></pre></td></tr></table></figure>
+
+<p>前三步同 LR(0) 文法,，得到如下：</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624141514215.png" alt="image-20210624141514215" style="zoom:67%;" />
+
+<p>红框处存在移进-规约冲突（比如I1中 S’-&gt;E· 是规约项目，E-&gt;E·+T是移进项目）</p>
+<p>首先找出所有点在最后的，即规约项目：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">S’ <span class="operator">-&gt;</span> E·  </span><br><span class="line">E <span class="operator">-&gt;</span> E<span class="operator">+</span><span class="built_in">T</span>·   </span><br><span class="line">E <span class="operator">-&gt;</span> <span class="built_in">T</span>·  </span><br><span class="line"><span class="built_in">T</span> <span class="operator">-&gt;</span> <span class="built_in">T</span><span class="operator">*</span><span class="built_in">F</span>·</span><br><span class="line"><span class="built_in">T</span> <span class="operator">-&gt;</span> <span class="built_in">F</span>·    </span><br><span class="line"><span class="built_in">F</span> <span class="operator">-&gt;</span> <span class="punctuation">(</span>E<span class="punctuation">)</span>·   </span><br><span class="line"><span class="built_in">F</span> <span class="operator">-&gt;</span> i·</span><br></pre></td></tr></table></figure>
+
+<p>求相关follow集（圆点·不算进去）</p>
+<p><strong>follow规则</strong></p>
+<p>将标记 # 放到 FOLLOW(S) 中</p>
+<p>按照下面两个规则<strong>不断迭代</strong>，直到所有的 FOLLOW 集合都不再增长为止</p>
+<ul>
+<li>如果存在产生式 A -&gt; αBβ ，那么 FIRST(β) 中所有非 ε 的符号都在 FOLLOW(B) 中；</li>
+<li>如果存在产生式 A -&gt; αB，或者 A -&gt; αBβ 且 FIRST(β) 包含 ε，那么 FOLLOW(A) 中的所有符号都加入到 FOLLOW(B) 中</li>
+</ul>
+<p>求得：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constructor">FOLLOW(S&#x27;)</span>=&#123;#&#125;</span><br><span class="line"><span class="constructor">FOLLOW(E)</span>=&#123;#, +, )&#125;</span><br><span class="line"><span class="constructor">FOLLOW(T)</span>=<span class="constructor">FOLLOW(F)</span>=&#123;#, +, ), *&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析表构造规则</strong></p>
+<ol>
+<li>若项目 A→α • aβ 属于 Ik 且GO(Ik , a)= Ij，a  为终结符，则置 ACTION[k, a] 为“把(j, a)移进栈”，简记为“Sj”；</li>
+<li>若项目 A→α • 属于 Ik，那么对于任何输入符号 a，其中 a∈FOLLOW(A)，置 ACTION[k, a] 为“用产生式A→α进行归约”，简记为“rj”。这里的j指产生式 A→α 是文法 G’ 的第 j 个产生式；</li>
+<li>若项目 S’→S • 属于 Ik，则置 ACTION[k, #] 为“接受”，简记为“acc”；</li>
+</ol>
+<p><strong>步骤</strong></p>
+<ol>
+<li>先填状态0，接受 i 到达5状态，所以填 S5；接受（ 到达4状态，填 S4；</li>
+<li>接受 E、T、F 分别到达1，2，3，在 GOTO 分别填1，2，3</li>
+<li>状态1，接收 + 到达6状态，填 S6</li>
+<li>S’-&gt;E· 为接受项目，在 1 行的 # 列填 acc</li>
+<li>状态2，接受 * 到达7状态，* 列填 S7</li>
+<li>FOLLOW(E)={+,井, )}，与 * 的交集为空，所以2行 +、）、井 列用产生式 E -&gt; T 进行规约，填 r2，* 列移进，填 S7</li>
+<li>状态3，FOLLOW(T)={+,井, )，*}，在3行这些列用产生式 T -&gt; F 进行规约，填 r4</li>
+<li>状态4-8按 SLR 规则填</li>
+<li>状态9，接受 * 到达7状态，* 列填 S7</li>
+<li>FOLLOW(E)={井, +, )}，与 * 的交集为空，所以2行 +、）、井 列用产生式 E -&gt; E+T 进行规约，填 r6，* 列移进，填 S7</li>
+<li>状态10、11填完，最终图如下：</li>
+</ol>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624144904054.png" alt="image-20210624144904054" style="zoom:67%;" />
+
+<p>可以看到，SLR(1) 分析表的构造和 LR(0) 分析表的构造类似，但有两处不同：</p>
+<ul>
+<li>SLR 在含有冲突的项目集中分别进行处理</li>
+<li>只有一个规约项目时，LR不论输入符号，一律规约，而 SLR 只有当输入符号属于 FOLLOW 集合才能规约</li>
+</ul>
+<h2 id="LR-1-分析"><a href="#LR-1-分析" class="headerlink" title="LR(1)分析"></a>LR(1)分析</h2><p>解决 SLR(1) 不能解决的冲突</p>
+<p>例子：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">0</span>) S’ -&gt; S      (<span class="number">1</span>) S -&gt; BB      (<span class="number">2</span>) B -&gt; aB       (<span class="number">3</span>) B -&gt; b</span><br></pre></td></tr></table></figure>
+
+<h3 id="LR-1-项目集族的构造"><a href="#LR-1-项目集族的构造" class="headerlink" title="LR(1)项目集族的构造"></a>LR(1)项目集族的构造</h3><p><strong>规则</strong></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">构造闭包函数：</span><br><span class="line"></span><br><span class="line">I是一个项目集，closure<span class="comment">(I)</span>为：</span><br><span class="line"><span class="comment">(1)</span> I的任何项目都是属于closure<span class="comment">(I)</span>；</span><br><span class="line"><span class="comment">(2)</span> 若[A→α • Bβ,  a] 属于closure<span class="comment">(I)</span>， B→γ是一个产生式，那么对于FIRST<span class="comment">(βa)</span>中的每个终结符b，项目[B→ • γ,  b]也属于closure<span class="comment">(I)</span>；</span><br><span class="line"><span class="comment">(3)</span> 重复执行步骤<span class="number">2</span>，直到closure<span class="comment">(I)</span>不再增大为止。</span><br><span class="line">注：b可能是从β推导出的第一个符号，或者，若β推导出ε，则b就是a。即b∈FIRST<span class="comment">(βa)</span>。展望符号通过自展来改变，传播不改变。</span><br><span class="line"></span><br><span class="line">构造转换函数与 LR<span class="comment">(0)</span> 类似</span><br><span class="line">令I是一个项目集，X 是一个文法符号，函数 GO<span class="comment">(I,X)</span> 定义为：</span><br><span class="line">GO<span class="comment">(I,X)</span> = closure<span class="comment">(J)</span></span><br><span class="line">其中  J = &#123;任何形如[A→α X• β,  a] 的项目 | [A→α • Xβ, a] ∈I&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤</strong></p>
+<ol>
+<li><p>首先构造 I0。把 [S’ -&gt; •S, 井] 放入，找出所有左部是 S 的而且点 • 在最左边开头位置的项目，有 [S -&gt; •BB]，而 FIRST(井)={井}，所以为 [S -&gt; •BB, 井]</p>
+<p>再找出所有左部是 B 的而且点 • 在最左边开头位置的项目，有 [B -&gt; •aB] 和 [B -&gt; •b]，而 FIRST(B井)={a,b}，所以为 [B -&gt; •aB, a/b] 和 [B -&gt; •b, a/b]</p>
+<p>I0为:</p>
+<ul>
+<li>S’ -&gt; •S , 井</li>
+<li>S -&gt; •BB, 井</li>
+<li>B -&gt; •aB, a/b</li>
+<li>B -&gt; •b, a/b</li>
+</ul>
+</li>
+<li><p>接下来先看核里面点后的这个非终结符E，输入S（你可以理解为在箭弧上标了个 S），把点向后移一位，得到 [S’ -&gt; S·,#]，这其实是得到了一个新的状态的核。当然另外两个也一样，输入点后面的符号，比如输入 a 得到 [B-&gt;a·B, a/b] 为核的新状态，输入b得到 [E-&gt;b· ,a/b] 为核的新状态。得到新状态的核，继续按照构造闭包函数规则构造，结果如下：</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624172230823.png" alt="image-20210624172230823" style="zoom:67%;" /></li>
+</ol>
+<h3 id="LR-1-分析表的构造"><a href="#LR-1-分析表的构造" class="headerlink" title="LR(1)分析表的构造"></a>LR(1)分析表的构造</h3><p><strong>规则</strong></p>
+<p>假定 C={I0, I1,……, In}，令每个项目集 Ik 的下标 k 为分析器的一个状态。令那个含有项目 [S’→•S, #] 的 Ik 的下标 k 为初态，函数 ACTION 表和 GOTO 表可按如下方法构造：</p>
+<ol>
+<li>若项目 [A→α • aβ, b] 属于 Ik 且 GO(Ik , a)= Ij，a为终结符，则置 ACTION[k, a] 为“把 (j, a) 移进栈”，简记为“Sj”；</li>
+<li>若项目 [A→α •, a] 属于 Ik，那么置 ACTION[k, a] 为“用产生式 A→α 进行归约”，简记为“rj”。这里的j指产生式 A→α 是文法G’的第 j 个产生式；</li>
+<li>若项目 [S’→S •, #] 属于 Ik，则置 ACTION[k, #] 为“接受”，简记为“acc”；</li>
+<li>若 GO(Ik,A) = Ij ，A 为非终结符，则置 GOTO(k , A) = j；</li>
+<li>分析表中凡是不能用规则1到4填入信息的空白格，均置上“报错标志”</li>
+</ol>
+<p><strong>步骤</strong></p>
+<ol>
+<li><p>状态0，接受 a 到达3状态，填 S3；接受 b 到达4状态，填 S4；</p>
+<p>接受 S，B到达1，2状态，在 GOTO 分别填1，2</p>
+</li>
+<li><p>状态1，为 [S’→S •, #] ，# 列填 acc</p>
+</li>
+<li><p>状态2，接受 a 到达6状态，填 S6；接受 b 到达7状态，填 S7；接受 B 到达5状态，在 GOTO 填5</p>
+</li>
+<li><p>状态3，接受 a 到达3状态，填 S3；接受 b 到达4状态，填 S4；接受 B 到达8状态，在 GOTO 填8</p>
+</li>
+<li><p>状态4，使用规则2，用产生式 B -&gt; b 进行规约，a、b 列填 r3</p>
+</li>
+<li><p>状态5，使用规则2，用产生式 S -&gt; BB 进行规约，# 列填 r1</p>
+</li>
+<li><p>按规则填完，结果如图：</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192105652.png" alt="image-20210624192105652" style="zoom:67%;" /></li>
+</ol>
+<h2 id="LALR-1-分析"><a href="#LALR-1-分析" class="headerlink" title="LALR(1)分析"></a>LALR(1)分析</h2><p>基本思想：</p>
+<ul>
+<li>寻找具有相同核心的LR (1) 项集，并将这些项集合并为一个项集。 所谓项集的核心就是其第一分量的集合，即合并同心集</li>
+<li>然后根据合并后得到的项集族构造语法分析表</li>
+</ul>
+<p>首先构造 LR(1)项目集族，若不存在冲突，就把同心集合并</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192717151.png" alt="image-20210624192717151" style="zoom:67%;" />
+
+<p>分析表的方法同 LR(1)</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624192839151.png" alt="image-20210624192839151" style="zoom:67%;" />
+
+<h1 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h1><h2 id="后缀式"><a href="#后缀式" class="headerlink" title="后缀式"></a>后缀式</h2><p>波兰表示是一种既不须考虑优先关系、又不用括号的一种表示表达式的方法（前缀式）。<br>逆波兰表示形式，称为后缀式，即运算符在后。</p>
+<p>求法：</p>
+<p>对单目运算符，直接将其放到变量后面，然后按照运算优先顺序，对双目运算符进行转换</p>
+<p>例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>+<span class="selector-tag">b</span> -&gt; ab+</span><br><span class="line"><span class="selector-tag">a</span>*(<span class="selector-tag">b</span>+c) -&gt; abc+*</span><br><span class="line">-<span class="selector-tag">a</span>+<span class="selector-tag">b</span>*c -&gt; <span class="selector-tag">a</span><span class="keyword">@bc</span>*+ //单目减运算(即<span class="string">&#x27;-&#x27;</span>负号用@符号代替)</span><br></pre></td></tr></table></figure>
+
+<h2 id="三元式"><a href="#三元式" class="headerlink" title="三元式"></a>三元式</h2><p>三元式由三个部分组成：</p>
+<ul>
+<li>算符：OP</li>
+<li>第一运算分量：ARG1</li>
+<li>第二运算分量：ARG2</li>
+</ul>
+<p>X:=A+B*C 可表示成</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">OP</th>
+<th align="center">ARG1</th>
+<th align="center">ARG2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">(1)</td>
+<td align="center">*</td>
+<td align="center">B</td>
+<td align="center">C</td>
+</tr>
+<tr>
+<td align="center">(2)</td>
+<td align="center">+</td>
+<td align="center">A</td>
+<td align="center">(1)</td>
+</tr>
+<tr>
+<td align="center">(3)</td>
+<td align="center">:=</td>
+<td align="center">X</td>
+<td align="center">(2)</td>
+</tr>
+</tbody></table>
+<h2 id="间接三元式"><a href="#间接三元式" class="headerlink" title="间接三元式"></a>间接三元式</h2><p>为便于代码优化处理，常常不直接使用三元式，而是另设一张指示器表（称为间接码表），它将按运算的先后顺序列出的有关三元式在三元表中的位置。即，用一张间接码表辅以三元式表来表示中间代码，这种表示法称为间接三元式。</p>
+<p>例如 语句 X:=(A+B)*C;       Y:=D ↑(A+B)的间接三元式表示</p>
+<img src="/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/image-20210624091408951.png" alt="image-20210624091408951" style="zoom:67%;" />
+
+<p>注意：在间接三元式下，相同的三元式，无需重复填进三元式表中，如上例中的(A+B)。但三元式和四元式需要重复填</p>
+<h2 id="四元式"><a href="#四元式" class="headerlink" title="四元式"></a>四元式</h2><p>四元式由四个部分组成：</p>
+<ul>
+<li>算符：OP</li>
+<li>第一运算分量：ARG1</li>
+<li>第二运算分量：ARG2</li>
+<li>运算结果：RESULT</li>
+</ul>
+<p>ARG1、ARG2、RESULT有时指用户自定义的变量，有时指编译程序引进的临时变量。如果OP是一个算术或逻辑算符，则RESULT总是一个新引进的临时变量，用来存放运算结果</p>
+<p>例：</p>
+<p>A:=-B*(C+D)的四元式表示：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>OP</th>
+<th>ARG1</th>
+<th>ARG2</th>
+<th>RESULT</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(1)</td>
+<td>@</td>
+<td>B</td>
+<td>-</td>
+<td>T1</td>
+<td>T1是临时变量</td>
+</tr>
+<tr>
+<td>(2)</td>
+<td>+</td>
+<td>C</td>
+<td>D</td>
+<td>T2</td>
+<td>T2是临时变量</td>
+</tr>
+<tr>
+<td>(3)</td>
+<td>*</td>
+<td>T1</td>
+<td>T2</td>
+<td>T3</td>
+<td>T3是临时变量</td>
+</tr>
+<tr>
+<td>(4)</td>
+<td>:=</td>
+<td>T3</td>
+<td>-</td>
+<td>A</td>
+<td>赋值运算</td>
+</tr>
+</tbody></table>
+<p>凡只需一个运算量的算符一律规定使用ARG1</p>
+<p>如同三元式一样，四元式出现的顺序与表达式计值的顺序是一样的</p>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>写出 <code>-A*(B+C)-D*(B+C)</code>​ 的后缀式、三元式、间接三元式、四元式</p>
+<p><strong>后缀式：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span><span class="keyword">@BC</span>+*DBC+*-</span><br></pre></td></tr></table></figure>
+
+<p><strong>三元式：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">OP</th>
+<th align="center">ARG1</th>
+<th align="center">ARG2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">(1)</td>
+<td align="center">@</td>
+<td align="center">A</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">(2)</td>
+<td align="center">+</td>
+<td align="center">B</td>
+<td align="center">C</td>
+</tr>
+<tr>
+<td align="center">(3)</td>
+<td align="center">*</td>
+<td align="center">(1)</td>
+<td align="center">(2)</td>
+</tr>
+<tr>
+<td align="center">(4)</td>
+<td align="center">+</td>
+<td align="center">B</td>
+<td align="center">C</td>
+</tr>
+<tr>
+<td align="center">(5)</td>
+<td align="center">*</td>
+<td align="center">D</td>
+<td align="center">(4)</td>
+</tr>
+<tr>
+<td align="center">(6)</td>
+<td align="center">-</td>
+<td align="center">(3)</td>
+<td align="center">(5)</td>
+</tr>
+</tbody></table>
+<p><strong>间接三元式：</strong></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">三元式表								</span><br><span class="line"><span class="comment">(1)</span> <span class="comment">(@,A,-)</span></span><br><span class="line"><span class="comment">(2)</span> <span class="comment">(+,B,C)</span></span><br><span class="line"><span class="comment">(3)</span> <span class="comment">(*,(1)</span>,<span class="comment">(2)</span>)</span><br><span class="line"><span class="comment">(4)</span> <span class="comment">(*,D,(2)</span>)</span><br><span class="line"><span class="comment">(5)</span> <span class="comment">(-,(3)</span>,<span class="comment">(4)</span>)</span><br><span class="line"></span><br><span class="line">间接码表</span><br><span class="line"><span class="comment">(1)</span></span><br><span class="line"><span class="comment">(2)</span></span><br><span class="line"><span class="comment">(3)</span></span><br><span class="line"><span class="comment">(2)</span></span><br><span class="line"><span class="comment">(4)</span></span><br><span class="line"><span class="comment">(5)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>四元式：</strong></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">1</span>) (<span class="name">@</span>,A,-,T1)</span><br><span class="line">(<span class="name">2</span>) (<span class="name"><span class="built_in">+</span></span>,B,C,T2)</span><br><span class="line">(<span class="name">3</span>) (<span class="name"><span class="built_in">*</span></span>,T1,T2,T3)</span><br><span class="line">(<span class="name">4</span>) (<span class="name"><span class="built_in">+</span></span>,B,C,T4)</span><br><span class="line">(<span class="name">4</span>) (<span class="name"><span class="built_in">*</span></span>,D,T4,T5)</span><br><span class="line">(<span class="name">5</span>) (<span class="name"><span class="built_in">-</span></span>,T3,T5,T6)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>写出 <code>A+B*(C-D)+E/(C-D)**N</code> 的后缀式、三元式、间接三元式、四元式</p>
+<p><strong>后缀式：</strong></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ABCD-<span class="strong">*+ECD-N*</span>*/+</span><br></pre></td></tr></table></figure>
+
+<p><strong>三元式：</strong></p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">1</span>) (<span class="name"><span class="built_in">-</span></span>,C,D)</span><br><span class="line">(<span class="name">2</span>) (<span class="name"><span class="built_in">*</span></span>,B,(<span class="name">1</span>))</span><br><span class="line">(<span class="name">3</span>) (<span class="name"><span class="built_in">+</span></span>,A,(<span class="name">2</span>))</span><br><span class="line">(<span class="name">4</span>) (<span class="name"><span class="built_in">-</span></span>,C,D)</span><br><span class="line">(<span class="name">5</span>) (<span class="name">**</span>,(<span class="name">4</span>),N)</span><br><span class="line">(<span class="name">6</span>) (<span class="name"><span class="built_in">/</span></span>,E,(<span class="name">5</span>))</span><br><span class="line">(<span class="name">7</span>) (<span class="name"><span class="built_in">+</span></span>,(<span class="name">3</span>),(<span class="name">6</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>间接三元式：</strong></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">三元式表</span><br><span class="line">(<span class="number">1</span>) (-,C,D)</span><br><span class="line">(<span class="number">2</span>) (*,B,(<span class="number">1</span>))</span><br><span class="line">(<span class="number">3</span>) (+,A,(<span class="number">2</span>))</span><br><span class="line">(<span class="number">4</span>) (**,(<span class="number">1</span>),N)</span><br><span class="line">(<span class="number">5</span>) (/,E,(<span class="number">4</span>))</span><br><span class="line">(<span class="number">6</span>) (+,(<span class="number">3</span>),(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">间接码表</span><br><span class="line">(<span class="number">1</span>)</span><br><span class="line">(<span class="number">2</span>)</span><br><span class="line">(<span class="number">3</span>)</span><br><span class="line">(<span class="number">1</span>)</span><br><span class="line">(<span class="number">4</span>)</span><br><span class="line">(<span class="number">5</span>)</span><br><span class="line">(<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>四元式</strong>：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">1</span>) (<span class="name"><span class="built_in">-</span></span>,C,D,T1)</span><br><span class="line">(<span class="name">2</span>) (<span class="name"><span class="built_in">*</span></span>,B,T1,T2)</span><br><span class="line">(<span class="name">3</span>) (<span class="name"><span class="built_in">+</span></span>,A,T2,T3)</span><br><span class="line">(<span class="name">4</span>) (<span class="name"><span class="built_in">-</span></span>,C,D,T4)</span><br><span class="line">(<span class="name">5</span>) (<span class="name">**</span>,T4,N,T5)</span><br><span class="line">(<span class="name">6</span>) (<span class="name"><span class="built_in">/</span></span>,E,T5,T6)</span><br><span class="line">(<span class="name">7</span>) (<span class="name"><span class="built_in">+</span></span>,T3,T6,T7)</span><br></pre></td></tr></table></figure>
+
+<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>对作为转换条件的布尔式E，可以把它翻译成仅含下述三种形式的四元式序列：</p>
+<ul>
+<li>( jnz, A, - , p): 若 A 为真（1，非0），则转向第 p 个四元式；</li>
+<li>(jθ, A1, A2, p): 若关系 A1 θ A2 为真，则转向四元式 p；</li>
+<li>(j, -, -, p ) : 无条件转向四元式 p。</li>
+</ul>
+<p>写出语句<code>If ﹁A ∨ B&lt;C ∧ D&lt;E  then  X:= Y+Z  else  X:=Y*Z</code> 的四元式序列</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">100 </span>(jnz,A,-,<span class="number">102</span>) </span><br><span class="line"><span class="symbol">101 </span>(j,-,-,<span class="number">106</span>) //如果A为假，跳转<span class="number">106</span></span><br><span class="line"><span class="symbol">102 </span>(j&lt;,B,C,<span class="number">104</span>)</span><br><span class="line"><span class="symbol">103 </span>(j,-,-,<span class="number">109</span>)</span><br><span class="line"><span class="symbol">104 </span>(j&lt;,D,E,<span class="number">106</span>)</span><br><span class="line"><span class="symbol">105 </span>(j,-,-,<span class="number">109</span>)</span><br><span class="line"><span class="symbol">106 </span>(+,Y,Z,T1)</span><br><span class="line"><span class="symbol">107 </span>(:=,T1,-,X)</span><br><span class="line"><span class="symbol">108 </span>(j,-,-,<span class="number">0</span>) //<span class="keyword">if</span>的跳转语句</span><br><span class="line"><span class="symbol">109 </span>(*,Y,Z,T2)</span><br><span class="line"><span class="symbol">110 </span>(:=,T2,-,X)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">写出四元式序列</span><br><span class="line"><span class="keyword">if</span> a&gt;b then </span><br><span class="line">	<span class="keyword">if</span> c&gt;<span class="number">0</span> ∧ d&gt;<span class="number">0</span> then  x:=<span class="number">1</span>  <span class="keyword">else</span> x:=<span class="number">2</span></span><br><span class="line"><span class="keyword">else</span>  x:=<span class="number">3</span> </span><br><span class="line"></span><br><span class="line">答：</span><br><span class="line"><span class="number">100</span> (j&gt;,a,b,<span class="number">102</span>) </span><br><span class="line"><span class="number">101</span> (j,-,-,<span class="number">110</span>) </span><br><span class="line"><span class="number">102</span> (j&gt;,C,<span class="number">0</span>,<span class="number">104</span>)</span><br><span class="line"><span class="number">103</span> (j,-,-,<span class="number">108</span>)</span><br><span class="line"><span class="number">104</span> (j&gt;,D,<span class="number">0</span>,<span class="number">106</span>)</span><br><span class="line"><span class="number">105</span> (j,-,-,<span class="number">108</span>)</span><br><span class="line"><span class="number">106</span> (:=,<span class="number">1</span>,-,X)</span><br><span class="line"><span class="number">107</span> (j,-,-,<span class="number">0</span>) <span class="comment">//内if的跳转语句</span></span><br><span class="line"><span class="number">108</span> (:=,<span class="number">2</span>,-,X) </span><br><span class="line"><span class="number">109</span> (j,-,-,<span class="number">107</span>) <span class="comment">//外if的跳转语句</span></span><br><span class="line"><span class="number">110</span> (:=,<span class="number">3</span>,-,X)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>将下列的IF语句翻译成四元式序列</strong></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">if</span> A <span class="keyword">and</span> <span class="keyword">B</span> <span class="keyword">and</span> (C &gt; D)</span><br><span class="line"><span class="symbol">then</span></span><br><span class="line">	<span class="meta">if</span> A &lt; <span class="keyword">B</span> then F := <span class="number">1</span></span><br><span class="line">	<span class="meta">else</span> F := <span class="number">0</span></span><br><span class="line"><span class="symbol">else</span> G := G + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">100 </span>(jnz,A,-,<span class="number">102</span>) </span><br><span class="line"><span class="symbol">101 </span>(j,-,-,<span class="number">112</span>) </span><br><span class="line"><span class="symbol">102 </span>(jnz,B,-,<span class="number">104</span>)</span><br><span class="line"><span class="symbol">103 </span>(j,-,-,<span class="number">112</span>)</span><br><span class="line"><span class="symbol">104 </span>(j&gt;,C,D,<span class="number">106</span>)</span><br><span class="line"><span class="symbol">105 </span>(j,-,-,<span class="number">112</span>)</span><br><span class="line"><span class="symbol">106 </span>(j&lt;,A,B,<span class="number">108</span>)</span><br><span class="line"><span class="symbol">107 </span>(j,-,-,<span class="number">110</span>) </span><br><span class="line"><span class="symbol">108 </span>(:=,<span class="number">1</span>,-,F) </span><br><span class="line"><span class="symbol">109 </span>(j,-,-,<span class="number">0</span>) //内<span class="keyword">if</span>的跳转语句</span><br><span class="line"><span class="symbol">110 </span>(:=,<span class="number">0</span>,-,F)</span><br><span class="line"><span class="symbol">111 </span>(j,-,-,<span class="number">109</span>) //外<span class="keyword">if</span>的跳转语句</span><br><span class="line"><span class="symbol">112 </span>(+,G,<span class="number">1</span>,T)</span><br><span class="line"><span class="symbol">113 </span>(:=,T,-,G)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>将下列的FOR语句翻译成四元式序列</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">for</span> i := a + b * <span class="number">2</span> to c + d + <span class="number">10</span> do</span><br><span class="line">	<span class="attribute">if</span> h &gt; g then p := p + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">100 </span>(*,b,<span class="number">2</span>,T1) </span><br><span class="line"><span class="symbol">101 </span>(+,a,T1,T2) </span><br><span class="line"><span class="symbol">102 </span>(+,c,d,T3)</span><br><span class="line"><span class="symbol">103 </span>(+,T3,<span class="number">10</span>,T4)</span><br><span class="line"><span class="symbol">104 </span>(:=,T2,-,i) //i=a+b*<span class="number">2</span></span><br><span class="line"><span class="symbol">105 </span>(:=,T4,-,T) //T=c+d+<span class="number">10</span></span><br><span class="line"><span class="symbol">106 </span>(j,-,-,<span class="number">109</span>)</span><br><span class="line"><span class="symbol">107 </span>(+,i,<span class="number">1</span>,T5)</span><br><span class="line"><span class="symbol">108 </span>(:=,T5,-,i) </span><br><span class="line"><span class="symbol">109 </span>(j&lt;=,i,T,<span class="number">110</span>) //判断i&lt;=T</span><br><span class="line"><span class="symbol">110 </span>(j&gt;=,h,g,<span class="number">112</span>) //判断h&gt;g</span><br><span class="line"><span class="symbol">111 </span>(j,-,-,<span class="number">109</span>)  //<span class="keyword">if</span>的跳转语句</span><br><span class="line"><span class="symbol">112 </span>(+,p,<span class="number">1</span>,T6)</span><br><span class="line"><span class="symbol">113 </span>(:=,T6,-,p)</span><br><span class="line"><span class="symbol">114 </span>(j,-,-,<span class="number">107</span>) //跳转到i++</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="期末考"><a href="#期末考" class="headerlink" title="期末考"></a>期末考</h1><h2 id="自底向上优先分析-1"><a href="#自底向上优先分析-1" class="headerlink" title="自底向上优先分析"></a>自底向上优先分析</h2><ul>
+<li>计算 FIRSTVT 和 LASTVT</li>
+<li>构造算法优先关系表，判断是否为算符优先算法</li>
+<li>给出算符优先分析过程</li>
+<li>指出句型的短语、句柄、素短语和最左素短语</li>
+</ul>
+<p>预计两题</p>
+<h2 id="LR分析"><a href="#LR分析" class="headerlink" title="LR分析"></a>LR分析</h2><ul>
+<li>LR(0)，LR(1)，SLR(1)，LALR(1) 分析表和分析过程（四选一，感觉 LALR(1) 不太会考，LR(0) 也不太会考）</li>
+</ul>
+<p>一题</p>
+<h2 id="语义分析-1"><a href="#语义分析-1" class="headerlink" title="语义分析"></a>语义分析</h2><ul>
+<li>后缀式、三元式、间接三元式、四元式</li>
+<li>翻译成四元式序列</li>
+</ul>
+<p>预计两题</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>编译原理</p><p><a href="http://example.com/2021/05/24/编译原理/">http://example.com/2021/05/24/编译原理/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Leonlist</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-05-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-10-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/05/26/%E5%BE%AE%E6%9C%BA/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">微机</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><span class="level-item">软件项目管理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-18T03:22:05.000Z">2022-10-18</time></p><p class="title"><a href="/2022/10/18/test/">test</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-26T03:17:15.000Z">2021-05-26</time></p><p class="title"><a href="/2021/05/26/%E5%BE%AE%E6%9C%BA/">微机</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-24T06:38:57.000Z">2021-05-24</time></p><p class="title"><a href="/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-09T11:17:28.000Z">2021-05-09</time></p><p class="title"><a href="/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">软件项目管理</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-04-23T07:58:54.000Z">2021-04-23</time></p><p class="title"><a href="/2021/04/23/Online-Quiz/">Online_Quiz</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E5%BE%AE%E6%9C%BA/"><span class="tag">微机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><span class="tag">编译原理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><span class="tag">软件项目管理</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Leonlist&#039;s Temporary Blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Leonlist</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

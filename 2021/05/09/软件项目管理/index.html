@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>软件项目管理 - Leonlist&#039;s Temporary Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Leonlist&#039;s Temporary Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Leonlist&#039;s Temporary Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="ReadingReading 1Things You Should Never Do, Part I – Joel on Software 这是国外的老程序员 Joel Spolsky 在2000年写的文章。 更详尽的带图表的分析: Why You Should (Almost) Never Rewrite Code – A Graphical Guide  Avram Joel Spolsky"><meta property="og:type" content="blog"><meta property="og:title" content="软件项目管理"><meta property="og:url" content="http://example.com/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><meta property="og:site_name" content="Leonlist&#039;s Temporary Blog"><meta property="og:description" content="ReadingReading 1Things You Should Never Do, Part I – Joel on Software 这是国外的老程序员 Joel Spolsky 在2000年写的文章。 更详尽的带图表的分析: Why You Should (Almost) Never Rewrite Code – A Graphical Guide  Avram Joel Spolsky"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/images/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/6e738afc5d344faaad6418c296639b8f.png"><meta property="article:published_time" content="2021-05-09T11:17:28.000Z"><meta property="article:modified_time" content="2022-10-18T03:14:59.245Z"><meta property="article:author" content="Leonlist"><meta property="article:tag" content="软件项目管理"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/6e738afc5d344faaad6418c296639b8f.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"},"headline":"软件项目管理","image":["http://example.com/images/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/6e738afc5d344faaad6418c296639b8f.png"],"datePublished":"2021-05-09T11:17:28.000Z","dateModified":"2022-10-18T03:14:59.245Z","author":{"@type":"Person","name":"Leonlist"},"publisher":{"@type":"Organization","name":"Leonlist's Temporary Blog","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"ReadingReading 1Things You Should Never Do, Part I – Joel on Software 这是国外的老程序员 Joel Spolsky 在2000年写的文章。 更详尽的带图表的分析: Why You Should (Almost) Never Rewrite Code – A Graphical Guide  Avram Joel Spolsky"}</script><link rel="canonical" href="http://example.com/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Leonlist&#039;s Temporary Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-09T11:17:28.000Z" title="2021/5/9 19:17:28">2021-05-09</time>发表</span><span class="level-item"><time dateTime="2022-10-18T03:14:59.245Z" title="2022/10/18 11:14:59">2022-10-18</time>更新</span><span class="level-item">3 小时读完 (大约28185个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">软件项目管理</h1><div class="content"><h1 id="Reading"><a href="#Reading" class="headerlink" title="Reading"></a>Reading</h1><h2 id="Reading-1"><a href="#Reading-1" class="headerlink" title="Reading 1"></a>Reading 1</h2><p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">Things You Should Never Do, Part I – Joel on Software</a></p>
+<p>这是国外的老程序员 Joel Spolsky 在2000年写的文章。</p>
+<p>更详尽的带图表的分析:</p>
+<p><a href="https://link.zhihu.com/?target=http://vibratingmelon.com/2011/06/10/why-you-should-almost-never-rewrite-code-a-graphical-guide/">Why You Should (Almost) Never Rewrite Code – A Graphical Guide</a></p>
+<hr>
+<p>Avram Joel Spolsky 生于1965年，他是一位软件工程师和作家。他是“Joel on Software”博客的作者。他从1991年到1994年间担任 Microsoft Excel 团队的项目经理。在2000年，他创立了 Fog Creek 软件并开启了“<a target="_blank" rel="noopener" href="http://www.joelonsoftware.com/index.html">Joel on Software</a>”博客。2008年，他和Jeff Atwood一起启动了如今极为成功的 Stack Overflow 程序员问答网站。他们用Stack Exchange软件产品作为<a target="_blank" rel="noopener" href="http://stackoverflow.com/">Stack Overflow</a>的引擎。现如今<a target="_blank" rel="noopener" href="http://stackexchange.com/">Stack Exchange</a>网络已经包含了91个站点。</p>
+<hr>
+<p>他在这篇文章的论点来源于一个简单的事实：<br><strong>It’s harder to read code than to write it.</strong><br><strong>写代码容易，读代码难。</strong></p>
+<p>在开头，他批评网景公司<strong>犯了的最严重的战略错误</strong>——<strong>他们决定从头开始重写代码</strong></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于网景当时的极度成功，公司规模扩展很快，为了应对开发的需求而收购了一家大型软件开发公司。但这家被收购公司的高层以及开发人员做了一系列愚蠢决定，包括使用当时如麻花一般的 <span class="built_in">C</span><span class="operator">++</span> 代替 <span class="built_in">C</span>，削减支持平台，优先发布 <span class="variable">Windows</span> 版本浏览器等，最后造成了新版本发布遥遥无期，程序质量不高等一系列问题，失去了对其他浏览器（包括<span class="variable">IE</span>）功能上和性能上的绝对优势，而结果就是被用户抛弃。</span><br></pre></td></tr></table></figure>
+
+<p>作者的观点主要有：</p>
+<ol>
+<li>重写的代码即便能完全达到旧代码的所有功能、性能需求，为产品带来的竞争力也只有边际提升。（这个很好理解，因为代码的规范性和清晰度对产品的功能性没有直接帮助，只能降低远期的维护成本）</li>
+<li>由于重写代码过程中需要花费额外的钱和时间，可能会出现一些意外状况，比如预算不够了，核心程序员离职了，或是重写的产品没有达到原有产品的所有功能和性能需求，那么这个结果可能是灾难性的，重写的产品要么胎死腹中，要么市场竞争力反而更低了。</li>
+<li>在重写期间，由于竞争对手不会停滞不前并且您无法开发新功能，因此产品的竞争力通常会下降。而且重写花费的时间比预期的要长得多，连锁效应使产品竞争力下降的时间更长。对于小公司来说，这可能是致命的。</li>
+</ol>
+<p>上面三个中的任何一个都可能致命，但是所有三个问题肯定都是致命的，产品的竞争力可能永远不会恢复。</p>
+<p>如果公司的项目或产品代码混乱到无法再加入新功能或提升性能，跟时代严重脱节怎么办，那么应用以上原则，这时候既然这个项目已经快死了，那么放到新项目里重写显然是最合理的选择。</p>
+<h2 id="Reading-2"><a href="#Reading-2" class="headerlink" title="Reading 2"></a>Reading 2</h2><p>同样是 Joel Spolsky 在2000年写的文章。</p>
+<p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/">The Joel Test: 12 Steps to Better Code</a></p>
+<hr>
+<p>他用这十二条来评估软件团队的质量，大多数软件组织的运行得分为2或3，像 Microsoft 这样的公司的得分为12。</p>
+<ol>
+<li>Do you use source control?</li>
+<li>Can you make a build in one step?</li>
+<li>Do you make daily builds?</li>
+<li>Do you have a bug database?</li>
+<li>Do you fix bugs before writing new code?</li>
+<li>Do you have an up-to-date schedule?</li>
+<li>Do you have a spec?</li>
+<li>Do programmers have quiet working conditions?</li>
+<li>Do you use the best tools money can buy?</li>
+<li>Do you have testers?</li>
+<li>Do new candidates write code during their interview?</li>
+<li>Do you do hallway usability testing?</li>
+</ol>
+<hr>
+<p><strong>1.您是否使用源代码管理？</strong></p>
+<p>如果您没有源代码控制，那么您将不得不尝试使程序员们一起工作。程序员无法知道其他人做了什么。错误不能轻易回滚。</p>
+<p>在源代码层面使其易于管理、维护，同时降低核心技术泄密风险。</p>
+<p><strong>2.你们可以把整个系统从源码到CD映像文件一步建成吗？</strong></p>
+<p>这句话问的问题是：从你们最新的源码开始到建立起能够交出去的最后文件，你们有多少步骤要做？ 一个好的团队应该有一个批处理程序一步便可将所有的工作做完，像把源文件提取出来，跟据不同的语言版本要求（英文版，中文版），和各种编译开关（#ifdef）进行编译，联接成可执行文件，标上版本号，打包成CD映像文件或直接送到网站上去，等等等等。</p>
+<p><strong>3.您是否进行日常构建？</strong></p>
+<p>在微软软件开发中，每日构建是最重要的过程之一，被称为微软产品开发的“心跳”。简单来看，每天构建系统将整个产品解决方案完整构建一遍，生成的目标文件和安装文件被放置在一个共享位置。接着，安装文件被自动部署到release server上，随后可以自动运行BVT（build verification test），并将所有结果寄送每个team member的信箱。</p>
+<p><strong>4.您是否有 bug 数据库？</strong></p>
+<p>如果您正在开发代码，即使是一个团队，也没有列出代码中所有已知错误的有组织的数据库，那么您将交付低质量的代码。</p>
+<p><strong>5.在编写新代码之前，您是否修复了 bug？</strong></p>
+<p>要立即修复 bug 的原因之一：因为它花费的时间更少。还有另一个原因，这与以下事实有关：预测编写新代码要比修复现有 bug 要花多长时间。例如，如果我要求您预测编写代码以对列表进行排序所需的时间，那么您可以给我一个很好的估计。但是，如果我问你如何预测这将需要多长时间来修复 bug：如果安装Internet Explorer 5.5您的代码不工作，你甚至无法猜测的，因为你不知道（定义）是什么导致 bug。跟踪可能需要3天，或者可能需要2分钟。</p>
+<p>这意味着如果您的日程安排中有许多尚待修复的 bug，则该日程安排是不可靠的。但是，如果您已经解决了所有已知的 bug，而剩下的只是新代码，那么您的日程安排将更加准确。</p>
+<p>将 bug 计数保持为零的另一个很棒的事情是，您可以更快地响应竞争。一些程序员认为这是使产品随时准备就的准备*。然后，如果您的竞争对手推出了一种吸引用户的杀手级新功能，则您可以实施该功能并当场发货，而无需修复大量累积的 bug。</p>
+<p><strong>6.您有最新的时间表吗？</strong></p>
+<p>这使我们按计划进行。如果您的代码对企业至关重要，则有很多原因说明知道何时完成代码对企业很重要。</p>
+<p>制定时间表的另一个关键之处在于，它迫使您决定要执行的功能，然后迫使您选择最不重要的功能并将其剪切掉，而不是陷入特征<a target="_blank" rel="noopener" href="http://www.netmeg.net/jargon/terms/c/creeping_featuritis.html">成熟度</a>（又称范围蠕动）。</p>
+<p><strong>7.您有写软件规格说明书（SPEC）吗？</strong></p>
+<p>在产品的前期设计过程中，如果你发现了一些问题，你可以轻易地在说明书里该几行字就行了。一旦进入了写程序的阶段，解决问题的代价就要高得多了。</p>
+<p>没有产品开发详细说明书就开始写程序，往往会导致程序写的乱七八糟，而且左拖右拖不能交付使用。</p>
+<p>不论采用以上哪种方法，道理只有一个：在没有产品开发详细说明书之前，决不可写程序。</p>
+<p><strong>8.程序员有安静的工作条件吗？</strong></p>
+<p>通过为知识工作者提供空间，安静和私密性，可以广泛地记录生产率的提高。</p>
+<p><strong>9.您是否使用金钱可以买到的最好的工具？</strong></p>
+<p>要给予程序员尽可能好的条件</p>
+<p><strong>10.您有测试员吗？</strong></p>
+<p>需要有测试员来检测产品的漏洞</p>
+<p><strong>11.新候选人在面试中是否写代码？</strong></p>
+<p>通过写代码了解程序员的能力，而不是看似漂亮的简历和问几个简单的问题（如CreateDialog()和DialogBox()有什么区别？这种问题，查一下帮助文件就知道了）</p>
+<p><strong>12.您是否进行走廊可用性测试(hallway usability testing)？</strong></p>
+<p>也就是随便抓一个人来，进行测试。</p>
+<p>走廊实用性测试对于企业产品测试来讲提供的反馈比招募来做测试得出的结论要好很多，而且很多时候是完全相反的结论。</p>
+<p>但现在很多企业都不做走廊测试了，而改用poll这种电子方式在Social Media发布，让用户选择。原因是走廊测试这种方法的效率不高。</p>
+<h2 id="Reading-3"><a href="#Reading-3" class="headerlink" title="Reading 3"></a>Reading 3</h2><p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2006/04/11/the-development-abstraction-layer-2/">The Development Abstraction Layer – Joel on Software</a></p>
+<p><em>对于软件公司来说，管理的第一要务需要为程序员创造抽象。</em></p>
+<hr>
+<p>我认为Joel的看法是尽量不能让程序员分心，让大家能够各司其职，每个人都能拥有良好的工作环境。</p>
+<p>创造抽象的目的就是让程序员专心于开发，发挥其长处，最终创造更好的软件，使用户受益。</p>
+<h2 id="Reading-4"><a href="#Reading-4" class="headerlink" title="Reading 4"></a>Reading 4</h2><p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2001/07/21/good-software-takes-ten-years-get-used-to-it/">Good Software Takes Ten Years. Get Used To it. – Joel on Software</a></p>
+<p>Joel 认为推出一个好的软件需要很长时间，也就是十年规则。</p>
+<p>不理解十年规则会导致关键的业务错误</p>
+<ol>
+<li><p><strong>Get Big Fast 综合征</strong>（前期啥也别想，把用户量干上去就行了，不要在乎利润这种东西）</p>
+<p>这种”从构建到翻转”的心态、公司庞大的超员和超支，以及每十分钟提高一次风投的需要，使得软件在10年内无法开发。</p>
+</li>
+<li><p><strong>炒作综合征</strong>(the Overhype syndrome)</p>
+<p>当你发布软件1.0版本时，需要保持冷静，而不是大肆炒作</p>
+</li>
+<li><p><strong>相信互联网时间</strong>（Internet Time)</p>
+<p>加快了版本升级速度，减少升级周期。</p>
+<p>但是软件的创建速度没有加快，只是发布频率更高。</p>
+</li>
+<li><p><strong>完成软件后，将不会再有收入</strong></p>
+</li>
+<li><p><strong>“准备好了我们就发货” 综合症</strong></p>
+<p>软件需要10年才能编写，但如果你10年不发布，企业就不可能生存下去</p>
+<p>你必须提前发布不完整的版本，使他们相信你的版本1.0是有希望的——但不要夸大其言，因为它们不是那么好，不管你有多聪明。</p>
+</li>
+<li><p><strong>过于频繁的升级</strong>(Too-frequent upgrades)</p>
+<p>用户并不总是需要最新和最好的软件版本</p>
+</li>
+</ol>
+<p>良好的软件必须使用真实世界的数据来处理它在现实世界中可能遇到的例外。乔尔对”好软件”的定义是已经学会处理的软件。因此，可以在广大的情况下，为广大人民群众使用。</p>
+<p>（说实话，拿 Lotus Notes当正面教材，在现在看来，有点好笑。高昂的价格，落后封闭的技术，维护和升级困难，反人类的交互设计使得其不断衰落）</p>
+<p>该文章写于2001年，作者写这篇文章也是对2000年的互联网泡沫的思考。</p>
+<hr>
+<p>互联网泡沫开始应该是从1999年开始的，那时候美国处于一个相对低息的周期，只有4%左右的利率。流动性开始涌入以互联网企业为代表的，新兴经济体，特别是在GDP增长，以及股市攀升带来的纸上富贵错觉影响下，拉动的消费增长，极大的增加的企业营收，越来越多的企业愿意在这些互联网公司身上投放网络广告。网络广告，也就是横幅banner，是当时互联网企业唯一的能够盈利的商业模式。新经济概念＋营收增长＋新商业模式故事带来的预期增长（其实就是网络销售 B2C B2B),形成戴维斯双击错觉＋正循环效应。让所有的人都心潮澎湃，nasdq指数的斜率陡然攀升，互联网大泡沫开始形成。很多企业在 ipo 的时候，就享受2-5倍的股价攀升，分析师、投资者、企业家、风投、银行全部都陷入狂热的情绪当中，everybody is winner,no loser.</p>
+<p>那时候格林斯潘，还是美联储主席，预感到经济过热，和足够低的失业率空间，给了鹰派足够的多的话语权，美国开始进入一个加息周期，利率4%逐渐攀升到6%。</p>
+<p>流动性的减少，带来了企业净利润的削弱，广告投放的减少，外加那些不挣钱的 B2B B2C业务，还有并购业务的繁荣，疯狂蚕食互联网企业的现金流，聪明的投资者开始意识到，这是一场不可持续的繁荣，已经有人在开始撤离，纳斯达克从最高点的5048.62开始逐渐回落，但是市场总体的情绪，并没有意识到这大周期的逆转点，抄底才是主旋律。</p>
+<p>当然，那时候市场还有些别的新闻，为股市的下跌做出合理化的解释，最著名的莫过于微软公司在反垄断诉讼中的失败，被贴上的垄断的标签，差点面临被拆分的命运。</p>
+<p>《巴伦周刊》上的一篇报道基于207家互联网公司的研究报告指出，将会有51家网络公司，现金流面临枯竭，而且股价下行＋高管套现＋投资风险厌恶上升＋市场资金缩减＋再融资市场的冷却，多重效应叠加下，这些公司的再融资问题无法得到解决，最终将会面临行业的大洗牌，破产加重组。</p>
+<p>这篇报道引发了市场了恐慌，所有人才从如梦如幻的错觉中清醒过来，疯狂抛售自己手中的网络股票，市场在挤兑的浪潮下，纳斯达克指数在一年多的时间，跌到了最低点1114.11。</p>
+<p>股指的下跌持续了2年，中途加上9·11事件带来影响，整个纳斯达克市值跌掉了5万亿美元，指数只有巅峰时期的四分之一不到，是美国历史上最大的金融泡沫之一，纳斯达克花了15年才恢复到2000年之前的水平。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/158912253">2000年互联网泡沫始末 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20688367">再看2000年：泡沫破灭时的公司存亡 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dot-com_bubble">Dot-com bubble - Wikipedia</a></p>
+<p><strong>大多数的公司并没有像当时的亚马逊、Ebay或者谷歌一样把金钱投入到技术和产品本身的建设，而仅仅停留在打广告拉新推广这种烧钱的模式中，占领市场全靠昂贵的广告和并购。</strong></p>
+<p><strong>决定一家公司未来发展最重要的因素是公司优质可持续的发展模式，这也是其抵御危机的绝对筹码。</strong>只有一个好的创意确实有可能拿到大笔融资，但是如果没有持续的盈利能力，公司做大也只是一场泡沫，危机来临之时也会迅速坍塌</p>
+<hr>
+<h2 id="Reading-5"><a href="#Reading-5" class="headerlink" title="Reading 5"></a>Reading 5</h2><p><a target="_blank" rel="noopener" href="https://nealwhittengroup.com/articles/meet-minimum-requirements-anything-more-is-too-much/">Meet Minimum Requirements: Anything More is Too Much - The Neal Whitten Group</a></p>
+<p>作者 Neal Whitten 认为对于一个项目，首要的是满足最低要求，提交仅包含基本功能的项目计划，并针对非必要功能制定”壁橱计划”。</p>
+<p>项目最常见的问题之一是承担了太多的工作——试图超越要求而不是满足最低要求。这造成了过多的不良影响，包括延迟交货、预算超支、士气低落和质量差。试图把俗话说的10磅塞进一个5磅重的袋子里是司空见惯的事。</p>
+<p>“满足最低要求”意味着给客户成功所需的条件：但不提供必要的功能。其他功能是未来的发布和未来的商业机会。重要的是要赢得可靠履行客户承诺的声誉，然后被信任在常规的、可预测的基础上继续升级。这是一个很好的业务。</p>
+<p>大多数人习惯于认为”满足最低要求”是没有刺激性和非竞争性的。作者认为情况正好相反。刻意实践符合最低要求，有助于组织或公司率先进入市场，从客户那里赢得越来越多的信誉，并有力地为企业创造新的商业机会摆出姿态。采用满足最低要求的概念可以为组织设置卓越的绩效。</p>
+<h1 id="Watching"><a href="#Watching" class="headerlink" title="Watching"></a>Watching</h1><h2 id="Watching-1"><a href="#Watching-1" class="headerlink" title="Watching 1"></a>Watching 1</h2><p><strong>纪录片《Code Rush》</strong></p>
+<p>节选一些读后感</p>
+<hr>
+<p>看到CSDN上有不少人推荐，就看了这部纪录片。<br>    与开始想象的不一样，这部纪录片的重点不是放在微软和网景的历史纠葛上，不是像很多描写硅谷商战的电影那样为故事添油加醋，非要展现出一个个令人血脉贲张、扣人心弦的情节不可，而是把重点放在描述那个历史背景下网景程序员的日常生活。<br>    我也是程序员，在一个普通的IT公司上班，薪水待遇还算OK，但是工作压力比较大，项目紧的时候加班也是家常便饭。相信大部分程序员兄弟也是这种生活状态。我有时会在心里自嘲，天下有千万种职业，怎么我就选择做了苦逼的程序员呢？好像当初大学选了个计算系专业，这样稀里糊涂地就过来了。再看看人家美国小孩，从小就喜欢坐在电脑前写程序，16岁的时候已经为Mozilla的开源项目工作多年了，高中毕业之后顺理成章地来到硅谷工作。人家才是选择自己最喜欢和最擅长的事情作为职业，这是一件多么幸福的事。可惜成长在中国应试教育下面的大部分年轻人就没有这么好的运气了。<br>    面对工作的重重压力，公司业绩的下滑，网景的程序员们又是怎么看待程序员生活的呢？有的人为自己订下约定，35岁之后就结束苦逼的程序员生涯，转行做别的；有的人在公司卖给AOL之后，趁着股价坚挺，赚了一笔，套现走人；有的人（公司领导）选择继续留在公司；还有的人选择去新的公司，继续追求自己的开源和技术理想。不管选择的道路怎样，正如片中所说，程序员们都要付出比很多行业更多的工作时间，把青春中最美好的时光花在了电脑前面，而不是与亲人朋友相处上。即使是创业成功而一夜暴富的人，他付出的代价也是常人难以想见的，而不了解的人往往只看到了表面的光鲜。<br>    人们喜欢津津乐道乔布斯、盖茨们的成功，却忽视了在这些IT巨头背后，一些挣扎着与他们抗争的小公司。即使技术强如网景，也需要为商业上的失败买单。程序员们常常会有一种分裂的感觉：在计算机的世界里，他们是无所不能的上帝；而在其他方面，例如商业策略，他们又根本无能为力；于是会有瞬间从天堂跌落谷底的感觉，因为最出色的技术也并不能保证商业上的成功。即使好不容易杀出一条血路，也可能马上就被微软腾讯这样的巨头像捏死一只蚂蚁一样捏死。<br>   谈了这么多程序员生活的艰辛，其实做一个程序员也有好的地方：有机会改变世界，生活中充满有趣的刺激和挑战，还有机会一夜暴富。很多程序员都是一个梦想家，是梦想给予他们力量度过苦与乐并存的生活。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://movie.douban.com/review/7201145/">一部关于Netscape公司的纪录片</a></p>
+<p>作者： 阮一峰</p>
+<p>这是一部关于Netscape公司的纪录片。<br>如果你不知道这家伟大的公司，那么我告诉你，它是浏览器和其他许许多多东西的发明者，比如显示图片的img标签、http协议中的cookie、互联网加密协议SSL、以及javascript语言。上个世纪90年代中期，它的Netscape Communicator浏览器，曾经占据了90%的市场份额。<br>但是很不幸，它的对手是Microsoft。微软投入超过1亿美元，雇佣1000多个程序员，开发出了IE浏览器。更致命的是，微软将IE免费发行，并且捆绑在操作系统中。<br>所以，到了1998年的年初，所有人都看出来了，Netscape遇到大麻烦了。</p>
+<p>《Code Rush》（奔腾的代码）这部纪录片，就是讲述Netscape公司在1998年的故事，摄制组整整跟拍了一年。</p>
+<p>在其中，你可以看到两件历史性大事的第一手画面。<br>1998年3月31日，Netscape宣布将Netscape Communicator浏览器开源，这个新项目就叫做Mozilla。<br>1998年11月24日，由于股价不断创出新低，Netscape公司在绝望之中把自己以42亿美元的价格卖给了AOL。一家曾经如此辉煌的公司，就这样死了。后来的历史证明，AOL以42亿美元买来的只是一具无用的尸体。我不知道，历史上有没有比这更不合算的交易了。但是，这笔交易的好处是，AOL因此成为Mozilla项目的最大赞助者，Netscape已死，Mozilla活了下来。<br>Amazon上一位观众的留言标题就是”一家伟大公司之死”。</p>
+<p>如果你对软件业感兴趣，希望了解程序员的生活，以及Mozilla项目的起源和创造它的人们，那么千万不要错过这部纪录片。<br>我保证这是一部过目难忘的作品。</p>
+<hr>
+<p>自己学的就是计算机 自己将要从事的就是写代码 自己将要适应的就是纪录片里geek们的生活</p>
+<p>在一个没有事情做的暑假午后看完这部10年前的纪录片 它的时代感却还是鲜活地要跳出屏幕 大起大落的网景 独断的微软巨人 呼声越来越响亮的代码开源 或许计算机硬件软件都随着摩尔定律一路向前rush着 但是计算机诞生60年来 有一些精神在代码员心里不会改变</p>
+<p>第一是创造 不管是网景员工 或是在乡村独自为mozilla贡献代码的高中生 还是影片里在介绍美国街头变化时所透露出来的画外音 都引导人们走入程序员所构筑的平行于现实世界的虚拟空间 银行??我们有网上银行 百货大厦??我们有网购 寄达信件??用email吧 怎样将网络构筑地比拟现实甚至超越现实 一切的源头是程序员的创新和创造世界的渴望</p>
+<p>第二是自由 有很多侧面都可以体现出程序员应该有的自由 奇怪的发型 桌上叠成金字塔的空可乐罐 混乱的工作时间 办公室里夸张的躺椅和电玩设备… 这些反映于代码 就是社区与开源 程序员所创造的一切会有同行的审评改进并最终作为全人类的财富被共享 没有太多的束缚 一切服从于本心的渴望 赚上十个亿不是程序员最大的渴望 自己写的代码运行于十亿人的电脑 才是真正值得兴奋的事情——当然能赚钱还是会很开心的&gt;.&lt;</p>
+<p>第三是团队 为了在有限生命里追寻创造世界的极致 为了拥有心灵的慰藉 为了对抗巨人…我们都需要团队 每一个bug都尽力去调 每一个部分都认真写好 netscape拥有看着或许业余但是战斗力强大的团队 有术业专攻的程序员与负责的项目经理 他们有机会成功 只是现实世界变化地有些超出程序员的想象罢了…</p>
+<p>第四是deadline 自己曾经说过追逐deadline是程序员的宿命 有了deadline 疏懒的我们才不至于躺在椅子上盯着屏幕睡成一具尸体</p>
+<h2 id="Watching-2"><a href="#Watching-2" class="headerlink" title="Watching 2"></a>Watching 2</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av95104425?from=search&seid=17939012131793680768">google谈话Eric Brechner: “AgileProject Management with Kanban” | Talksat Google_哔哩哔哩_bilibili</a></p>
+<p><strong>使用看板以最大限度地提高效率、可预测性、质量和价值</strong><br>使用看板，您花在软件项目上的每一分钟都能为客户增加价值。一本书可以帮助你实现这个目标：<em>敏捷项目管理与看板</em>。<br>作者埃里克·布雷奇纳在微软的Xbox工程团队中开创了看板。现在，他告诉你如何让它为你的球队工作。<br>把这本书想象成”盒子里的看门人”：打开它，阅读快速启动指南，你启动和运行得很快。随着您获得经验，Brechner 揭示了正确的团队规模、估计、满足最后期限、部署组件和服务、适应或从 Scrum 或传统瀑布演变等强大技术。<br>在旅程的每一步，您都会找到实用的建议、有用的清单和可操作的课程。这确实是”盒子里的看板”：所有你需要提供突破的价值和质量。</p>
+<p><strong>看板技术：</strong></p>
+<ul>
+<li>开始与当前团队和项目一起提供持续的价值</li>
+<li>掌握完成工作积压的五个快速步骤</li>
+<li>更有效地规划和人员编制新项目</li>
+<li>最大限度地减少正在进行的工作，并快速调整以适应变化</li>
+<li>消除人为会议和长期稳定</li>
+<li>改善和增强客户参与度</li>
+<li>可视化工作流程并修复暴露的瓶颈</li>
+<li>驱动器质量上游</li>
+<li>将看板整合到大型项目中</li>
+<li>优化持续工程（由詹姆斯·瓦莱茨基贡献）</li>
+<li>将看板扩展到软件开发之外</li>
+</ul>
+<h2 id="Watching-3"><a href="#Watching-3" class="headerlink" title="Watching 3"></a>Watching 3</h2><p>Feature-branching workflow using Git and GitHub</p>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git 功能分支工作流|阿特拉斯吉特教程 (atlassian.com)</a></p>
+<h2 id="Watching-4"><a href="#Watching-4" class="headerlink" title="Watching 4"></a>Watching 4</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pB4y1F7qf/">使用Jenkins自动部署Springboot应用程序_哔哩哔哩_bilibili</a></p>
+<h1 id="book"><a href="#book" class="headerlink" title="book"></a>book</h1><p><strong>Producing Open Source Software How to Run a Successful Free Software Project</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.wenjiangs.com/docs/producingoss">制造开源软件 文档中心 - 文江博客 (wenjiangs.com)</a></p>
+<h2 id="Chapter-1-介绍"><a href="#Chapter-1-介绍" class="headerlink" title="Chapter 1. 介绍"></a>Chapter 1. 介绍</h2><p>作者认为大部分自由软件是失败的</p>
+<p>开源软件开发过程中的独特问题：</p>
+<ul>
+<li>一个最常见的错误就是急于从开源的形式本身获得好处</li>
+<li>一个相关的错误是对展示和打包的轻视，特别是当一个项目顺利运转时总认为这些以后再做不迟。展示和打包有很多的目的，所有的一切都是为了减低进入的门槛。</li>
+<li>一个谬误是认为开源几乎或完全不需要项目管理，或者照搬商业开发的那一套管理模式也能在开源中做得很好。</li>
+<li>还有一种类型的问题也许我们可以称之为“文化引导失败”。</li>
+</ul>
+<h2 id="Chapter-2-起步"><a href="#Chapter-2-起步" class="headerlink" title="Chapter 2. 起步"></a>Chapter 2. 起步</h2><p>当程序员对解决某个问题产生了个人兴趣之后，才能产生优秀的软件；这一点同自由软件的联系在于，大部分自由软件项目的最初动机都是始于一个人的痒痒处。</p>
+<p>本章是关于如何将一个自由软件项目介绍给全世界</p>
+<ul>
+<li><p>首先是寻找是否有一个现存的项目已经做了你想做的，如果有并且其已经解决了问题，那就不必重新发明轮子了。或者你脑中的计划非常特别，你肯定不会有其他人有同样的想法，那你也不妨试试看。如果没找到真正适合你的软件，可以决定开始一个新的项目。</p>
+</li>
+<li><p>选择一个好名字（告诉人们有关项目性质、便于记忆、不与另一个项目重名）</p>
+</li>
+<li><p>有一份清楚的使命陈述</p>
+</li>
+<li><p>声明项目是自由软件</p>
+</li>
+<li><p>特性和需求列表，列出一个简短的清单，说明软件支持的各种特性（如果某些特性还未完成，也可以列出，但是在旁边注明“计划中”或“建设中”），以及运行该软件所要求的系统环境。</p>
+</li>
+<li><p>开发状态，人们总是希望了解一个项目的状况。对新的项目，他们想知道项目的承诺和现实之间存在着多大的距离。对成熟的项目，他们想知道维护得如何，新发布的频率怎样，以及对Bug报告反应的及时性等等。</p>
+<p>要回答这些问题，你应该建立开发状态页，列出项目的近期目标和需求（例如，需要具备某方面专长的开发人员）。开发状态页也可以列出过去发布的记录，其中包含特性清单，以便访问者了解项目是如何定义“进展”的，并根据这一定义了解项目进展的速度。</p>
+</li>
+<li><p>下载。应该可以以标准格式下载软件的源代码。</p>
+</li>
+<li><p>版本控制和Bug跟踪访问</p>
+</li>
+<li><p>沟通渠道</p>
+</li>
+<li><p>开发者指南。如果有人考虑参与项目，她会寻找开发者指南。与社会性文档相比，开发者指南通常没有很多的技巧：只需要解释开发者之间，以及与用户之间如何交互，以及如何最终完成任务。</p>
+</li>
+<li><p>文档（告诉读者他们所需的技术技能。清楚和完整的描述如何配置软件，并在文档的开头部分告诉用户如何运行确认安装成功的诊断测试或简单命令。提供一个普通任务的教程式的实例。标示文档中未完成的部分。）</p>
+<ul>
+<li>维护FAQ</li>
+<li>文档的可用性</li>
+<li>开发者文档</li>
+</ul>
+</li>
+<li><p>输出和屏幕截图实例</p>
+</li>
+<li><p>包装主机</p>
+</li>
+</ul>
+<h2 id="Chapter-3-技术基础设施"><a href="#Chapter-3-技术基础设施" class="headerlink" title="Chapter 3. 技术基础设施"></a>Chapter 3. 技术基础设施</h2><p>自由软件项目依赖于选择性捕获和信息集成的技术。对这些技术的使用越是熟练，并说服别人去使用这些技术，你的项目就越成功。</p>
+<p>大部分开源项目至少提供了最低限度的标准工具用于管理信息：</p>
+<ul>
+<li><p>网站</p>
+<p>主要是一个集中将项目信息发布给公共的单向渠道。网站也可以作为其他项目工具的管理界面使用。</p>
+</li>
+<li><p>邮件列表</p>
+<p>通常会是项目中最活跃的通讯手段，是“可记录的媒介”。</p>
+</li>
+<li><p>版本控制</p>
+<p>让开发者可以方便地管理代码的变更，包括回复和“变更转运”。让每一个人能看到代码的变化。</p>
+</li>
+<li><p>Bug跟踪</p>
+<p>使开发者可以追踪他们正在工作的内容，互相协调，以及计划发布。让每个人都能查询Bug的状况并且记录特定Bug的信息（例如重现方法）。不仅能用于对bug的追踪，而且能用于任务、发布和新特性等等。</p>
+</li>
+<li><p>即时聊天</p>
+<p>一个可以快速和方便的进行讨论和问答的地方，缺点是并不总是能完整地归档。</p>
+</li>
+</ul>
+<h2 id="Chapter-4-社会和政治的基础架构"><a href="#Chapter-4-社会和政治的基础架构" class="headerlink" title="Chapter 4. 社会和政治的基础架构"></a>Chapter 4. 社会和政治的基础架构</h2><p>本章尝试展示支持成功项目的共同结构。 “成功”不仅仅指的技术质量方面，而且也包含了运行健康状况和生存性。运行健康状况是指项目将新代码和新开发者吸收进来，并对到来的bug负责的持续能力。生存性是项目独立于任何单独参与者或赞助商而存在的能力—考虑一下如果项目所有的创始成员离开后项目继续运作的可能性。技术成功不难实现，但是如果没有健壮的开发者基础和社会基础，一个项目就不能处理由初始的成功带来的成长，或者有魅力个体的离开。</p>
+<h3 id="分叉能力"><a href="#分叉能力" class="headerlink" title="分叉能力"></a>分叉能力</h3><p>能将开发者绑定在一个自由软件项目中的必需组成部分，能让他们在必要时愿意作出妥协，是代码的<em>分叉能力</em>：也就是任何人可以使用一个拷贝并使之成为一个竞争项目的能力，被称为<em>分叉</em>。</p>
+<h3 id="慈善独裁者"><a href="#慈善独裁者" class="headerlink" title="慈善独裁者"></a>慈善独裁者</h3><p><em>慈善独裁者</em>模型这一称号确实名副其实：最终的决定权完全取决于一个人，因为其人格和经验的力量，他被认为可以明智的运用这个权力。</p>
+<h1 id="Bugzilla"><a href="#Bugzilla" class="headerlink" title="Bugzilla"></a>Bugzilla</h1><p>Bugzilla 是一个开源的缺陷跟踪系统（Bug-Tracking System），它可以管理软件开发中缺陷的提交（new），修复（resolve），关闭（close）等整个生命周期。</p>
+<p><strong>Bugzilla Bug报告分类</strong></p>
+<p>（1）待确认的（Unconfirmed）</p>
+<p>（2）新提交的（New）</p>
+<p>（3）已分配的（Assigned）</p>
+<p>（4）问题未解决的（Reopened）</p>
+<p>（5）待返测的（Resolved）</p>
+<p>（6）待归档的（Verified）</p>
+<p>（7）已归档的（Closed）</p>
+<p>（8）Bug处理意见</p>
+<p>（9）已修改的（Fixed）</p>
+<p>（10）不是问题（Invalid）</p>
+<p>（11）无法修改（Wontfix）</p>
+<p>（12）以后版本解决（Later）</p>
+<p>（13）保留（Remind）</p>
+<p>（14）重复（Duplicate）</p>
+<p>（15）无法重现（Worksforme）</p>
+<p>Bugzilla指定处理人：</p>
+<p>（1）可以指定一个处理人</p>
+<p>（2）如不指定处理人，则系统指定管理员为默认处理人</p>
+<p>Bugzilla链接:</p>
+<p>输入超链接地址，引导处理人找到与报告相关联的信息</p>
+<p>Bugzilla概述：</p>
+<p>（1）概述部分“Summary”的描述，应保证处理人在阅读时能够清楚提交者在进行什么操作的时候发现了什么问题。</p>
+<p>（2）如果是通用组件部分的测试，则必须将这一通用组件对应的功能名称写入概述中，以便今后查询。</p>
+<p>Bugzilla平台操作系统：</p>
+<p>（1）测试应用的硬件平台（Platform），通常选择“PC”</p>
+<p>（2）测试应用的操作系统平台（OS）</p>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-tutorial.html">Git 教程 | 菜鸟教程 (runoob.com)</a></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git init newrepo <span class="comment">#初始化仓库</span></span><br><span class="line">git <span class="keyword">clone</span> <span class="title">&lt;repo</span>&gt; <span class="comment">#拷贝一份远程仓库，也就是下载一个项目</span></span><br><span class="line">git <span class="keyword">clone</span> <span class="title">&lt;repo</span>&gt; <span class="tag">&lt;directory&gt;</span></span><br><span class="line"></span><br><span class="line">git add .   <span class="comment">#添加文件到暂存区</span></span><br><span class="line">git commit  <span class="comment">#将暂存区内容添加到仓库中</span></span><br><span class="line"></span><br><span class="line">git branch (branchname) <span class="comment">#创建分支命令</span></span><br><span class="line">git checkout (branchname)  <span class="comment">#切换分支命令</span></span><br><span class="line">git checkout -b X  <span class="comment">#切换分支X</span></span><br><span class="line"></span><br><span class="line">git pull origin <span class="keyword">master</span> <span class="title">#从远程获取代码并合并本地的版本，远程分支与当前分支合并</span></span><br><span class="line"><span class="title">git</span> pull origin <span class="literal">master</span>:brantest <span class="comment">#将远程主机 origin 的 master 分支拉取过来，与本地的 brantest 分支合并</span></span><br><span class="line"></span><br><span class="line">git push origin <span class="keyword">master</span> <span class="title">#将本地的 master</span> 分支推送到 origin 主机的 <span class="keyword">master</span> <span class="title">分支</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Kanboard"><a href="#Kanboard" class="headerlink" title="Kanboard"></a>Kanboard</h1><p>每个任务由一张卡片表示。</p>
+<p>每张可移动卡可以处于以下阶段之一：</p>
+<p>积压、进行中的工作 (WIP) 和完成。</p>
+<p>通常，随着工作的进行，您会转移卡片向右。</p>
+<p>对于软件开发，我们可以有 Backlog（要求）、开发、测试、文档、完成。</p>
+<p>优先事项。按每个阶段的卡片按重要性排序。</p>
+<p>从你现在正在做的事情开始。</p>
+<p>WIP limit。不要过于压倒开发人员许多任务（多任务处理）。</p>
+<p>完成或完成规则的定义。</p>
+<p>提前期 Lead time：任务创建和任务之间的时间完成。对客户可见。</p>
+<p>周期时间 Cycle time：任务开始到完成。对员工可见。</p>
+<p>燃尽图（Cumulative Flow Diagram）。是以图表展示随着时间的减少工作量的剩余情况。工作量一般以竖轴展示，时间一般以横轴展示。燃尽图对于预测何时完成工作很有用，经常被用于敏捷软件开发中，如Scrum。燃尽图也可以用于任何可测量的进度随着时间变化的项目</p>
+<p>拉工作而不是推工作 Pull work instead of Push work</p>
+<p>每个团队成员一种颜色</p>
+<h1 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/stulzq/p/10115589.html">Jenkins高级用法 - Jenkinsfile 介绍及实战经验 - 晓晨Master - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/diantun00/article/details/81075007">(8条消息) 玩转Jenkins Pipeline_大宝鱼的博客-CSDN博客_jenkins pipeline</a></p>
+<h2 id="CI-CD-方法"><a href="#CI-CD-方法" class="headerlink" title="CI/CD 方法"></a>CI/CD 方法</h2><p>CI/CD是实现敏捷和Devops理念的一种方法。<br>具体而言，CI/CD 可让持续自动化和持续监控贯穿于应用的整个生命周期（从集成和测试阶段，到交付和部署）。这些关联的事务通常被统称为“CI/CD 管道”，由开发和运维团队以敏捷方式协同支持。</p>
+<p><strong>CI - 持续集成</strong></p>
+<p>持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。持续集成是启动管道的环节（尽管某些预验证 —— 通常称为 <em>上线前检查(pre-flight checks)</em> —— 有时会被归在持续集成之前）。</p>
+<p>持续集成的目标是快速确保开发人员新提交的变更是好的，并且适合在代码库中进一步使用。</p>
+<p><strong>CD - 持续交付</strong></p>
+<p>持续交付（CD）通常是指整个流程链（管道），它自动监测源代码变更并通过构建、测试、打包和相关操作运行它们以生成可部署的版本，基本上没有任何人为干预。</p>
+<p>持续交付在软件开发过程中的目标是自动化、效率、可靠性、可重复性和质量保障（通过持续测试）。</p>
+<p>持续交付包含持续集成（自动检测源代码变更、执行构建过程、运行单元测试以验证变更），持续测试（对代码运行各种测试以保障代码质量），和（可选）持续部署（通过管道发布版本自动提供给用户）。</p>
+<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><p>Pipeline，简而言之，就是一套运行于Jenkins上的工作流框架，将原本独立运行于单个或者多个节点的任务连接起来，实现单个任务难以完成的复杂流程编排与可视化。</p>
+<p>Pipeline是Jenkins2.X的最核心的特性，帮助Jenkins实现从CI到CD与DevOps的转变</p>
+<p>Pipeline是一组插件，让Jenkins可以实现持续交付管道的落地和实施。</p>
+<p>持续交付管道（CD Pipeline）是将软件从版本控制阶段到交付给用户或客户的完整过程的自动化表现。软件的每一次更改（提交到源代码管理系统）都要经过一个复杂的过程才能被发布。</p>
+<p>Pipeline提供了一组可扩展的工具，通过Pipeline Domain Specific Language（DSL）syntax可以达到Pipeline as Code（Jenkinsfile存储在项目的源代码库）的目的。</p>
+<p>Stage：阶段，一个Pipeline可以划分成若干个Stage，每个Stage代表一组操作，例如：“Build”，“Test”，“Deploy”。</p>
+<blockquote>
+<p>注意，Stage是一个逻辑分组的概念，可以跨多个Node</p>
+</blockquote>
+<p>Node：节点，一个Node就是一个Jenkins节点，或者是Master，或者是Agent，是执行Step的具体运行环境。</p>
+<p>Step：步骤，Step是最基本的操作单元，小到创建一个目录，大到构建一个Docker镜像，由各类Jenklins Plugin提供，例如：sh ‘make’</p>
+<p><strong>Pipeline五大特性</strong></p>
+<ol>
+<li>代码: Pipeline 以代码的形式实现，通常被检入源代码控制，使团队能够编辑、审查和迭代其 CD 流程。</li>
+<li>可持续性：Jenklins 重启或者中断后都不会影响 Pipeline Job。</li>
+<li>停顿：Pipeline 可以选择停止并等待任工输入或批准，然后再继续 Pipeline 运行。</li>
+<li>多功能：Pipeline 支持现实世界的复杂 CD 要求，包括 fork/join 子进程，循环和并行执行工作的能力</li>
+<li>可扩展：Pipeline 插件支持其 DSL 的自定义扩展以及与其他插件集成的多个选项。</li>
+</ol>
+<h2 id="Jenkinsfile"><a href="#Jenkinsfile" class="headerlink" title="Jenkinsfile"></a>Jenkinsfile</h2><p>Jenkinsfile 是 Jenkins 2.x 核心特性 Pipeline 的脚本，由Groovy语言实现。Jenkinsfile一般是放在项目根目录，随项目一起受源代码管理软件控制，无需像创建“自由风格”（Jenkins FreeStyle）项目一样，每次可能需要拷贝很多设置到新项目，提供了一些直接的好处：</p>
+<ul>
+<li>Pipeline上的代码审查/迭代</li>
+<li>Pipeline的审计跟踪</li>
+<li>Pipeline的唯一真实来源，可以由项目的多个成员查看和编辑。</li>
+</ul>
+<p>Pipeline支持：Declarative（在Pipeline 2.5中引入）和Scripted Pipeline两种格式。两者都支持建立Pipeline，两者都可以用于在Web UI中定义一个流水线Jenkinsfile，将Jenkinsfile文件创建并检查到源代码控制库中通常被认为是最佳做法。</p>
+<h1 id="spm-slides"><a href="#spm-slides" class="headerlink" title="spm-slides"></a>spm-slides</h1><p>(蓝珲的PDF讲稿，选择一些比较重要的内容，可能与其他笔记内容重复；内容是机翻的，理解可能不太通顺)</p>
+<hr>
+<p><strong>旧计划很快就会过时</strong>。</p>
+<p>你有一个计划，但你总是被额外的“请求”而分心。其称为<strong>请求蠕变（request creep）</strong>的现象。</p>
+<p>• 请求将“一些小功能”添加到产品而无需更改预算或时间表。</p>
+<p>• 要求接纳一些在职人员在项目之间找到对他们有用的东西去做。</p>
+<p>• 减少设计审查范围的请求（在为了弥补一些时间表）。</p>
+<p>你应该仔细考虑请求的影响。你应该能够协商计划、时间表的相应变更和预算。</p>
+<p>我建议你遵循的步骤。</p>
+<ol>
+<li>礼貌地说“不”。</li>
+<li>告诉我，如果我不那么忙，我愿意提供帮助。</li>
+<li>分析额外请求对我目前的时间表的影响。</li>
+<li> 要求更多的钱或时间，或两者兼而有之。（这管理委员会通常会同意，因为他们已经投入了很多，只要你的要求是合理的。）</li>
+</ol>
+<hr>
+<p><strong>专有软件（Proprietary Software）</strong></p>
+<p>proprietary ：与所有者或所有权有关。</p>
+<p>该软件归一家公司所有，该公司规定对使用、修改和分发的许多限制。我们需要先付款（显式或隐式）用它。</p>
+<hr>
+<p><strong>网景的错误</strong></p>
+<p>糟糕的产品，糟糕的产品决策，产品方向。</p>
+<p>变得太大了。</p>
+<p>停止创新。</p>
+<p>功能蠕变。不</p>
+<p>断添加“不”的功能休息一下，没有时间重新构建”。</p>
+<p>反微软。</p>
+<p>粗糙、复杂的代码。</p>
+<p>IE 占了上风。</p>
+<p>频繁发布</p>
+<hr>
+<p><strong>编程基本定律（Joel Spolsky）</strong>：阅读代码比编写代码更难。</p>
+<p>从头开始可能是一种荒谬的策略或行为。</p>
+<p>创业公司杀手：建立一个扔掉。</p>
+<p>大误解：新代码比旧代码好。</p>
+<p><strong>原因：</strong></p>
+<p>• 你不能保证新代码比旧代码好。</p>
+<p>• 当我们添加代码时，我们添加了功能，也可能带来新的Bug。</p>
+<p>• 虽然旧代码看起来很丑，但新代码甚至可以更差。</p>
+<p>• 你可能会再次犯旧错误，并犯下新错误错误。</p>
+<p>• 旧代码已被使用、测试和修复。新的代码没有。这意味着巨大的努力和时间（通常对您来说是不可见的）已投入旧代码。那就是钱。</p>
+<p>• 旧代码：也许修复只是一行代码，或者只是几个字符。但这需要巨大的努力。扔掉代码就是扔掉努力，有时是多年的编程工作。</p>
+<p>•（旧代码）不会因为坐下而获得错误在你的硬盘上。- 乔尔·斯波尔斯基。</p>
+<p><strong>Software years</strong>：即使您的新代码更好，您可能会落后几年，并且因此失去市场。</p>
+<hr>
+<p>使用分支避免瓶颈</p>
+<p>有利于协同开发。</p>
+<p>发布分支，错误修复分支，实验分行等</p>
+<p>分支之所以有价值，是因为它们变得稀缺资源——项目代码中的工作室——进入丰富的。</p>
+<p>分支做起来成本低。</p>
+<p>提出拉取请求、请求审查和合并（当所有审稿人都满意时）。</p>
+<p>隔离和稳定释放线到发展线。</p>
+<p>自由使用分支。</p>
+<p>大多数分支应该合并他们的更改尽快进入主线并消失。</p>
+<p>当我们进行合并时，表明这是一个合并到日志消息中</p>
+<hr>
+<p><strong>拉取请求（Pull Requests）</strong></p>
+<p>拉取请求是来自贡献者的请求，某个变更被“拉”（合并）的项目进入项目。</p>
+<p>一旦贡献到达，它通常会消失通过审查和修订过程，包括贡献者与各方面的沟通项目的成员。</p>
+<p>代码更改合并到项目的主分支是什么时候正式成为项目的一部分。</p>
+<p>对项目的99.9%的贡献应该通过拉取请求 - 审查 - 修订 - 合并的过程。</p>
+<p>拉取请求应该有一个目的。如果你有很多目的，那就创造很多分支并发出许多拉取请求。</p>
+<p>为什么？</p>
+<p>更容易参考一个小项目，更容易审查一个小项目。</p>
+<hr>
+<p><strong>基本 Git 命令</strong></p>
+<p>git branch</p>
+<p> git checkout -b FIX-README </p>
+<p>git add . </p>
+<p>git commit -m ”README.md: Why, What, How?” </p>
+<p>git pull origin master </p>
+<p>git push origin FIX-README </p>
+<p>git checkout FIX-README</p>
+<hr>
+<p>你在项目开源后宣布。</p>
+<p>你应该期待什么：</p>
+<p>- 影响不大。保持 1.0 安静。</p>
+<p>- 一些随意的询问。</p>
+<p>- 您的邮件列表中还有几个人。</p>
+<p>发布即播种。</p>
+<p>形成指数通信网络。</p>
+<p>项目→社区</p>
+<hr>
+<p><strong>版本（修订）控制系统</strong></p>
+<p>Version (revision) Control System</p>
+<p>版本控制的核心是变更管理：</p>
+<p>谁在哪个日期进行了哪些更改。</p>
+<p>两种方式：</p>
+<ol>
+<li>锁定-修改-解锁</li>
+<li>复制-修改-合并</li>
+</ol>
+<p>commit - 对项目进行更改。</p>
+<p>push - 发布对公开在线的提交存储库。</p>
+<p>pull (or update) - 拉其他人的更改（提交）您的项目副本中。</p>
+<p>commit message  - 评论附加到每个提交，描述性质和提交的目的。</p>
+<p>repository - 存储更改的数据库并从中发布它们。</p>
+<p>clone - 获得自己的开发库通过制作项目中央存储库的副本。</p>
+<p>checkout - 切换到分支</p>
+<p>revision or commit - 修订或提交</p>
+<p>diff - 更改的文本表示。</p>
+<p>tag or snapshot - 标签或快照</p>
+<p>branch - 项目的副本，受版本控制但被隔离，以便对分支所做的更改不会</p>
+<p>影响项目的其他分支。一个好方法拥有多条独立的发展路线。“主线”、“主干”、“主线”、“发布分支”</p>
+<p>merge - 将更改从一个分支移动到其他分支。</p>
+<p>conflict -  - 当两个人试图做出不同的更改到代码中的相同位置。“解决”问题冲突。</p>
+<p>revert - 撤消已提交的软件更改。</p>
+<hr>
+<p><strong>失去焦点（Losing Focus）</strong></p>
+<p>甚至不要考虑创建膨胀软件，或者群件。</p>
+<p>继续您的产品愿景。</p>
+<p>许多干扰，一路向北</p>
+<hr>
+<p>发布节奏（Rhythm of Releases）</p>
+<p>过于频繁的发布被认为不是成熟产品所必需的</p>
+<hr>
+<p><strong>梅特卡夫定律（Metcalfe’s Law）</strong></p>
+<p>网络的价值随着网络规模的平方而增长。</p>
+<p>The value of a network grows by the square of the size of the network</p>
+<hr>
+<p><strong>德尔福效应（Delphi Effect）</strong></p>
+<p>集成方法</p>
+<p>一大批同样专业的观察家的平均意见比一个随机选择的观察家的意见更可靠</p>
+<p>专家的差异很重要</p>
+<hr>
+<p><strong>首先寻找现有的解决方案</strong></p>
+<p>Looking for Existing Solutions First</p>
+<p>也许不值得重新发明轮子。相反，向现有功能添加一些功能。</p>
+<p>例外：出于教育目的，非常专门的应用程序，用于国家安全</p>
+<hr>
+<p><strong>不要让任务压倒你。</strong></p>
+<p><strong>No Need to Provide Everything At Once</strong></p>
+<p>这样做会非常耗时：</p>
+<p>• 详尽的设计文档</p>
+<p>• 完整的用户手册</p>
+<p>• 精美且可移植的打包代码</p>
+<p>• 平台独立</p>
+<p><strong>Hacktivationenergy</strong></p>
+<p>一个新人必须投入的精力，在他开始找回一些灵感（手感）之前</p>
+<p><strong>摩擦（Friction）</strong></p>
+<p>潜在贡献者成为真正贡献者所需的能量</p>
+<hr>
+<p>Alpha - 第一个版本，有已知错误。</p>
+<p>Beta - 修复了严重的已知错误，请用户提供详细的反馈</p>
+<p>10-year Rule. Good Software Takes Ten Years. Get Used To it. Sustained effort is needed.</p>
+<hr>
+<p><strong>避免私下讨论（Avoid Private Discussions）</strong></p>
+<p>与公开讨论一样缓慢和繁琐是的，从长远来看，它几乎总是可取的。如果没有理由将其设为私有，则应该公开。</p>
+<p>为什么？</p>
+<ul>
+<li>讨论将有助于培训和教育新的开发人员。</li>
+<li>讨论将培训您如何向不像您那样熟悉软件的人解释技术问题。</li>
+<li>讨论将形成档案以备将来使用参考。</li>
+</ul>
+<p>对粗鲁行为的零容忍政策</p>
+<hr>
+<p>在分布式工作环境中，写下所有内容对于有效沟通至关重要</p>
+<p><strong>代码审查（Code review）</strong></p>
+<p>提交审查。</p>
+<p>开源世界中的同行评审。</p>
+<p>好处：</p>
+<ul>
+<li>培养富有成效的发展社区。</li>
+<li>提高软件质量。在它们之前捕获错误溜进。</li>
+</ul>
+<p><strong>为什么我们专注于审查最近的变化？</strong></p>
+<p>• 它在社交方面效果更好。及时反馈新鲜变化。与人互动的好方法。确认他们所做的事情很重要（被看到并明白了）。人们在做他们最好的工作时知道其他人会花时间对其进行评估</p>
+<p>• 最近的变化是获得熟悉代码库。也看看受影响的呼叫者和被呼叫者。</p>
+<p>审查应该是公开的，以便其他人可以看到它并知道发生了审查，并且是期待。</p>
+<p>提交通知很有用</p>
+<hr>
+<p><strong>技术债（Technical debt）</strong></p>
+<p>“当走捷径并交付不适合当前编程任务的代码时，开发团队会招致技术债务。这种债务降低了生产力。生产力的损失是技术债务的利益。”</p>
+<p>高技术债务会使软件不可维护</p>
+<hr>
+<p><strong>自述文件（README）</strong></p>
+<ul>
+<li>使用此文件来传达原因、内容和方式。</li>
+<li>将此文件视为项目的构成。</li>
+<li>使用此文件可避免特征蔓延（feature creep）</li>
+</ul>
+<hr>
+<p>“In the open”意味着以下事情是公开访问：</p>
+<p>- 代码库</p>
+<p>- 错误跟踪器</p>
+<p>- 设计文件</p>
+<p>- 用户文档</p>
+<p>- 维基</p>
+<p>- 开发者论坛</p>
+<p>您的日常工作对公众可见。兼容的开源</p>
+<p>“In the open”不一定意味着以下内容</p>
+<p>- 允许陌生人将代码检查到您的存储库</p>
+<p>- 允许任何人在您的跟踪器中提交错误报告</p>
+<p>- 阅读并响应提交的每个错误报告，即使您确实允许陌生人提交</p>
+<p>- 回答人们在论坛中提出的每个问题</p>
+<p>- 审查发布的每个补丁或建议，何时这样做可能会花费宝贵的开发时间</p>
+<p>你的源代码是开放的，但你的时间没有开放</p>
+<hr>
+<p><strong>项目需要什么</strong></p>
+<ul>
+<li>网站：更好地将面向用户的与面向开发者。</li>
+<li>邮件列表/消息论坛</li>
+<li>版本控制</li>
+<li>错误跟踪</li>
+<li>实时聊天</li>
+</ul>
+<hr>
+<p>罐头托管（Canned Hosting）</p>
+<p><strong>提供在线协作的在线服务运行自由软件项目所需的工具</strong></p>
+<ul>
+<li>Github (Ben Balter)</li>
+<li>Bitbucket </li>
+<li>Launchpad </li>
+<li>Savannah</li>
+</ul>
+<p>优点：</p>
+<p>（1）服务器容量和带宽</p>
+<p>（2）简单。</p>
+<p>缺点：定制有限，无精打细算粒度控制</p>
+<hr>
+<p><strong>匿名和参与（Anonymity and involvement）</strong></p>
+<p>您不希望陌生人将更改推入您的回购，即使他们被审查。</p>
+<p>你不想要一个不方便的参与吧防止快速评论和简单的错误报告。</p>
+<p>确保只读操作、错误归档（使用适当的允许使用反垃圾邮件技术，例如验证码）对于匿名、未登录的访问者有用</p>
+<hr>
+<p><strong>可浏览性（Browsability）</strong></p>
+<p>项目的存储库应该可以在Web上浏览</p>
+<p>可浏览性很重要，因为它是一个轻量级的项目数据的门户。</p>
+<p>可浏览性还意味着用于查看的规范 URL一个特殊的变化——在讨论过程中没有歧义</p>
+<hr>
+<p><strong>票证生命周期（Ticket life cycle）</strong></p>
+<p>存储库树中引入的每行代码都必须经过严格的审查过程。这保证了代码基础的整体质量</p>
+<p>其他人阅读票证，添加评论，然后也许要求原始申报人澄清一些点</p>
+<p>该错误被重现。</p>
+<p>该错误得到诊断。分配所有权。放优先事项。</p>
+<p>票被安排解决。</p>
+<p>该错误得到修复。票已关闭。</p>
+<p>需要注意的事情：是不是真正的错误；是否有重复的漏洞。</p>
+<hr>
+<p><strong>分叉和可分叉性（Fork and Forkability）</strong></p>
+<p>复制一份源代码并用它开始一个竞争项目，称为分叉。</p>
+<p>结果：自由软件中没有真正的独裁者项目。</p>
+<p>错误的决定最终会引发反抗和分叉。</p>
+<p>硬分叉：不向前兼容的分叉</p>
+<p>分叉的可能性。</p>
+<p>实际分叉</p>
+<hr>
+<p><strong>仁慈的独裁者（Benevolent Dictators）</strong></p>
+<p>做出最终决定的人。</p>
+<p>个性和经验。</p>
+<p>不愿做出决定：在大多数情况下，推迟给领域专家或区域维护者。让其他人讨论。</p>
+<p>BD - 社区认可的仲裁员。例如，一个项目的创始人。</p>
+<p>需要注意的两点：</p>
+<ol>
+<li>BD通常没有在所有领域都有足够的专业知识。</li>
+<li>优质开发商如果他们不能影响项目的，就不会留下来方向。在没有达成共识并且大多数开发人员想要的情况下继续前进，BD 会说“事情就是这样。”</li>
+</ol>
+<p>好BD的特征。</p>
+<ol>
+<li>自我约束。没有BD早期讨论中的个人意见或结论以便每个人都可以发言。</li>
+<li>承认自己错误的决定。</li>
+<li>不需要有最好的技术能力。</li>
+</ol>
+<p>如果项目有一个明显的、好的候选BD，那就是要走的路。否则，请使用民主</p>
+<hr>
+<p>懒惰的共识</p>
+<p>隐含的共识。</p>
+<p>沉默意味着同意。</p>
+<p>沉默意味着没有异议</p>
+<p>Lazy Consensus </p>
+<p>Implicit consensus. </p>
+<p>Silence means consent. </p>
+<p>Silence means no objection.</p>
+<hr>
+<p><strong>版本控制意味着您可以放松</strong></p>
+<p><strong>Version control means you can relax</strong></p>
+<p>更改可以恢复。</p>
+<p>所以我们可以消除坏的或仓促的影响判断。</p>
+<p>但这并不意味着我们可以滥用回归</p>
+<hr>
+<p><strong>阿帕奇方式（The Apache Way）</strong></p>
+<p>基于共识、社区驱动的治理。</p>
+<p>项目管理委员会具有较高的自由度。</p>
+<p>使用邮件列表进行通信（异步）。语音交流非常稀有的。为什么？</p>
+<p>做决定：“meritocracy”, “do-ocracy”</p>
+<p>做事者的力量：做的越多，允许做的越多。使用惰性共识（沉默意味着没有异议）。+1, 0 (没有意见), -1 (需要提供另一种建议）。</p>
+<hr>
+<p><strong>ASF Incubator</strong></p>
+<p>成为 ASF 项目的切入点。</p>
+<p>它根据成功可能性过滤项目。</p>
+<p>要求：工作代码库，意图转让足够的知识产权，以及赞助 ASF 成员或官员</p>
+<hr>
+<p><strong>邮件列表（Mailing lists）</strong></p>
+<p>使用邮件列表而不是私人邮件列表的好处通信是一种共享资源，其中其他人也可以从常见的错误中学习社区，我们共同成长。</p>
+<hr>
+<p><strong>审查然后提交或提交然后审查（Review-Then-Commit or Commit-Then-Review）</strong></p>
+<p>RTC：改变首先需要共识批准。</p>
+<p>CTR：随意更改，有可能被追溯否决</p>
+<hr>
+<p>未能提供高质量的批评可能是一种侮辱</p>
+<p>你必须对一切做出回应。</p>
+<p>沉默也是交流。如果你不知道如何回答，用沉默回答</p>
+<hr>
+<p><strong>显着使用档案（Conspicuous use of archives）</strong></p>
+<p>开源项目中的所有通信都是存档。</p>
+<p>为什么档案很重要？</p>
+<p>他们提供了一个基础供讨论。</p>
+<p>在提问之前先搜索存档。</p>
+<p>为了避免重复，如果一个问题已经在档案中回答，参考它（例如，包括一个链接到存档页面）</p>
+<hr>
+<p><strong>选择合适的论坛</strong></p>
+<p>IRC 或开发邮件列表？</p>
+<p>IRC：适合快速响应，不适合制作由于样本量很小，因此做出了重大决定。</p>
+<p>邮件列表：更正式。每一个感兴趣的人将有机会看到并回应相关帖子，不分时区，时间表。</p>
+<hr>
+<p><strong>发布分支（Release branch）</strong></p>
+<p>发布分支只是版本中的一个分支控制系统（见分支），其上的代码用于此版本的可以与主线隔离发展。</p>
+<hr>
+<p><strong>混沌之力（Forces of Chaos）</strong></p>
+<p>一位重要的开发人员突然失去了兴趣</p>
+<hr>
+<p>长期雇用一个真正有经验的程序员</p>
+<ul>
+<li><p>在项目中至少呆了几年。</p>
+</li>
+<li><p>拥有良好的声誉。</p>
+</li>
+<li><p>有影响。</p>
+</li>
+<li><p>非常了解代码。 </p>
+</li>
+<li><p>了解有关设计决策的旧讨论。</p>
+</li>
+<li><p>具有提交访问权限。</p>
+</li>
+</ul>
+<p>如何培养新人？</p>
+<p>从错误修正和清理任务开始，这样他就可以学习代码库并让自己了解社区。</p>
+<p>有经验的程序员应该阅读所有内容新人发布（例如，错误修复补丁）并成为可以回答他的问题。</p>
+<hr>
+<p><strong>评估开源项目（Evaluating Open Source Projects）</strong></p>
+<p>社会健康和项目成熟度。Social health and project maturity.</p>
+<p>他们的开发者有多庞大和多样化社区？</p>
+<p>他们是否定期获得新的贡献者？</p>
+<p>他们是否处理传入的错误报告合理的方式？</p>
+<p>他们是否足够频繁地发布稳定版本您的需求？</p>
+<p>tips：</p>
+<p>首先查看错误跟踪器活动。</p>
+<p>衡量提交多样性，而不是提交率。</p>
+<p>评估组织多样性。</p>
+<p>讨论论坛。</p>
+<p>新闻、公告和发布</p>
+<hr>
+<p><strong>测试金字塔</strong></p>
+<img src="/images/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/6e738afc5d344faaad6418c296639b8f.png" alt="6e738afc5d344faaad6418c296639b8f" style="zoom:67%;" />
+
+<p>（1） <strong>尽可能地多做 单元测试 和 集成测试</strong>，因为他们的执行速度相较于上层的几个测试类型来说快很多且相对稳定，可以一天多次执行。一般来说，我们都会将单元测试 和 集成测试 做到持续集成构建任务中去，比如放到Jenkins中每天定时执行1~2次，或者每次push代码到git仓库后执行，总之，就是要确保可以频繁执行以确保代码质量。</p>
+<p>（2） <strong>尽可能地少做 组件测试、端到端测试 和 探索性测试</strong>，因为他们的执行速度相较单元测试 和 集成测试 会慢很多，且不够稳定，无法做到一天多次执行，每次执行都要等很久才能获得反馈结果。但是，他们的覆盖面比下层的单元测试和集成测试要广一些。总之，就是要确保一定周期内或者关键节点时间执行以下这几个测试以确保软件质量。</p>
+<hr>
+<p>古德哈特定律（<em>Goodhart’s law</em>），是以 Charles Goodhart 的名字命名的，这是一个非常有名的定理：当一个政策变成目标，它将不再是一个好的政策。</p>
+<p><strong>当衡量标准成为目标时，它就不再是一个好的衡量标准</strong></p>
+<p>Goodhart软件开发定律的一个例子是代码行数。代码行数提供了一种衡量软件产品大小的方法。但是，当用作目标时，代码的质量会下降。</p>
+<p>应该根据软件本身的结构进行精炼或分离，而不是一个混乱的意大利面条式代码。</p>
+<h1 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h1><h2 id="书面文化-written-culture"><a href="#书面文化-written-culture" class="headerlink" title="书面文化 written-culture"></a>书面文化 written-culture</h2><p><a target="_blank" rel="noopener" href="https://producingoss.com/en/communications.html#written-culture">Chapter 6. Communications (producingoss.com)</a></p>
+<p>清晰写作的能力也许是在开源环境中最重要的技能。从长远来看，它比编程人才更重要。</p>
+<h2 id="人如其文-you-are-what-you-write"><a href="#人如其文-you-are-what-you-write" class="headerlink" title="人如其文 you-are-what-you-write"></a>人如其文 you-are-what-you-write</h2><p><a target="_blank" rel="noopener" href="https://producingoss.com/en/you-are-what-you-write.html">You Are What You Write (producingoss.com)</a></p>
+<p><strong>结构和格式</strong></p>
+<p>不要像编写手机短信那样编写所有的东西。要使用完整的句子，每个句子首字母要大写，也要根据需要分段。在编写电子邮件和其他内容时这一点最重要。邮件、文档、bug报告和其他会永久保存的东西，必须使用标准语法和拼写，并有一致的叙事结构。</p>
+<p>对于个别的电子邮件，有经验的开源开发者会使用特定的约定：</p>
+<ul>
+<li>只发送文本邮件，而不应该是HTML、富文本或其他格式</li>
+<li>使用真正的换行</li>
+<li>包含屏幕输出，代码片段或其他格式化文本时，需要清晰的处理缩进，这样可以轻易的区分你的叙述和引用的内容</li>
+<li>当引用其他人的邮件时，可以直接在合适的位置插入你的回应</li>
+<li>小心构建新邮件的主题行</li>
+</ul>
+<p><strong>内容</strong></p>
+<ul>
+<li>让读者轻松</li>
+<li>不要使用夸张法</li>
+<li>编辑两次</li>
+</ul>
+<p><strong>基调（语气，风格）</strong></p>
+<p>通过仔细注意人们行为的长期模式，即使你从未面对面地遇到他们，你也会开始意识到他们是个体。通过对自己写作的语气敏感，你可以对别人的感受产生惊人的影响，从而最终受益。</p>
+<p><strong>识别无礼</strong></p>
+<ul>
+<li>技术批评，即使很直接且没有铺垫，也不是无礼的</li>
+<li>迟钝、朴实的问题，也不是无礼</li>
+<li>按照同样的原则，详细的技术批评是一种奉承，不提供高质量的批评可能是一种侮辱</li>
+</ul>
+<p><strong>面容</strong></p>
+<h2 id="避免常见的陷阱-testing-and-releasing"><a href="#避免常见的陷阱-testing-and-releasing" class="headerlink" title="避免常见的陷阱 testing-and-releasing"></a>避免常见的陷阱 testing-and-releasing</h2><p><a target="_blank" rel="noopener" href="https://producingoss.com/en/common-pitfalls.html">Avoiding Common Pitfalls (producingoss.com)</a></p>
+<p><strong>不要发表无目的的文章</strong></p>
+<p>三类信息占据：</p>
+<ul>
+<li>提出重要事物的信息</li>
+<li>提出对他人曾经说过的话表示支持或反对的信息</li>
+<li>总结信息</li>
+</ul>
+<p><strong>生产性与非生产性线程</strong></p>
+<p>非生产性线程的一些特征：</p>
+<ul>
+<li>已经提出的论点已经开始在同一条线程中重复，好像海报认为没有人第一次听到它们。</li>
+<li>随着赌注越来越小，夸张和参与程度越来越高。</li>
+<li>大多数评论来自很少或什么都不做的人， 而那些倾向于把事情做完的人是沉默的。</li>
+<li>许多想法讨论后从未提出过明确的建议。（当然，任何有趣的想法一开始都是一个不精确的愿景;重要的问题是它从何而来。这个线索似乎是在把视觉变成更具体的东西，还是把它旋转成子视、侧视和本体论争议？</li>
+</ul>
+<p><strong>主题越小，辩论时间越长</strong></p>
+<p>对于长期的主题，讨论的数量与主题的复杂度成反比的原理，被非正式的称为<strong>Bikeshed效应（BSD）</strong></p>
+<p><strong>避免圣战</strong></p>
+<p>圣战的一个共同特点是，在继续讨论能否解决争端这一问题上存在分歧。</p>
+<p>处理圣战：</p>
+<p>第一个答案是，做好准备避免其发生</p>
+<p>当圣战不可避免时，尽早决定你要关注多少，并乐意公开放弃。当你这样做，你可以说你正在退出，这场圣战毫无价值，而不要展示出挖苦，并且不要利用这个机会对对方的辩论做最后一次攻击。只有优雅的去做才能有效的放弃。</p>
+<p><strong>“嘈杂的少数派”效应 noisy-minority</strong></p>
+<p>在任何邮件列表讨论中，少数人很容易给人留下非常不同的印象，因为列表中充斥着大量冗长的电子邮件。</p>
+<p>对付这种影响的最佳方法是非常清楚地指出这一影响，并提供佐证，表明与同意者相比，实际持不同政见者人数是多么少。</p>
+<p><strong>不要抨击竞争的开源产品</strong></p>
+<p>避免对竞争的开源软件发表负面意见。给出负面事实是完全可以的——即很容易在良好的比较图表中看到的那种可以证实的断言。但是，出于两个原因，最好避免对性质不那么严格的负面描述。首先，他们容易发动有损于富有成效的讨论的火焰战。其次，更重要的是，<em>您</em>项目中的一些开发人员也可能参与竞争项目，或者来自其他项目的开发人员可能正在考虑为您的项目做出贡献。</p>
+<h2 id="测试和发布-testing-and-releasing"><a href="#测试和发布-testing-and-releasing" class="headerlink" title="测试和发布 testing-and-releasing"></a>测试和发布 testing-and-releasing</h2><p><a target="_blank" rel="noopener" href="https://producingoss.com/en/testing-and-releasing.html">Testing and Releasing (producingoss.com)</a></p>
+<p>软件公开之前，它应该经过一些最低数量的开发人员（通常是三个或更多）的测试和批准。然后，必须使用数字签名和识别哈希向全世界发出批准信号。</p>
+<p>签名和哈希的目的是给用户一种方法来验证他们收到的副本没有被恶意篡改。</p>
+<p>获得开发人员批准不仅仅是他们检查发布是否存在明显缺陷的问题。</p>
+<p><strong>候选版本</strong></p>
+<p>对于包含许多变更的发布版本，许多项目会首先推出发布候选版本</p>
+<p>在大多数其他方面，候选发布一定要与正式发布保持相同的待遇。<em>alpha</em>、<em>beta</em>或<em>rc</em>修饰足以警告保守的用户等待真正的发布，而候选发布的声明邮件也必须指出他们的目的是征求反馈。除此以外，应该对候选发布提供与正式发布相同的关注。毕竟，你希望人们使用候选版本，因为暴露是发现bug的最佳方法，而且也因为你永远无法获知哪个候选会最终成为正式版本。</p>
+<p><strong>宣布发布</strong></p>
+<p>每当你提供下载发布tarball的URL时，一定要确保给出MD5/SHA校验和数字签名文件的链接。</p>
+<p>在宣告邮件和新闻页中，不应该仅仅报告关于发布的宣传信息，而应该包含CHANGES文件中相关的部分，这样人们就能够看到自己是否有兴趣去升级。</p>
+<p>最后，不要忘记感谢项目团队、测试人员以及所有花时间发起bug报告的人。</p>
+<h2 id="团队协作教程"><a href="#团队协作教程" class="headerlink" title="团队协作教程"></a>团队协作教程</h2><p><a target="_blank" rel="noopener" href="https://github.com/spm2020spring/TeamCollaborationTutorial/blob/master/team.rst">TeamCollaborationTutorial/team.rst at master · spm2020spring/TeamCollaborationTutorial (github.com)</a></p>
+<h3 id="集中式工作流-Centralized-Workflow"><a href="#集中式工作流-Centralized-Workflow" class="headerlink" title="集中式工作流 (Centralized Workflow)"></a>集中式工作流 (Centralized Workflow)</h3><p>集中式工作流保留了在 SVN 下的工作风格，对于每一个 Repo，集中式工作流只使用 master 分支进行开发。</p>
+<ul>
+<li><p>从 master 克隆分支到本地</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/spm2020spring/TeamCollaborationTutorial.git">https://github.com/spm2020spring/TeamCollaborationTutorial.git</a></p>
+<p>（只能克隆一次）</p>
+</li>
+<li><p>去工作目录</p>
+<p>cd TeamCollaborationTutorial</p>
+</li>
+<li><p>获取当前分支</p>
+<p>git branch</p>
+</li>
+<li><p>创建并切换分支（Copy the whole castle to make castle2）</p>
+<p>git checkout -b castle2</p>
+<p>（现在 castle2 包含了主分支的所有内容。此命令只能执行一次。当您希望切换到 castle2 时，使用上面的命令而不使用 -b）</p>
+<p>现在在 castle2 分支</p>
+</li>
+<li><p>编辑文件、暂存和提交</p>
+<p>git add .</p>
+<p>git commit -m “file changed: specific messages (what &amp; why)”</p>
+<p>（一切发生在 castle2 ，原来的不受影响）</p>
+</li>
+<li><p>切换回主分支 master</p>
+<p>git branch master</p>
+</li>
+<li><p>现在在castle2中所做的更改合并到master中</p>
+<p>git merge castle2</p>
+<p>中央仓库（central repo）发生了什么？</p>
+<p>当我在 castle2 内部努力工作时，我团队中的其他人可能已经更新了中央仓库</p>
+</li>
+<li><p>与更新同步</p>
+<p>git pull origin master</p>
+</li>
+<li><p>将 master 分支推送到  origin 服务器</p>
+<p>git push origin master</p>
+</li>
+</ul>
+<h3 id="功能分支工作流（feature-branching-workflow）"><a href="#功能分支工作流（feature-branching-workflow）" class="headerlink" title="功能分支工作流（feature-branching workflow）"></a>功能分支工作流（feature-branching workflow）</h3><p>功能分支工作流背后的核心思路是所有的功能开发应该在一个专门的分支，而不是在master分支上。</p>
+<p>这个隔离可以方便多个开发者在各自的功能上开发而不会弄乱主干代码。另外，也保证了master分支的代码一定不会是有问题的，极大有利于集成环境。</p>
+<ul>
+<li><p>从 master 克隆分支到本地</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/spm2020spring/TeamCollaborationTutorial.git">https://github.com/spm2020spring/TeamCollaborationTutorial.git</a></p>
+<p>（只能克隆一次）</p>
+</li>
+<li><p>去工作目录</p>
+<p>cd TeamCollaborationTutorial</p>
+</li>
+<li><p>获取当前分支</p>
+<p>git branch</p>
+</li>
+<li><p>创建并切换分支（Copy the whole castle to make castle2）</p>
+<p>git checkout -b chinese-castle</p>
+<p>（现在 chinese-castle 包含了主分支的所有内容。此命令只能执行一次。当您希望切换到 chinese-castle 时，使用上面的命令而不使用 -b）</p>
+<p>现在在 chinese-castle 分支</p>
+<p>所有与此功能相关的更改（或错误修复）都必须发生在 chinese castle 中。</p>
+</li>
+<li><p>编辑文件、暂存和提交；</p>
+<p>git add .</p>
+<p>git commit -m “file changed: specific messages (what &amp; why)”</p>
+</li>
+<li><p>更新分支 chinese-castle </p>
+<p>git pull origin master</p>
+</li>
+<li><p>将 chinese-castle 推送到中央仓库</p>
+<p>git push origin chinese-castle</p>
+</li>
+</ul>
+<h1 id="2020年春季期末考试"><a href="#2020年春季期末考试" class="headerlink" title="2020年春季期末考试"></a>2020年春季期末考试</h1><h2 id="判断题"><a href="#判断题" class="headerlink" title="判断题"></a>判断题</h2><ol>
+<li><p><strong>Detailed, dispassionate technical criticism can be regarded as a kind of praise.</strong></p>
+<p><strong>详细、公正的技术批评可以视为赞美</strong></p>
+<p>应该是对的</p>
+</li>
+<li><p><strong>At the Apache Software Foundation (ASF), Project Management Committees (PMCs)</strong><br><strong>can manage their projects independently and set per-project policies, as long as they follow the</strong><br><strong>Apache corporate policies in terms of licensing, branding, infrastructure and so on.</strong></p>
+<p><strong>在 Apache 软件基金会 (ASF)，项目管理委员会 (PMC) 可以独立管理他们的项目并设置每个项目的政策，只要他们遵循 Apache 公司在许可、品牌、基础设施等方面的政策。</strong></p>
+<p>应该是对的</p>
+</li>
+<li><p> <strong>Let code to comment ratio, φ, be the amount of code divided by the amount of comments.</strong></p>
+</li>
+</ol>
+<p>   <strong>A reasonable value of φ ranges from 3 to 10, according to the top 10 software listed at OpenHub.</strong></p>
+<p>   <strong>让代码与评论的比率 φ 是代码量除以评论量。 根据 OpenHub 列出的前 10 名软件，φ 的合理值范围为 3 到 10。</strong> </p>
+<p>   对</p>
+<ol start="4">
+<li><p><strong>When preparing a release, it is a good practice to create a release branch, isolated from</strong><br><strong>the mainline development.</strong></p>
+<p><strong>在准备发布时，最好创建一个发布分支，与主分支隔离。</strong> </p>
+<p>应该是对的</p>
+</li>
+<li><p><strong>Reviewing changes before merging them to the master branch is a waste of time</strong></p>
+<p><strong>在将更改合并到 master 分支之前审查更改是浪费时间</strong> </p>
+<p>应该是错的</p>
+</li>
+<li><p><strong>Open source software can be used for commercial purposes</strong></p>
+<p><strong>开源软件可用于商业用途</strong> </p>
+<p>应该是对的</p>
+</li>
+<li><p><strong>Your priority as the manager of a software team is building the development abstraction</strong><br><strong>layer on which programmers can produce.</strong></p>
+<p><strong>作为软件团队经理，您的首要任务是构建程序员可以在其上进行生产的抽象层。</strong> </p>
+<p>应该是对的（见 Reading 3）</p>
+</li>
+<li><p><strong>You developed a Web application and want to open source it. Affero GPL is a better choice of license than GPL because it has an extra clause designed specifically for online applications.</strong></p>
+<p><strong>您开发了一个 Web 应用程序并希望将其开源。 Affero GPL 比 GPL 更好许可，因为它有一个专门为在线应用程序设计的额外条款。</strong> </p>
+<p>应该是对的（其主要针对的是基于web的应用程序,要求网络程序开发者必须让源代码能通过网络分发）</p>
+</li>
+<li><p><strong>Having many bug reports in your bug tracking system indicates that your software project is unlikely to be successful. Therefore, a good project manager does not use a bug tracker.</strong></p>
+<p><strong>在您的错误跟踪系统中有许多错误报告表明您的软件 项目不太可能成功。 因此，优秀的项目经理不会使用错误跟踪器。</strong> </p>
+<p>显然是错的</p>
+</li>
+<li><p><strong>Don’t hire a tester. Ask the programmer to do testing, because you can save money spent on salary and the programmer knows the program better.</strong></p>
+<p><strong>不要聘请测试人员。 请程序员做测试，因为可以省钱花在薪水上，程序员更了解程序。</strong> </p>
+<p>错（开发和测试是软件生命周期的不同组成部分，专门的测试人员更能保证软件的高质量。）</p>
+</li>
+</ol>
+<h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><p><strong>Describe fork. Describe feature creep.</strong></p>
+<p><strong>描述 fork（分支）.描述 feature creep（功能蔓延）.</strong></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">fork: <span class="keyword">a</span> copy <span class="keyword">of</span> <span class="keyword">the</span> original source code.</span><br><span class="line"></span><br><span class="line">feature creep: <span class="keyword">the</span> amount <span class="keyword">of</span> additional feature requests exceeds <span class="keyword">a</span> team<span class="string">&#x27;s capacity.</span></span><br></pre></td></tr></table></figure>
+
+<p>分支：从一个软件包拷贝了一份源代码然后在其上进行独立的开发，创建不同的软件。这个术语不只意味着版本控制上的分支，同时也意味着开发者社区的分割，是一种形式的分裂。</p>
+<p>功能蔓延（feature creep），有时也被称为需求蔓延（requirements creep）或范围蔓延（scope creep），它是指在发展过程中产品或设计的需求增加大大超过他们原来预期的趋势，导致其功能不是原本计划的并且要承担产品质量或生产进度的风险。</p>
+<p><strong>In terms of treating old code, Joel Spolsky suggested “ ___ old code”.Please fill in the line. What are the good things about old code</strong></p>
+<p><strong>在处理旧代码方面，Joel Spolsky 提出了“___旧代码”。 请填写行。 旧代码有什么好处</strong> </p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line"><span class="keyword">Do</span> not <span class="keyword">throw</span> awy <span class="regexp">/ Keep /</span> Reuse <span class="regexp">/ New code may be worse than /</span> It is harder to <span class="keyword">read</span></span><br><span class="line"></span><br><span class="line">Used, tested, and fixed.</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>What does do-ocracy mean in The Apache Way?</strong></p>
+<p><strong>Apache Way 中的 do-ocracy 是什么意思？</strong> </p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">The <span class="built_in">more</span> you <span class="keyword">do</span>, the <span class="built_in">more</span> you are allowed to <span class="keyword">do</span>.</span><br></pre></td></tr></table></figure>
+
+<p>抛开纯粹的被动反应，事情的实际发展方向通常是由开发者的工作来决定，而不是由任何宏伟的计划决定。如果你干了具体的活，那么实际上是你控制事情的发展方向。如果您需要某些东西，那就去实现它。这种方式偶尔用笨拙的英语-希腊语混合词 “ do-ocracy ” （“干活者掌权”——译者注）来描述。我将其称为 “ Pratocracy ”，即“<strong>创客法则</strong>”。它既适用于 Apache 核心团队，也适用于更广泛的社区。 </p>
+<p>(应该不考)</p>
+<p><strong>What does WIP mean in Kanban? Why is it important to have a WIP limit?</strong></p>
+<p><strong>WIP 在看板中是什么意思？ 为什么设置 WIP 限制很重要？</strong> </p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">WIP: <span class="keyword">Work</span> <span class="keyword">In</span> Progress.</span><br><span class="line"></span><br><span class="line">Keep the team focused <span class="keyword">on</span> accomplishing small tasks (goals) <span class="keyword">within</span> their capacity.  Avoid <span class="keyword">work</span> overload.  Avoid bottleneck.</span><br></pre></td></tr></table></figure>
+
+<p>在敏捷开发中，WIP限制决定了每种情况下的工作流中可以存续的最大工作量。限制进行中的工作数量可以更容易辨识团队工作流中的无效工作。在情况变得更糟前，一个团队的持续交付通道中的瓶颈是非常容易辨别的。</p>
+<p>WIP限制通过强制让团队聚焦在更小的一套任务中来改善吞吐量和减少“将要完成”的工作量。从根本上来讲，WIP限制鼓励的是“完成”的文化。更重要的是，WIP限制让阻碍和瓶颈显而易见。当有明确指示现有工作遇到瓶颈时，团队可以聚焦在阻塞问题上尽快的理解、实施和解决。一旦消除阻塞，团队中的工作将再次开始流动。这些优势可以确保在最短的时间内向用户交付有价值的增量，从而使得WIP限制成为敏捷开发中一个非常有价值的工具。</p>
+<p><strong>Given the following releases of software, LRR 1.0, LRR 0.9, LRR 0.9 Alpha, LRR 0.9 Beta. Order them by time (oldest first).</strong></p>
+<p><strong>鉴于以下软件版本，LRR 1.0、LRR 0.9、LRR 0.9 Alpha、LRR 0.9 测试版。 按时间排序（最老的在前）。</strong> </p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">LRR <span class="number">0.9</span> Alpha</span><br><span class="line">LRR <span class="number">0.9</span> <span class="built_in">Beta</span></span><br><span class="line">LRR <span class="number">0.9</span></span><br><span class="line">LRR <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<p>LRR 0.9 Alpha -&gt; LRR 0.9 Beta -&gt; LRR 0.9 -&gt; LRR 1.0</p>
+<p>Alpha：预览版，或者叫内部测试版；一般不向外部发布，会有很多 Bug；一般只有测试人员使用。</p>
+<p>Beta：测试版，或者叫公开测试版；这个阶段的版本会一直加入新的功能；在 Alpha 版之后推出。</p>
+<p>RC(Release Candidate)：最终测试版本；可能成为最终产品的候选版本，如果未出现问题则可发布成为正式版本</p>
+<p>多数开源软件会推出两个RC版本，最后的 RC2 则成为正式版本。</p>
+<h2 id="应用题"><a href="#应用题" class="headerlink" title="应用题"></a>应用题</h2><p><strong>Feature-branching workflow and Pull Request. You are going to manage the online web application, Lab Report Repository (LRR). The central, remote project repo of LRR is hosted at <a target="_blank" rel="noopener" href="https://github.com/lanlab-org/LRR.git">https://github.com/lanlab-org/LRR.git</a>.</strong></p>
+<p><strong>功能分支工作流和拉取请求。 您将管理在线 Web 应用程序——实验室报告存储库 (LRR)。 LRR 的中央远程项目存储库托管在 <a target="_blank" rel="noopener" href="https://github.com/lanlab-org/LRR.git%E3%80%82">https://github.com/lanlab-org/LRR.git。</a></strong> </p>
+<p><strong>You are asked to add a new feature X to LRR and use the feature-branching workflow, please describe each step. Make sure that you also include git commands.</strong></p>
+<p>您被要求向 LRR 添加新功能 X 并使用功能分支工作流程， 请描述每个步骤。 确保您还包含 git 命令。 </p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">[<span class="number">1</span>] Clone LRR: git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/lanlab-org/</span>LRR.git</span><br><span class="line">Change directory to LRR: cd LRR</span><br><span class="line">[<span class="number">1</span>] Make a new branch:  git checkout -b X</span><br><span class="line">[<span class="number">0.5</span>] Edit files, stage and commit:  git add. &amp;&amp;  git commit -m <span class="string">&quot;file changed: specific messages (what &amp; why)&quot;</span></span><br><span class="line">[<span class="number">0.5</span>] Sync with the master branch: git pull origin master</span><br><span class="line">[<span class="number">1</span>] Push the new, local branch X to the remote, central repo: git push origin X</span><br><span class="line"></span><br><span class="line">Refer to the following link <span class="keyword">for</span> more detail: https:<span class="regexp">//gi</span>thub.com<span class="regexp">/spm2020spring/</span>TeamCollaborationTutorial<span class="regexp">/blob/m</span>aster/team.rst</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>] 克隆 LRR:git Clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/lanlab-org/</span>LRR.git</span><br><span class="line">将目录更改为 LRR:cd LRR</span><br><span class="line">[<span class="number">1</span>] 创建一个新分支：git checkout -b x</span><br><span class="line">[<span class="number">0.5</span>]编辑文件、暂存和提交：git add. &amp;&amp; git commit-m <span class="string">&quot;file changed: specific messages (what &amp; why)&quot;</span></span><br><span class="line">[<span class="number">0.5</span>]与主分支同步：git pull origin master</span><br><span class="line">[<span class="number">1</span>] 将新的本地分支X推送到远程中心repo:git Push origin X</span><br><span class="line">有关详细信息，请参阅以下链接：https:<span class="regexp">//gi</span>thub.com<span class="regexp">/spm2020spring/</span>TeamCollaborationTutorial<span class="regexp">/blob/m</span>aster/team.rst</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>What is the main purpose of Pull Request?</strong></p>
+<p><strong>拉取请求的主要目的是什么？</strong> </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Ask people <span class="built_in">to</span> review changes <span class="keyword">and</span> <span class="built_in">merge</span> them <span class="built_in">to</span> <span class="keyword">the</span> project (<span class="keyword">if</span> OK).</span><br></pre></td></tr></table></figure>
+
+<p>“拉取请求”是一种机制，用于表示一个分支的更改已准备好合并到另一个分支中。 它们为利益干系人提供了审查和讨论提议的更改的机会，以确保基础分支中的代码质量尽可能地保持最高。</p>
+<p><strong>What should you do if you see a comment from other people in your Pull Request?</strong></p>
+<p><strong>如果您在 Pull Request 中看到其他人的评论，您应该怎么做？</strong> </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Respond <span class="keyword">to</span> <span class="keyword">it</span> <span class="keyword">and</span> address <span class="keyword">it</span> <span class="keyword">as</span> soon <span class="keyword">as</span> possible.</span><br></pre></td></tr></table></figure>
+
+<p>尽快回复并解决。 </p>
+<p><strong>What is the most important message the following figure conveys? How could reviews in Pull Request help improve software’s internal quality?</strong></p>
+<p><strong>下图传达的最重要的信息是什么？ Pull Request 中的评论如何帮助提高软件的内部质量？</strong> </p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Software of high <span class="keyword">internal</span> quality <span class="keyword">is</span> less costly to build, <span class="keyword">in</span> the <span class="built_in">long</span></span><br><span class="line">run.  Producing software of high <span class="keyword">internal</span> quality <span class="keyword">is</span> more productive,</span><br><span class="line"><span class="keyword">in</span> the <span class="built_in">long</span> run.</span><br><span class="line"></span><br><span class="line">Pull Request <span class="keyword">is</span> <span class="keyword">where</span> our changes to software will be reviewed <span class="keyword">by</span></span><br><span class="line">other people before they become a part of the software, <span class="function"><span class="keyword">and</span> addressing</span></span><br><span class="line"><span class="function">the constructive <span class="title">comments</span> (<span class="params">e.g., pointing <span class="keyword">out</span> a potential bug</span>) raised</span></span><br><span class="line"><span class="function"><span class="keyword">by</span> the reviewers could improve software&#x27;s <span class="keyword">internal</span> quality.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">从长远来看，内部质量高的软件的构建成本较低。长期来说生产内部质量高的软件效率更高。</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">拉取请求是我们对软件的更改将被审查的地方其他人在他们成为软件的一部分之前，并解决提出的建设性意见（例如，指出潜在的错误）由审阅者可以提高软件的内部质量。 </span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p><strong>Automated regression testing. As a software project manager, you want to ensure that your team’s new changes to software do not break existing functionalities, so you ask your team to run regression testing for every non-trivial change they made. If breakage occurs, you get a regression. Here is an example of regression: adding a new, working feature makes several old features stop working.</strong></p>
+<p><strong>自动化回归测试。 作为软件项目经理，您希望确保 您的团队对软件的新更改不会破坏现有功能，因此您要求您的团队运行 对他们所做的每个重要更改进行回归测试。 如果发生破损，您将得到回归。 这里 是回归的一个例子：添加一个新的、有效的功能会使几个旧的功能停止工作。</strong> </p>
+<p><strong>Why is automated regression testing important? Answer this question in terms of the consequences of not having automated regression testing.</strong></p>
+<p><strong>为什么自动化回归测试很重要？ 回答没有自动回归测试的后果。</strong> </p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Without <span class="built_in">auto</span>mation, testing capacity could be quickly overwhelemed.</span><br><span class="line">如果没有自动化，测试能力可能会很快被夸大。</span><br></pre></td></tr></table></figure>
+
+<p>自动回归测试将大幅降低系统测试、维护升级等阶段的成本。</p>
+<p> <strong>In which scenarios do you expect to get most from automated regression testing? Give one scenario.</strong></p>
+<p><strong>您希望在哪些场景中从自动化回归测试中获得最大收益？ 给出一个场景。</strong> </p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">- Code change is frequent<span class="built_in"> and </span>we need to<span class="built_in"> check </span>that each change does<span class="built_in"> not </span>break old functionalities.</span><br><span class="line">- Refactoring.</span><br><span class="line">- The web application has lots of functionalities.</span><br><span class="line">- The web application has lots of forms to<span class="built_in"> fill </span>in.</span><br><span class="line">- Manual testing is boring.</span><br><span class="line">- Testing takes<span class="built_in"> long </span>time to execute. - Quick feedback about the testing results.</span><br><span class="line"> </span><br><span class="line"> - 代码更改很频繁，我们需要检查每个更改是否不会破坏旧功能。</span><br><span class="line"> - 重构。</span><br><span class="line"> - Web 应用程序具有许多功能。</span><br><span class="line"> - Web 应用程序有很多表格需要填写。</span><br><span class="line"> - 手动测试很无聊。</span><br><span class="line"> - 测试需要很长时间才能执行。</span><br><span class="line"> - 关于测试结果的快速反馈。 </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>The following table compares the time required to run manual testing and the time required to run automated testing. After how many repeated testing on the Post new assignment functionality will you see overall time saving by using automated testing instead of manual testing? Please give a number. Briefly describe how you derived this number. Note: you can assume that manual testing needs zero extra preparation time, while automated testing requires us to prepare a testing script first. Overall time saving is achieved when the accumulative time spent by using the automated solution is less than the accumulative time spent by using the manual solution.</strong></p>
+<p><strong>下表比较了手动测试所需的时间和自动化测试所需的时间。 在对 Post new assignment 功能进行多少次重复测试后，您会看到使用自动化测试而不是手动测试节省了总体时间吗？ 请给出一个数字。 简要描述你是如何得出这个数字的。 注意：您可以假设手动测试需要零额外的准备时间，而自动化测试需要我们先准备一个测试脚本。 当使用自动化解决方案花费的累计时间小于使用手动解决方案花费的累计时间时，可以实现总体时间节省。</strong> </p>
+<table>
+<thead>
+<tr>
+<th align="center">LRR functionality</th>
+<th align="center">Manual</th>
+<th align="center">Automated</th>
+<th align="center">Time spent on writing the automated testing script</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Sign in</td>
+<td align="center">37 secs</td>
+<td align="center">13 secs</td>
+<td align="center">26 mins</td>
+</tr>
+<tr>
+<td align="center">Post new assignment</td>
+<td align="center">59 secs</td>
+<td align="center">24 secs</td>
+<td align="center">14 mins</td>
+</tr>
+</tbody></table>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Let <span class="built_in">number</span> <span class="keyword">of</span> repeated testing be N.</span><br><span class="line">     Overall <span class="built_in">time</span> spent <span class="keyword">on</span> automated testing - Overall <span class="built_in">time</span> spent <span class="keyword">on</span> manual testing  = (<span class="number">14</span> * <span class="number">60</span> + <span class="number">24</span> * N) - <span class="number">59</span> * N = <span class="number">840</span> - <span class="number">35</span>*N &lt; <span class="number">0.</span></span><br><span class="line">     When N &gt; <span class="number">24</span>, overall <span class="built_in">time</span> spent <span class="keyword">on</span> automated testing will be <span class="keyword">less than</span> overall <span class="built_in">time</span> spent <span class="keyword">on</span> manual testing.</span><br><span class="line">     Therefore, <span class="keyword">it</span> will be worthwhile <span class="keyword">to</span> use automated testing <span class="keyword">if</span> <span class="keyword">the</span> <span class="built_in">number</span> <span class="keyword">of</span> repeated testing <span class="keyword">is</span> much <span class="keyword">greater than</span> <span class="number">24.</span></span><br><span class="line">     </span><br><span class="line">设重复测试次数为 N。</span><br><span class="line">自动化测试总时间 - 手动测试总时间 = (<span class="number">14</span> * <span class="number">60</span> + <span class="number">24</span> * N) - <span class="number">59</span> * N = <span class="number">840</span> - <span class="number">35</span>*N &lt; <span class="number">0</span>。</span><br><span class="line">当 N &gt; <span class="number">24</span> 时，花费在自动化测试上的总时间将少于花费在手动测试上的总时间。</span><br><span class="line">因此，如果重复测试的次数远大于 <span class="number">24</span>，则使用自动化测试是值得的。 </span><br></pre></td></tr></table></figure>
+
+<h1 id="2019年春季期末考试"><a href="#2019年春季期末考试" class="headerlink" title="2019年春季期末考试"></a>2019年春季期末考试</h1><h2 id="判断题-1"><a href="#判断题-1" class="headerlink" title="判断题"></a>判断题</h2><ol>
+<li><p><strong>A license provides protection to software. A software license is usually issued by the government.</strong></p>
+<p><strong>许可证为软件提供保护。 软件许可证通常由政府提供。</strong> </p>
+<p>错（软件许可是软件发布者和最终用户之间的协议合同）</p>
+</li>
+<li><p><strong>The Project Management Committees (PMCs) at the Apache Software Foundation (ASF) have great autonomy when setting per-project policy.</strong></p>
+<p><strong>Apache 软件基金会 (ASF) 的项目管理委员会 (PMC) 在设置每个项目的政策时有很大的自主权</strong>。 </p>
+<p>对</p>
+</li>
+<li><p><strong>A bug tracker tracks bugs only. Don’t add feature requests to a bug tracker. They will pollute it.</strong></p>
+<p><strong>错误跟踪器仅跟踪错误。 不要向错误跟踪器添加功能请求。 他们会污染它。</strong> </p>
+<p>错</p>
+</li>
+<li><p><strong>A project manager needs the sharpest programming skills.</strong></p>
+<p><strong>项目经理需要最敏锐的编程技能。</strong></p>
+<p>错</p>
+</li>
+<li><p><strong>Praise and criticism can be diluted by inflation. Detailed, dispassionate criticism is often taken as a kind of praise. Most people respond pretty well to technical criticism that is specific, detailed, and contains a clear (even if unspoken) expectation of improvement.</strong></p>
+<p><strong>赞美和批评可以被通货膨胀冲淡。 详细的、冷静的批评往往是 作为一种赞美。 大多数人对具体的技术批评反应很好， 详细，并包含明确的（即使是不言而喻的）改进期望。</strong> </p>
+<p>对</p>
+</li>
+<li><p><strong>Benevolent Dictatorship (BD) won’t work well as a means of governance in open source projects. Consensus-based democracy is preferred.</strong></p>
+<p><strong>慈善独裁者（BD）在开源中不能很好地作为一种治理手段项目。 以共识为基础的民主是首选。</strong> </p>
+<p>错</p>
+</li>
+<li><p> <strong>Meritocracy is a key part of The Apache Way. One has to contribute substantially to the project in order to become a committer (who has write access to the master copy of the source code).</strong></p>
+</li>
+</ol>
+<p>   <strong>Meritocracy 是 The Apache Way 的关键部分。 一个人为了成为提交者（谁对源的主副本有写访问权限代码），必须要做出重大贡献项目</strong></p>
+<p>   对（在Apache社区中谁有能力做这个事情，谁就去这个事情）</p>
+<ol start="8">
+<li><p><strong>Opening a formerly closed project is an easy task.</strong></p>
+<p><strong>打开以前关闭的项目是一项简单的任务。</strong> </p>
+<p>错</p>
+</li>
+<li><p><strong>Having many bug reports in your bug tracking system indicates that your software project is unlikely going to be successful.</strong></p>
+<p><strong>在您的错误跟踪系统中有许多错误报告表明您的软件项目 不太可能成功。</strong> </p>
+<p>错</p>
+</li>
+<li><p><strong>Bug tracking enables developers to plan releases.</strong></p>
+<p><strong>错误跟踪使开发人员能够计划发布。</strong></p>
+<p> 对</p>
+</li>
+</ol>
+<h2 id="简答题-1"><a href="#简答题-1" class="headerlink" title="简答题"></a>简答题</h2><ol>
+<li><p><strong>Technical debt. What is a technical debt? What is consequence of accumulating too many such debts?</strong></p>
+<p>**技术负债。 什么是技术负债？ 积累太多这样的债务会有什么后果？ **</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Technical debt is the debt incurred <span class="keyword">by </span>taking <span class="keyword">shortcuts </span><span class="keyword">instead </span>of using a proper approach.</span><br><span class="line">Maintenance would <span class="keyword">become </span>costly, <span class="keyword">or </span>even impossible, if we don<span class="string">&#x27;t payoff the debt in time.</span></span><br><span class="line"><span class="string">技术负债是因走捷径而不是使用正确方法而产生的债务。</span></span><br><span class="line"><span class="string">如果我们不及时还清债务，维护将变得昂贵，甚至不可能。 </span></span><br></pre></td></tr></table></figure>
+
+<p>技术负债指开发人员为了加速软件开发，在应该采用最佳方案时进行了妥协，改用了短期内能加速软件开发的方案，从而在未来给自己带来的额外开发负担。这种技术上的选择，就像一笔债务一样，虽然眼前看起来可以得到好处，但必须在未来偿还。软件工程师必须付出额外的时间和精力持续修复之前的妥协所造成的问题及副作用，或是进行重构，把架构改善为最佳实现方式。</p>
+</li>
+<li><p><strong>Project parasites. What are the main characteristics of project parasites?</strong></p>
+<p>**项目寄生虫。 项目寄生虫的主要特征是什么？ **</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Contributing little <span class="built_in">to</span> <span class="keyword">the</span> project but taking <span class="keyword">a</span> big amount <span class="keyword">of</span> credits.</span><br><span class="line">对项目贡献很小，但获得了大量学分。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Code review. Code review enables us to improve software quality and enhance interaction with other developers. When we review code, why should we focus on reviewing recent changes?</strong></p>
+<p><strong>代码审查。 代码审查使我们能够提高软件质量并增强与其他开发人员的互动。 当我们审查代码时，为什么要专注于审查最近的更改？</strong> </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">It works better socially.Timely feedback <span class="keyword">for</span> fresh changes is <span class="keyword">a</span> great way <span class="built_in">to</span> interact <span class="keyword">with</span> people through confirming that what they <span class="built_in">do</span> is seen <span class="keyword">and</span> understood.People <span class="built_in">do</span> their best work when they know that others will take <span class="keyword">the</span> <span class="built_in">time</span> <span class="built_in">to</span> evaluate <span class="keyword">it</span>.The recent change is also <span class="keyword">a</span> good starter <span class="keyword">for</span> familiarizing yourself <span class="keyword">with</span> <span class="keyword">the</span> code base.</span><br><span class="line">There could be <span class="string">&quot;new changes on older changes&quot;</span>. (<span class="keyword">by</span> Antonio Wilinata)</span><br><span class="line">Recent changes are <span class="keyword">the</span> most likely part <span class="built_in">to</span> be unstable. (<span class="keyword">by</span> Jamal Ait Boui)</span><br><span class="line">它在社交方面效果更好。对新变化的及时反馈是通过确认人们看到和理解他们所做的事情来与人们互动的好方法。当人们知道其他人会花时间对其进行评估时，他们会做得最好。最近的变化也是熟悉代码库的良好开端。 </span><br><span class="line">可能有“旧变化上的新变化”。 （安东尼奥·威利纳塔）</span><br><span class="line">最近的变化是最有可能不稳定的部分。 （贾马尔·艾特·布伊） </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Voting to move on. The ASF has a bit weired voting and veto process. When one votes -1, what does he want to express, and what other information must he provide?</strong></p>
+<p><strong>投票继续前进。 ASX 的投票和否决程序有点奇怪。 当投票-1，他想表达什么，他还必须提供什么信息？</strong> </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Against <span class="keyword">the</span> proposal.Provide <span class="keyword">a</span> <span class="keyword">detailed</span> explanation <span class="keyword">or</span> better alternatives.</span><br><span class="line">反对该提案。提供详细的解释或更好的替代方案。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Community-driven project management. “We worry about any community which centers around a few individuals who are working virtually uncontested.” Why does the ASF worry about the formation of uncontested individuals</strong></p>
+<p><strong>社区驱动的项目管理。 “我们担心任何以几个几乎毫无争议地工作的人为中心的社区。” 为什么ASF担心无争议个体的形成</strong> </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">The <span class="string">&quot;uncontested individuals&quot;</span> would form <span class="keyword">a</span> territory <span class="keyword">in</span> software project management, hampering <span class="built_in">open</span>, collaborative software development.People will leave <span class="keyword">if</span> they cannot influence <span class="keyword">the</span> project.</span><br><span class="line">“无争议的个人”会在软件项目管理中形成一个领域，阻碍开放、协作的软件开发。如果他们不能影响项目，人们就会离开。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Version control. Describe the purpose of the push command while interacting with github</strong></p>
+<p><strong>版本控制。 描述当与 github交互时，推送命令的目的</strong> </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Upload <span class="built_in">local</span> changes <span class="built_in">to</span> <span class="keyword">the</span> central repository hosted remotely <span class="keyword">on</span> <span class="title">github</span>.</span><br><span class="line">将本地更改上传到 github 上远程托管的中央存储库。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Hacktivation energy. What is hacktivation energy for newcomers to a project?</strong></p>
+<p><strong>黑客化能量。 什么是项目新人的黑客化能量？</strong> </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">The amount <span class="keyword">of</span> energy a newcomer must <span class="keyword">put</span> <span class="keyword">in</span> <span class="keyword">before</span> he starts getting something <span class="keyword">back</span>.</span><br><span class="line">新人在开始取回某些东西之前必须投入的能量。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>License. How to apply a license to your software application?</strong></p>
+<p><strong>许可证。 如何将许可证应用于您的软件应用程序？</strong> </p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line"><span class="bullet">1.</span> State the license clearly on the project&#x27;s front page.</span><br><span class="line"><span class="bullet">2.</span> Include the license (LICENSE or COPYING) in the software distribution itself.</span><br><span class="line"><span class="bullet">3.</span>  Include a short notice at the top of each software source file.</span><br><span class="line"><span class="bullet">1.</span> 在项目首页清楚地说明许可</span><br><span class="line"><span class="bullet">2.</span> 在软件分发本身中包含许可证（许可或复制）。</span><br><span class="line"><span class="bullet">3.</span> 在每个软件源文件的顶部包含一个简短的通知。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Looking for alternatives first. Why is it important to look at alternatives before we start a project?</strong></p>
+<p><strong>首先寻找替代品。 为什么在我们开始一个项目之前考虑替代方案很重要？</strong> </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案</span><br><span class="line">If there are alternatives, we don&#x27;t need <span class="keyword">to</span> re-invent <span class="keyword">the</span> wheel.Even <span class="keyword">if</span> we have <span class="keyword">to</span> (e.g., <span class="keyword">for</span> educational purposes), we could learn something <span class="keyword">from</span> them.</span><br><span class="line">如果有替代方案，我们就不需要重新发明轮子。即使我们必须这样做（例如，出于教育目的），我们也可以从他们那里学到一些东西。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Noisy minority. What is the “Noisy Minority” effect? How to handle this effect?</strong></p>
+<p><strong>喧闹的少数派。 什么是“嘈杂的少数派”效应？ 如何处理这种影响？</strong> </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">A few people give <span class="keyword">the</span> impression <span class="keyword">that</span> there <span class="keyword">is</span> a lot <span class="keyword">of</span> dissent,<span class="keyword">by</span> flooding <span class="keyword">the</span> mailing <span class="built_in">list</span> <span class="keyword">with</span> numerous lengthy emails.</span><br><span class="line">The best way <span class="keyword">to</span> handle this effect <span class="keyword">is</span> <span class="keyword">to</span> point <span class="keyword">it</span> out <span class="keyword">and</span> provide supporting evidence showing how small <span class="keyword">the</span> actual <span class="built_in">number</span> <span class="keyword">of</span> dissenters <span class="keyword">is</span>, compared <span class="keyword">to</span> those <span class="keyword">in</span> agreement.</span><br><span class="line">一些人通过大量冗长的电子邮件充斥着邮件列表，给人的印象是存在大量异议。</span><br><span class="line">处理这种影响的最佳方法是指出这一点并提供支持证据，表明与同意的人相比，反对者的实际数量是多么的少。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Mailing lists for public communication. Read the following notice from the Apache Hadoop Project PMC and answer the following questions. “We ask that you please do not send us emails privately asking for support. We are non-paid volunteers who help out with the project and we do not necessarily have the time or energy to help people on an individual basis. Instead, we have setup mailing lists …” What are the benefits of using mailing lists for open source projects? In particular, compare mailing lists with QQ/WeChat as a means of technical communication.</strong></p>
+<p><strong>用于公共通信的邮件列表。 阅读来自 Apache Hadoop 项目 PMC 的以下通知并回答以下问题。 “我们要求您不要私下向我们发送电子邮件寻求支持。 我们是帮助项目的无偿志愿者，我们不一定有时间或精力单独帮助人们。 相反，我们设置了邮件列表……”使用邮件列表进行开源项目有什么好处？ 特别是将邮件列表与QQ/微信作为技术交流的方式进行比较。</strong> </p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">It <span class="built_in">is</span> a <span class="keyword">shared</span>, permanent resource that <span class="built_in">is</span> publicly accessible andsearchable.  It encourages user involvement.  It could divide <span class="keyword">into</span> several more specific <span class="keyword">sub</span>-lists, e.g., user, general, announce,dev, bugs, etc.  Many other subscribers, besides developers, could help answer questions.  They could even give good advice <span class="keyword">for</span> the</span><br><span class="line">project.</span><br><span class="line">QQ/WeChat, <span class="built_in">or</span> other instant messaging systems, could interrupt people<span class="comment">&#x27;s work flow. Typos, not well thought-out or even irrelevant comments could creep in, lowering the quality of discussion.Messages in QQ/WeChat are not archived, and private by design.</span></span><br><span class="line">它是一种共享的、永久的资源，可公开访问和搜索。 它鼓励用户参与。 它可以分为几个更具体的子列表，例如用户、一般、公告、开发、错误等。 除了开发人员之外，还有许多其他订阅者可以帮助回答问题。 他们可以为项目给出好滴建议。</span><br><span class="line">QQ/微信或其他即时通讯系统可能会打断人们的工作流程。 错别字、未经深思熟虑甚至无关紧要的评论可能会出现，从而降低讨论的质量。QQ/微信中的消息未归档，并且设计为私密的。 </span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Release criteria. Johanna Rothman proposes in his 1998 article Of Crazy Numbers and Release Criteria to use the magic number 36 as a release criterion. That is, enter all software bugs into our bug tracking system, if there are less than 36 high-priority bugs, then we could release a beta version, and if we have closed all open high-priority bugs, then we could release an official version. Why does this approach make sense? Does the number has to be 36?</strong></p>
+<p><strong>发布标准。 Johanna Rothman 在他 1998 年的文章 Of Crazy Numbers and Release Criteria 中提议使用幻数 36 作为发布标准。 也就是把所有的软件bug输入到我们的bug追踪系统中，如果高优先级bug少于36个，那么我们可以发布一个测试版，如果我们已经关闭了所有开放的高优先级bug，那么我们可以发布一个正式版本。 为什么这种方法有意义？ 数字必须是36吗？</strong></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">It gives <span class="keyword">a</span> sensible, <span class="built_in">clear</span>, <span class="keyword">and</span> tangible target so that people could make efforts <span class="built_in">to</span> achieve <span class="keyword">it</span>.</span><br><span class="line">No, <span class="keyword">it</span> can be <span class="keyword">any</span> reasonable <span class="built_in">number</span>, depending <span class="keyword">on</span> <span class="title">the</span> <span class="title">problem</span> <span class="title">domain</span>.</span><br><span class="line">它给出了一个合理的、清晰的、切实的目标，以便人们努力实现它。</span><br><span class="line">不，它可以是任何合理的数字，具体取决于问题域。 </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="应用题-1"><a href="#应用题-1" class="headerlink" title="应用题"></a>应用题</h2><p><strong>One commit, one change. Each git commit should be small and atomic</strong></p>
+<p>一次提交，一次更改。 每个 git commit 都应该是小而原子化的 </p>
+<p><strong>Benno Schulenberg, the current maintainer of the GNU nano editor, seems to follow the “one commit, one change” principle. Below is one of his recent commits to the GNU nano source code repository. What change did he make in this commit, and for what purpose? Does this change satisfy the small and atomic criteria?</strong></p>
+<p><strong>GNU nano 编辑器的当前维护者 Benno Schulenberg 似乎遵循“一次提交，一次更改”的原则。 下面是他最近对 GNU nano 源代码库的提交之一。 他在这次提交中做了什么改变，目的是什么？ 这种变化是否满足小和原子标准？</strong> </p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">author Benno Schulenberg &lt;bensberg@telfort.nl&gt; <span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">09</span>:<span class="number">46</span>:<span class="number">19</span> +<span class="number">0200</span></span><br><span class="line">committer Benno Schulenberg &lt;bensberg@telfort.nl&gt; <span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">09</span>:<span class="number">51</span>:<span class="number">14</span> +<span class="number">0200</span></span><br><span class="line">commit <span class="number">189</span>de5ee781fd11230c0412719582aba6e207d55 (patch)</span><br><span class="line">files: suppress feedback when writing a temporary <span class="keyword">file</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">This</span> fixes https:<span class="comment">//savannah.gnu.org/bugs/?56474.</span></span><br><span class="line"></span><br><span class="line">Bug existed since commit <span class="number">47770</span>bd3 <span class="keyword">from</span> two weeks ago.</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> files changed, <span class="number">2</span> insertions, <span class="number">1</span> deletions</span><br><span class="line">diff --git a<span class="regexp">/src/</span>files.c b<span class="regexp">/src/</span>files.c</span><br><span class="line">index c55c957..<span class="number">12046</span>c2 <span class="number">100644</span></span><br><span class="line">--- a<span class="regexp">/src/</span>files.c</span><br><span class="line">+++ b<span class="regexp">/src/</span>files.c</span><br><span class="line">@@ -<span class="number">1858</span>,<span class="number">9</span> +<span class="number">1858</span>,<span class="number">10</span> @@ bool write_file(const <span class="keyword">char</span> *name, <span class="keyword">FILE</span> *f_open, bool tmp,</span><br><span class="line">						goto cleanup_and_exit;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">- 	statusbar(_(<span class="string">&quot;Writing...&quot;</span>));</span><br><span class="line">+ 	<span class="keyword">if</span> (!tmp)</span><br><span class="line">+ 			statusbar(_(<span class="string">&quot;Writing...&quot;</span>));</span><br><span class="line">	<span class="keyword">while</span> (fileptr != <span class="keyword">NULL</span>) &#123;</span><br><span class="line">			size_t data_len = strlen(fileptr-&gt;data), <span class="keyword">size</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">Change: he added <span class="keyword">an</span> <span class="keyword">if</span> statement, i.e., <span class="string">&quot;if (!tmp)&quot;</span>.</span><br><span class="line">Purpose: suppress feedback (<span class="string">&#x27;Writing ...&#x27;</span>) when writing <span class="keyword">a</span> temporary <span class="built_in">file</span>.</span><br><span class="line">Yes.</span><br><span class="line">更改：他添加了一个 <span class="keyword">if</span> 语句，即“<span class="keyword">if</span> (!tmp)”。</span><br><span class="line">目的：在写入临时文件时抑制反馈（<span class="string">&#x27;Writing ...&#x27;</span>）。</span><br><span class="line">是的。 </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>In practice, though, I frequently saw big and entangled changes per comit. Below are two shortened examples from the commit history made by the students from my Software Project Management class:</strong></p>
+<p><strong>然而，在实践中，我经常看到每次提交都会发生大而复杂的变化。 以下是我的软件项目管理课程的学生制作的提交历史记录中的两个简短示例：</strong> </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">gymgym1212</span> committed <span class="literal">on</span> Apr <span class="number">22</span></span><br><span class="line"><span class="attribute">1</span> parent <span class="number">4</span>e7df8b commit <span class="number">0</span>cbbff55c15d563386ee06b54a67d141a26fdd30</span><br><span class="line"><span class="attribute">Showing</span> <span class="number">156</span> changed files with <span class="number">0</span> additions and <span class="number">771</span> deletions.</span><br><span class="line"></span><br><span class="line"><span class="attribute">M</span>-michael-zhang committed <span class="literal">on</span> Apr <span class="number">15</span></span><br><span class="line"><span class="attribute">1</span> parent <span class="number">6</span>a039ec commit <span class="number">5</span>b4868ad29e6698b3992f6b10b23ba8c59ffe043</span><br><span class="line"><span class="attribute">Showing</span> <span class="number">321</span> changed files with <span class="number">101</span>,<span class="number">415</span> additions and <span class="number">55</span> deletions.</span><br></pre></td></tr></table></figure>
+
+<p><strong>How many files were affected by M-michael-zhang’s commit on April 15? Why did that happen? What are the risks of having too many changes per commit?</strong></p>
+<p><strong>M-michael-zhang 4 月 15 日的提交影响了多少文件？ 为什么会这样？ 每次提交有太多更改的风险是什么？</strong> </p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">答案：</span></span><br><span class="line"><span class="attribute">321 files were affected.</span></span><br><span class="line"><span class="attribute">Reasons (any of the following)</span><span class="punctuation">:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Too many auto-generated files were included.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Big version change.      </span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Made many changes but did not commit regularly.</span></span><br><span class="line"><span class="attribute">Risks (any of the following)</span><span class="punctuation">:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Nearly impossible for code reviewers/maintainers to understand so many changes.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Hard to backtrack one change.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Hard to write a concise commit message.</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Could introduce new bugs.  Hard to find these bugs and their causes.</span></span><br><span class="line">321 个文件受到影响。</span><br><span class="line">原因（以下任何一项）：</span><br><span class="line">       <span class="bullet">-</span> <span class="string">包含太多自动生成的文件。</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">大版本更改。</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">进行了许多更改，但没有定期提交。</span></span><br><span class="line">风险（以下任何一项）：</span><br><span class="line">       <span class="bullet">-</span> <span class="string">代码审查者/维护者几乎不可能理解这么多变化。</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">很难回溯一个变化。</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">很难写出简洁的提交信息。</span></span><br><span class="line">       <span class="bullet">-</span> <span class="string">可能会引入新的错误。 很难找到这些错误及其原因。 </span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>Bug reports and fixes.</strong> </p>
+<p><strong>Developers rely on good bug tracking for their daily efforts on improving software quality. Also, project observers, who can be potential participants or supporters, would not take a project seriously if it dose not have a publicly-accessible bug database. Being able to read, analyze and respond to bug reports is crucial for a project’s success. Read the following bug report, bug discussion and bug fix. Answer the following questions. Hint: read the questions in the last page first.</strong></p>
+<p>错误报告和修复。 </p>
+<p>开发人员依靠良好的错误跟踪来提高软件质量。 还有项目观察员，可以是潜在的参与者或支持者，如果项目没有可公开访问的错误数据库，则不会认真对待该项目 。 能够阅读、分析和响应错误报告对于项目的成功至关重要。 阅读遵循错误报告、错误讨论和错误修复。 回答以下的问题。 提示：阅读首先是最后一页的问题。 </p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">bug <span class="comment">#56023: savefile (^S) says &quot;[Cancelled]&quot; in nano-4.0 on an ARM</span></span><br><span class="line">Submitted <span class="keyword">by</span>: easyaspi314 &lt;easyaspi314&gt;</span><br><span class="line">Submitted <span class="keyword">on</span>: Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">07</span>:<span class="number">47</span>:<span class="number">47</span> PM UTC</span><br><span class="line">Severity: <span class="number">4</span> - Important Status: Fixed</span><br><span class="line">Assigned <span class="keyword">to</span>: Benno Schulenberg &lt;bens&gt; Open/Closed: Closed</span><br><span class="line"><span class="comment">--</span></span><br><span class="line">Tue <span class="number">16</span> Apr <span class="number">2019</span> <span class="number">08</span>:<span class="number">45</span>:<span class="number">57</span> AM UTC, comment <span class="comment">#14: by Benno Schulenberg &lt;bens&gt; Project Administrator </span></span><br><span class="line">In charge <span class="keyword">of</span> this <span class="built_in">item</span>.</span><br><span class="line">The fix has been released <span class="keyword">in</span> <span class="number">4.1</span>. Thanks <span class="keyword">for</span> reporting.</span><br><span class="line"></span><br><span class="line">Wed <span class="number">03</span> Apr <span class="number">2019</span> <span class="number">02</span>:<span class="number">37</span>:<span class="number">46</span> PM UTC, comment <span class="comment">#13: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">Or, maybe, you could <span class="keyword">try</span> compiling <span class="keyword">with</span> more compilers than just GCC...</span><br><span class="line">Enabling -Wextra <span class="keyword">and</span> doing a scan-build picks up <span class="keyword">on</span> a bunch <span class="keyword">of</span> potential bugs</span><br><span class="line">including this one, which was picked up <span class="keyword">on</span> <span class="keyword">without</span> any extra flags.</span><br><span class="line">Like, I admit I am biased towards Clang.</span><br><span class="line">However, I’m <span class="keyword">not</span> saying you should only compile <span class="keyword">with</span> Clang, just <span class="keyword">try</span> <span class="keyword">it</span> out once <span class="keyword">in</span> a</span><br><span class="line"><span class="keyword">while</span> because <span class="keyword">its</span> warnings are often useful <span class="keyword">to</span> avoid this nonsense. Clang kinda</span><br><span class="line">focuses <span class="keyword">on</span> warnings.</span><br><span class="line">Plus, <span class="keyword">it</span> comes <span class="keyword">with</span> a decent static analyzer <span class="keyword">in</span> scan-build.</span><br><span class="line">I attached <span class="keyword">the</span> <span class="built_in">log</span> <span class="keyword">of</span> ‘scan-build make CFLAGS=<span class="string">&quot;-Wall -Wextra -O2 -g&quot;</span>.‘ <span class="keyword">on</span> <span class="keyword">the</span></span><br><span class="line">unmodified v4<span class="number">.0</span> release tag. If you <span class="built_in">run</span> <span class="keyword">it</span> directly <span class="keyword">it</span> will create a HTML page you</span><br><span class="line">can browse <span class="keyword">and</span> <span class="keyword">it</span> will show you <span class="keyword">the</span> steps.</span><br><span class="line">cppcheck <span class="keyword">and</span> PVS Studio also picked up <span class="keyword">on</span> <span class="keyword">the</span> uninitialized variable usage. (PVS sees</span><br><span class="line">NLS _(<span class="string">&quot;string wrappers&quot;</span>) <span class="keyword">as</span> variable format strings).</span><br><span class="line">So <span class="keyword">it</span> isn’t <span class="string">&quot;oh I never would’ve picked up on it&quot;</span> <span class="keyword">it</span> <span class="keyword">is</span> <span class="string">&quot;I didn’t use good enough</span></span><br><span class="line"><span class="string">tools to check for bugs before I did a release.&quot;</span></span><br><span class="line"></span><br><span class="line">-Wall <span class="keyword">on</span> one compiler <span class="keyword">is</span> <span class="keyword">not</span> enough <span class="keyword">to</span> pick up <span class="keyword">on</span> even half <span class="keyword">of</span> <span class="keyword">the</span> bugs <span class="keyword">in</span> your code.</span><br><span class="line">(<span class="built_in">file</span> <span class="comment">#46710, file #46711, file #46712)</span></span><br><span class="line"></span><br><span class="line">Wed <span class="number">03</span> Apr <span class="number">2019</span> <span class="number">01</span>:<span class="number">03</span>:<span class="number">36</span> PM UTC, comment <span class="comment">#12: by Benno Schulenberg &lt;bens&gt; Project Administrator</span></span><br><span class="line">In charge <span class="keyword">of</span> this <span class="built_in">item</span>.</span><br><span class="line">(For completeness: nor <span class="keyword">with</span> ’export MALLOC_PERTURB_=<span class="number">234</span>’ nor <span class="keyword">with</span> ’export</span><br><span class="line">GLIBC_TUNABLES=<span class="string">&quot;glibc.malloc.perturb=234&quot;</span>’, nor <span class="keyword">with</span> several other numbers, can I</span><br><span class="line">make ^S fail <span class="keyword">on</span> a nano <span class="keyword">from</span> shortly <span class="keyword">before</span> commit <span class="number">7</span>ad232d7. Tested <span class="keyword">on</span> three</span><br><span class="line">machines. So, even <span class="keyword">with</span> malloc perturbation, I wouldn’t have caught <span class="keyword">my</span> mistake.)</span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">10</span>:<span class="number">02</span>:<span class="number">21</span> PM UTC, comment <span class="comment">#11: by Brand Huntsman &lt;brand&gt;</span></span><br><span class="line">My x86 (<span class="number">32</span>bit) Gentoo machine also has this problem.</span><br><span class="line"></span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">06</span>:<span class="number">24</span>:<span class="number">06</span> PM UTC, comment <span class="comment">#10: by Benno Schulenberg &lt;bens&gt; Project Administrator</span></span><br><span class="line">In charge <span class="keyword">of</span> this <span class="built_in">item</span>.</span><br><span class="line">Of <span class="keyword">the</span> machines <span class="keyword">that</span> I tried nano <span class="keyword">on</span> (two <span class="number">64</span>-bit, <span class="keyword">and</span> three <span class="number">32</span>-bit), none <span class="keyword">of</span> them</span><br><span class="line">show <span class="keyword">the</span> problem. And <span class="keyword">as</span> far <span class="keyword">as</span> I know none <span class="keyword">of</span> them initialize memory <span class="keyword">to</span> zero.</span><br><span class="line">Hmm... On <span class="keyword">my</span> previous machine, I had a setting <span class="keyword">that</span> caused allocated memory <span class="keyword">to</span> be</span><br><span class="line">initialized <span class="keyword">to</span> a random value. What was <span class="keyword">it</span> called again? Googling a bit finds:</span><br><span class="line">MALLOC_PERTURB_. I’ll have <span class="keyword">to</span> start using <span class="keyword">it</span> again; <span class="keyword">it</span> would probably have caught</span><br><span class="line">this issue.</span><br><span class="line">Version <span class="number">4.1</span> will be released <span class="keyword">in</span> a week <span class="keyword">or</span> two. There are a few more changes <span class="keyword">that</span> I</span><br><span class="line">want <span class="keyword">to</span> make.</span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">04</span>:<span class="number">43</span>:<span class="number">27</span> PM UTC, comment <span class="comment">#9: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">I added a logger <span class="keyword">and</span> choice <span class="keyword">is</span> indeed garbage. It just happens <span class="keyword">to</span> usually be positive</span><br><span class="line"><span class="keyword">on</span> <span class="keyword">my</span> Mac.</span><br><span class="line"></span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">03</span>:<span class="number">40</span>:<span class="number">33</span> PM UTC, comment <span class="comment">#8: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">Well either way <span class="keyword">it</span> <span class="keyword">is</span> mucking <span class="keyword">with</span> UB so <span class="keyword">it</span> <span class="keyword">is</span> incorrect.</span><br><span class="line">It all depends <span class="keyword">on</span> <span class="keyword">the</span> compiler, compiler flags, <span class="keyword">and</span> <span class="keyword">the</span> system.</span><br><span class="line">So yeah, we should release <span class="number">4.0</span><span class="number">.1</span> pretty soon because <span class="keyword">it</span> <span class="keyword">is</span> definitely a bug.</span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">03</span>:<span class="number">25</span>:<span class="number">39</span> PM UTC, comment <span class="comment">#7: by David Lawrence Ramsey &lt;dolorous&gt;, Project</span></span><br><span class="line">Member</span><br><span class="line">For <span class="keyword">the</span> <span class="built_in">record</span>, this problem was <span class="keyword">not</span> limited <span class="keyword">to</span> ARM chips, despite <span class="keyword">the</span> commit message</span><br><span class="line"><span class="keyword">and</span> <span class="keyword">the</span> recently-changed subject here. I’m <span class="built_in">running</span> x86_64 (Slackware-current) <span class="keyword">and</span> was</span><br><span class="line">seeing this problem too. Maybe your x86_64 systems are patched <span class="keyword">to</span> initialize things</span><br><span class="line"><span class="keyword">to</span> zero <span class="keyword">by</span> default, <span class="keyword">but</span> <span class="keyword">not</span> everyone’s are.</span><br><span class="line"></span><br><span class="line">Sun <span class="number">31</span> Mar <span class="number">2019</span> <span class="number">11</span>:<span class="number">19</span>:<span class="number">48</span> AM UTC, comment <span class="comment">#6: by Benno Schulenberg &lt;bens&gt; Project Administrator</span></span><br><span class="line">In charge <span class="keyword">of</span> this <span class="built_in">item</span>.</span><br><span class="line">Applied <span class="keyword">and</span> pushed <span class="keyword">to</span> master, commit <span class="number">7</span>ad232d7.</span><br><span class="line">(Although <span class="keyword">the</span> ’choice = <span class="number">0</span>’ <span class="keyword">is</span> <span class="keyword">not</span> needed, I left <span class="keyword">it</span> <span class="keyword">in</span> <span class="keyword">for</span> clarity.)</span><br><span class="line"></span><br><span class="line">Sat <span class="number">30</span> Mar <span class="number">2019</span> <span class="number">10</span>:<span class="number">36</span>:<span class="number">46</span> AM UTC, comment <span class="comment">#5: by Benno Schulenberg &lt;bens&gt; Project Administrator</span></span><br><span class="line">In charge <span class="keyword">of</span> this <span class="built_in">item</span>.</span><br><span class="line">Ow. I had seen only <span class="keyword">the</span> original post, <span class="keyword">not</span> all <span class="keyword">the</span> activity afterward. Thanks <span class="keyword">for</span> <span class="keyword">the</span></span><br><span class="line">patch, will apply <span class="keyword">it</span> tomorrow, <span class="keyword">first</span> <span class="keyword">some</span> other things <span class="keyword">to</span> do.</span><br><span class="line"></span><br><span class="line">Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">10</span>:<span class="number">34</span>:<span class="number">44</span> PM UTC, comment <span class="comment">#4: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">Here <span class="keyword">is</span> <span class="keyword">the</span> patch. It sets response <span class="keyword">and</span> choice <span class="keyword">to</span> zero.</span><br><span class="line">I am just going <span class="keyword">to</span> <span class="keyword">put</span> <span class="keyword">it</span> here, because <span class="keyword">it</span> <span class="keyword">is</span> <span class="keyword">not</span> worth a new issue.</span><br><span class="line">Somehow, GCC didn’t even pick up <span class="keyword">on</span> this one even <span class="keyword">with</span> -Wuninitialize, so I kind <span class="keyword">of</span></span><br><span class="line"><span class="keyword">get</span> why this made <span class="keyword">it</span> <span class="keyword">into</span> <span class="keyword">the</span> release.</span><br><span class="line">GCC’s warnings are sometimes lacking (<span class="keyword">and</span> vice versa <span class="keyword">with</span> Clang), so I think we</span><br><span class="line">should probably do more checking across different compilers <span class="keyword">and</span> analysis.</span><br><span class="line">(<span class="built_in">file</span> <span class="comment">#46658)</span></span><br><span class="line"></span><br><span class="line">Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">10</span>:<span class="number">02</span>:<span class="number">35</span> PM UTC, comment <span class="comment">#3: by David Lawrence Ramsey &lt;dolorous&gt;, Project</span></span><br><span class="line">Member</span><br><span class="line">Exactly. For <span class="keyword">the</span> <span class="built_in">record</span>, this was broken <span class="keyword">back</span> <span class="keyword">on</span> Feb <span class="number">20</span> <span class="keyword">by</span> commit <span class="number">0</span>f9d60a. When <span class="keyword">that</span></span><br><span class="line">commit split up one variable <span class="keyword">into</span> two, <span class="keyword">the</span> initialization <span class="keyword">of</span> <span class="keyword">the</span> original variable</span><br><span class="line">was lost.</span><br><span class="line"></span><br><span class="line">Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">09</span>:<span class="number">21</span>:<span class="number">13</span> PM UTC, comment <span class="comment">#2: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">Wait, Clang literally pointed out <span class="keyword">the</span> bug <span class="keyword">for</span> <span class="keyword">me</span>.</span><br><span class="line">files.c:<span class="number">2131</span>:<span class="number">7</span>: warning: variable ’response’ <span class="keyword">is</span> used uninitialized whenever ’<span class="keyword">if</span>’ condition <span class="keyword">is</span> <span class="literal">true</span> [-Wsometimes-uninitialized]</span><br><span class="line">		<span class="keyword">if</span> ((!withprompt || (ISSET(TEMP_FILE) &amp;&amp; exiting)) &amp;&amp;</span><br><span class="line">			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">files.c:<span class="number">2148</span>:<span class="number">7</span>: note: uninitialized use occurs here</span><br><span class="line">		<span class="keyword">if</span> (response &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			~~~~~~~</span><br><span class="line">files.c:<span class="number">2131</span>:<span class="number">3</span>: note: remove <span class="keyword">the</span> ’<span class="keyword">if</span>’ <span class="keyword">if</span> <span class="keyword">its</span> condition <span class="keyword">is</span> always <span class="literal">false</span></span><br><span class="line">		<span class="keyword">if</span> ((!withprompt || (ISSET(TEMP_FILE) &amp;&amp; exiting)) &amp;&amp;</span><br><span class="line">			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br><span class="line">files.c:<span class="number">2104</span>:<span class="number">15</span>: note: initialize <span class="keyword">the</span> variable ’response’ <span class="keyword">to</span> silence this warning</span><br><span class="line">		int response, choice;</span><br><span class="line">				  ^</span><br><span class="line">				  = <span class="number">0</span></span><br><span class="line">Clang clearly doesn’t like this code.</span><br><span class="line">Sure enough, initializing <span class="keyword">it</span> <span class="keyword">to</span> an unwanted <span class="built_in">number</span> such <span class="keyword">as</span> <span class="number">-1</span> results <span class="keyword">in</span> a</span><br><span class="line"><span class="string">&quot;Cancelled&quot;</span> message.</span><br><span class="line">I’ll make a patch.</span><br><span class="line"></span><br><span class="line">Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">08</span>:<span class="number">41</span>:<span class="number">47</span> PM UTC, comment <span class="comment">#1: by easyaspi314 &lt;easyaspi314&gt;</span></span><br><span class="line">Update: Just updated Nano <span class="keyword">on</span> <span class="keyword">my</span> MacBook <span class="keyword">to</span> <span class="number">4.0</span> <span class="keyword">from</span> Homebrew <span class="keyword">and</span> <span class="keyword">it</span> <span class="keyword">is</span> <span class="keyword">not</span> affected.</span><br><span class="line">MacBook Pro (<span class="number">15</span>-inch, Early <span class="number">2011</span>)/MacBookPro8,<span class="number">2</span></span><br><span class="line">macOS Mojave <span class="number">10.14</span></span><br><span class="line"><span class="number">2.0</span>GHz Intel Core i7 (I7<span class="number">-2635</span>QM, Sandy Bridge)</span><br><span class="line">I am going <span class="keyword">to</span> <span class="keyword">try</span> building <span class="keyword">from</span> source.</span><br><span class="line"></span><br><span class="line">Thu <span class="number">28</span> Mar <span class="number">2019</span> <span class="number">07</span>:<span class="number">47</span>:<span class="number">47</span> PM UTC, original submission: <span class="keyword">by</span> easyaspi314 &lt;easyaspi314&gt;</span><br><span class="line">Platform:</span><br><span class="line">Android <span class="number">9.0</span>, Termux</span><br><span class="line">LG G3 D851 - Qualcomm Snapdragon <span class="number">801</span>/Cortex-A15, ARMv7-A (<span class="number">32</span>-bit)</span><br><span class="line">Yes I am weird</span><br><span class="line">I upgraded <span class="keyword">to</span> Nano <span class="number">4.0</span> <span class="keyword">from</span> <span class="keyword">the</span> apt repos, <span class="keyword">and</span> whenever I do ^S <span class="keyword">on</span> an existing <span class="built_in">file</span>,</span><br><span class="line">all I see <span class="keyword">is</span> <span class="string">&quot;[Cancelled]&quot;</span> <span class="keyword">and</span> <span class="keyword">the</span> <span class="built_in">file</span> <span class="keyword">does</span> <span class="keyword">not</span> save. This only happens <span class="keyword">on</span> existing</span><br><span class="line">files, when saving a new <span class="built_in">file</span>, <span class="keyword">it</span> correctly prompts.</span><br><span class="line">This isn’t an issue <span class="keyword">with</span> <span class="keyword">the</span> terminal capturing ^S <span class="keyword">or</span> anything, <span class="keyword">as</span> <span class="keyword">if</span> I add, <span class="built_in">say</span>,</span><br><span class="line">‘bind ^W savefile all‘ <span class="keyword">to</span> <span class="keyword">my</span> nanorc, ^W exhibits <span class="keyword">the</span> same behavior.</span><br><span class="line">I’m going <span class="keyword">to</span> <span class="keyword">try</span> <span class="keyword">on</span> a few other platforms <span class="keyword">as</span> well <span class="keyword">as</span> build <span class="keyword">from</span> source later, <span class="keyword">but</span> <span class="keyword">for</span></span><br><span class="line">now, I just want <span class="keyword">to</span> bring <span class="keyword">it</span> up.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">author Devin Hussey &lt;husseydevin@gmail.com&gt; <span class="number">2019</span><span class="number">-03</span><span class="number">-28</span> <span class="number">17</span>:<span class="number">28</span>:<span class="number">47</span> <span class="number">-0400</span></span><br><span class="line">committer Benno Schulenberg &lt;bensberg@telfort.nl&gt; <span class="number">2019</span><span class="number">-03</span><span class="number">-31</span> <span class="number">12</span>:<span class="number">57</span>:<span class="number">27</span> +<span class="number">0200</span></span><br><span class="line"><span class="keyword">commit</span> <span class="number">7</span>ad232d71470cd8c4dc63aeb02f11c9e8df9ecdb (patch)</span><br><span class="line">files: initialize a variable <span class="keyword">before</span> referencing it</span><br><span class="line"></span><br><span class="line">The lack <span class="keyword">of</span> initialization caused a nasty bug <span class="keyword">on</span> <span class="keyword">some</span> targets (such <span class="keyword">as</span> ARMv7) which</span><br><span class="line">would make it so that ^S would just say &quot;Cancelled&quot;.</span><br><span class="line"><span class="keyword">While</span> x86 (<span class="keyword">both</span> <span class="number">64</span> <span class="keyword">and</span> <span class="number">32</span> bits) seems <span class="keyword">to</span> initialize ’response’ <span class="keyword">to</span> zero <span class="keyword">or</span> a positive</span><br><span class="line">number, ARM does <span class="keyword">not</span>, <span class="keyword">and</span> there <span class="keyword">is</span> usually a negative <span class="keyword">value</span> <span class="keyword">in</span> its place, which</span><br><span class="line">triggers the ’<span class="keyword">if</span> (response &lt; <span class="number">0</span>)’ <span class="keyword">check</span> <span class="keyword">and</span>, <span class="keyword">as</span> a result, the code says &quot;Cancelled&quot;.</span><br><span class="line">This fixes https://savannah.gnu.org/bugs/?<span class="number">56023.</span></span><br><span class="line">Reported-<span class="keyword">by</span>: Devin Hussey &lt;husseydevin@gmail.com&gt;</span><br><span class="line">Bug existed since <span class="keyword">version</span> <span class="number">4.0</span>, <span class="keyword">commit</span> <span class="number">0</span>f9d60a3.</span><br><span class="line">Signed-<span class="keyword">off</span>-<span class="keyword">by</span>: Devin Hussey &lt;husseydevin@gmail.com&gt;</span><br><span class="line"></span><br><span class="line">Diffstat</span><br><span class="line">-rw-r<span class="comment">--r-- src/files.c 2</span></span><br><span class="line"><span class="number">1</span> files changed, <span class="number">1</span> insertions, <span class="number">1</span> deletions</span><br><span class="line">diff <span class="comment">--git a/src/files.c b/src/files.c</span></span><br><span class="line"><span class="keyword">index</span> <span class="number">84e3</span>f68..fd54c16 <span class="number">100644</span></span><br><span class="line"><span class="comment">--- a/src/files.c</span></span><br><span class="line">+++ b/src/files.c</span><br><span class="line">@@ <span class="number">-2101</span>,<span class="number">7</span> +<span class="number">2101</span>,<span class="number">7</span> @@ <span class="type">int</span> do_writeout(<span class="type">bool</span> exiting, <span class="type">bool</span> withprompt)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">TRUE</span>) &#123;</span><br><span class="line">			const <span class="type">char</span> *msg;</span><br><span class="line">- 			<span class="type">int</span> response, choice;</span><br><span class="line">+ 			<span class="type">int</span> response = <span class="number">0</span>, choice = <span class="number">0</span>;</span><br><span class="line">			functionptrtype func;</span><br><span class="line"><span class="meta">#ifndef NANO_TINY</span></span><br><span class="line">			const <span class="type">char</span> *formatstr, *backupstr;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><strong>Who is the original bug reporter?</strong> </p>
+<p><strong>谁是最初的错误报告者？</strong></p>
+</li>
+<li><p><strong>What bug did he report, and for which version of nano?</strong> </p>
+<p><strong>他报告了什么错误，以及哪个版本的 nano？</strong></p>
+</li>
+<li><p><strong>How long did it take him to submit a patch after he reported the bug?</strong></p>
+<p><strong>他在报告错误后花了多长时间提交补丁？</strong></p>
+</li>
+<li><p><strong>Who applied the patch to the nano source code repository for the next release? From the commit record, what is his role in the nano project?</strong> </p>
+<p><strong>谁在下一个版本的 nano 源代码库中应用了补丁？ 从提交记录看，他在nano项目中的作用是什么？</strong></p>
+</li>
+<li><p><strong>How many people have participated in discussing this bug?</strong> </p>
+<p><strong>有多少人参与了这个bug的讨论？</strong></p>
+</li>
+<li><p><strong>What are the advantages of using a bug tracker over using email for reporting and recording bugs?</strong></p>
+<p><strong>与使用电子邮件报告和记录错误相比，使用错误跟踪器有哪些优势？</strong> </p>
+</li>
+</ol>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">答案：</span><br><span class="line">(<span class="number">1</span>) easyapi314 <span class="keyword">or </span>Devin Hussey</span><br><span class="line">(<span class="number">2</span>) The command <span class="string">&#x27;^S&#x27;</span> failed to save existing files on an ARM platform. <span class="keyword">Or </span><span class="keyword">Bug </span><span class="comment">#56023.</span></span><br><span class="line">    Nano version <span class="number">4</span>.<span class="number">0</span>.</span><br><span class="line">(<span class="number">3</span>) About <span class="number">3</span> hours.</span><br><span class="line">(<span class="number">4</span>) <span class="keyword">Benno </span><span class="keyword">Schulenberg, </span>the nano Project Administrator.</span><br><span class="line">(<span class="number">5</span>) <span class="number">4</span>.</span><br><span class="line">(<span class="number">6</span>) Any of the following:</span><br><span class="line">    - All <span class="keyword">bugs </span>are put <span class="built_in">at</span> one publicly-accessible place.</span><br><span class="line">    - <span class="keyword">Bugs </span>are searchable as a <span class="keyword">shared </span>record so the number of</span><br><span class="line">      duplicate <span class="keyword">bug </span>reports can <span class="keyword">be </span>reduced.</span><br><span class="line">    - The <span class="keyword">bug </span>tracker is a good project status indicator.</span><br><span class="line">    - Encourage more participation.</span><br><span class="line">    - Record the <span class="keyword">bug </span>handling process.</span><br><span class="line">    - Standard <span class="keyword">and </span>easy.</span><br><span class="line">(<span class="number">1</span>) easyapi314 或 Devin Hussey</span><br><span class="line">(<span class="number">2</span>) 命令<span class="string">&#x27;^S&#x27;</span> 无法在ARM 平台上保存现有文件。 或错误 <span class="comment">#56023。Nano 版本 4.0。</span></span><br><span class="line">(<span class="number">3</span>) 约<span class="number">3</span>小时。</span><br><span class="line">(<span class="number">4</span>) Nano 项目管理员 <span class="keyword">Benno </span><span class="keyword">Schulenberg。</span></span><br><span class="line"><span class="keyword"></span>(<span class="number">5</span>) <span class="number">4</span>.</span><br><span class="line">(<span class="number">6</span>) 下列任何一项：</span><br><span class="line">     - 所有错误都放在一个可公开访问的地方。</span><br><span class="line">     - 错误可作为共享记录进行搜索，因此错误的数量</span><br><span class="line">       可以减少重复的错误报告。</span><br><span class="line">     - 错误跟踪器是一个很好的项目状态指示器。</span><br><span class="line">     - 鼓励更多的参与。</span><br><span class="line">     - 记录错误处理过程。</span><br><span class="line">     - 标准且简单。 </span><br></pre></td></tr></table></figure>
+
+</div><div class="article-licensing box"><div class="licensing-title"><p>软件项目管理</p><p><a href="http://example.com/2021/05/09/软件项目管理/">http://example.com/2021/05/09/软件项目管理/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Leonlist</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-05-09</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-10-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">软件项目管理</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">编译原理</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/04/23/Online-Quiz/"><span class="level-item">Online_Quiz</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-18T03:22:05.000Z">2022-10-18</time></p><p class="title"><a href="/2022/10/18/test/">test</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-26T03:17:15.000Z">2021-05-26</time></p><p class="title"><a href="/2021/05/26/%E5%BE%AE%E6%9C%BA/">微机</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-24T06:38:57.000Z">2021-05-24</time></p><p class="title"><a href="/2021/05/24/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-09T11:17:28.000Z">2021-05-09</time></p><p class="title"><a href="/2021/05/09/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">软件项目管理</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-04-23T07:58:54.000Z">2021-04-23</time></p><p class="title"><a href="/2021/04/23/Online-Quiz/">Online_Quiz</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E5%BE%AE%E6%9C%BA/"><span class="tag">微机</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><span class="tag">编译原理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><span class="tag">软件项目管理</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Leonlist&#039;s Temporary Blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Leonlist</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
